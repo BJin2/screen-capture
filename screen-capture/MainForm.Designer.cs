@@ -321,6 +321,8 @@
 			// 
 			this.closeButton.Dock = System.Windows.Forms.DockStyle.Right;
 			this.closeButton.FlatAppearance.BorderSize = 0;
+			this.closeButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+			this.closeButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
 			this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.closeButton.Location = new System.Drawing.Point(757, 0);
 			this.closeButton.Name = "closeButton";
@@ -332,6 +334,8 @@
 			// 
 			this.minimizeButton.Dock = System.Windows.Forms.DockStyle.Right;
 			this.minimizeButton.FlatAppearance.BorderSize = 0;
+			this.minimizeButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(14)))), ((int)(((byte)(34)))));
+			this.minimizeButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(26)))), ((int)(((byte)(46)))));
 			this.minimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.minimizeButton.Location = new System.Drawing.Point(714, 0);
 			this.minimizeButton.Name = "minimizeButton";
