@@ -19,6 +19,7 @@ namespace screen_capture
 		public FlatNumericUpDown()
 		{
 			InitializeComponent();
+			this.MouseWheel += flatNumericUpDown_Wheel;
 			numberBox.KeyPress += new KeyPressEventHandler(numberBox_KeyPress);
 			//TODO load form setting data
 			NumValue = minValue;
@@ -40,6 +41,12 @@ namespace screen_capture
 			}
 		}
 
+		private void ValueChange(int delta)
+		{
+			NumValue = Clamp(NumValue + delta, minValue, maxValue);
+			numberBox.Text = NumValue.ToString();
+		}
+
 		private int Clamp(int val, int min, int max)
 		{
 			if (val > max)
@@ -52,14 +59,20 @@ namespace screen_capture
 
 		private void upButton_Click(object sender, EventArgs e)
 		{
-			NumValue = Clamp(NumValue + 1, minValue, maxValue);
-			numberBox.Text = NumValue.ToString();
+			ValueChange(1);
 		}
 
 		private void downButton_Click(object sender, EventArgs e)
 		{
-			NumValue = Clamp(NumValue - 1, minValue, maxValue);
-			numberBox.Text = NumValue.ToString();
+			ValueChange(-1);
+		}
+
+		private void flatNumericUpDown_Wheel(object sender, MouseEventArgs e)
+		{
+			if (e.Delta == 0)
+				return;
+
+			ValueChange((e.Delta / Math.Abs(e.Delta)));
 		}
 	}
 }
