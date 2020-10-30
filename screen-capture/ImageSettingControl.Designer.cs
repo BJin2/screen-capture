@@ -36,19 +36,25 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.numImageRect = new screen_capture.FlatNumericUpDown();
 			this.panel3 = new System.Windows.Forms.Panel();
-			this.autosaveCheckbox = new System.Windows.Forms.CheckBox();
 			this.panel4 = new System.Windows.Forms.Panel();
+			this.autosaveCheckbox = new System.Windows.Forms.CheckBox();
+			this.panel6 = new System.Windows.Forms.Panel();
+			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.autosaveNamingLabel = new System.Windows.Forms.Label();
+			this.panel5 = new System.Windows.Forms.Panel();
+			this.directoryControl1 = new screen_capture.DirectoryControl();
 			this.autosaveDetailPanel = new System.Windows.Forms.Panel();
 			this.autosavePathLabel = new System.Windows.Forms.Label();
-			this.directoryControl1 = new screen_capture.DirectoryControl();
-			this.panel5 = new System.Windows.Forms.Panel();
-			this.autosaveNamingLabel = new System.Windows.Forms.Label();
-			this.textBox1 = new System.Windows.Forms.TextBox();
-			this.panel6 = new System.Windows.Forms.Panel();
+			this.panel7 = new System.Windows.Forms.Panel();
+			this.panel8 = new System.Windows.Forms.Panel();
+			this.fileFormatLabel = new System.Windows.Forms.Label();
+			this.comboBox1 = new System.Windows.Forms.ComboBox();
 			this.detailedSettingPanel.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
+			this.panel4.SuspendLayout();
 			this.autosaveDetailPanel.SuspendLayout();
+			this.panel8.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// settingTitleLabel
@@ -101,8 +107,8 @@
 			// panel2
 			// 
 			this.panel2.Controls.Add(this.autosaveDetailPanel);
+			this.panel2.Controls.Add(this.panel7);
 			this.panel2.Controls.Add(this.panel4);
-			this.panel2.Controls.Add(this.autosaveCheckbox);
 			this.panel2.Controls.Add(this.panel3);
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel2.Location = new System.Drawing.Point(10, 37);
@@ -130,68 +136,48 @@
 			this.panel3.Size = new System.Drawing.Size(530, 10);
 			this.panel3.TabIndex = 3;
 			// 
+			// panel4
+			// 
+			this.panel4.Controls.Add(this.autosaveCheckbox);
+			this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panel4.Location = new System.Drawing.Point(0, 10);
+			this.panel4.Name = "panel4";
+			this.panel4.Size = new System.Drawing.Size(530, 25);
+			this.panel4.TabIndex = 4;
+			// 
 			// autosaveCheckbox
 			// 
 			this.autosaveCheckbox.AutoSize = true;
-			this.autosaveCheckbox.Dock = System.Windows.Forms.DockStyle.Top;
+			this.autosaveCheckbox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.autosaveCheckbox.Checked = true;
+			this.autosaveCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.autosaveCheckbox.Dock = System.Windows.Forms.DockStyle.Left;
 			this.autosaveCheckbox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
 			this.autosaveCheckbox.ForeColor = System.Drawing.SystemColors.ControlDark;
-			this.autosaveCheckbox.Location = new System.Drawing.Point(0, 10);
+			this.autosaveCheckbox.Location = new System.Drawing.Point(0, 0);
 			this.autosaveCheckbox.Name = "autosaveCheckbox";
-			this.autosaveCheckbox.Size = new System.Drawing.Size(530, 25);
-			this.autosaveCheckbox.TabIndex = 4;
+			this.autosaveCheckbox.Size = new System.Drawing.Size(105, 25);
+			this.autosaveCheckbox.TabIndex = 0;
 			this.autosaveCheckbox.Text = "Auto Save";
 			this.autosaveCheckbox.UseVisualStyleBackColor = true;
 			// 
-			// panel4
+			// panel6
 			// 
-			this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panel4.Location = new System.Drawing.Point(0, 35);
-			this.panel4.Name = "panel4";
-			this.panel4.Size = new System.Drawing.Size(530, 10);
-			this.panel4.TabIndex = 5;
+			this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panel6.Location = new System.Drawing.Point(0, 96);
+			this.panel6.Name = "panel6";
+			this.panel6.Size = new System.Drawing.Size(530, 10);
+			this.panel6.TabIndex = 9;
 			// 
-			// autosaveDetailPanel
+			// textBox1
 			// 
-			this.autosaveDetailPanel.Controls.Add(this.panel6);
-			this.autosaveDetailPanel.Controls.Add(this.textBox1);
-			this.autosaveDetailPanel.Controls.Add(this.autosaveNamingLabel);
-			this.autosaveDetailPanel.Controls.Add(this.panel5);
-			this.autosaveDetailPanel.Controls.Add(this.directoryControl1);
-			this.autosaveDetailPanel.Controls.Add(this.autosavePathLabel);
-			this.autosaveDetailPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.autosaveDetailPanel.Location = new System.Drawing.Point(0, 45);
-			this.autosaveDetailPanel.Name = "autosaveDetailPanel";
-			this.autosaveDetailPanel.Size = new System.Drawing.Size(530, 231);
-			this.autosaveDetailPanel.TabIndex = 6;
-			// 
-			// autosavePathLabel
-			// 
-			this.autosavePathLabel.AutoSize = true;
-			this.autosavePathLabel.Dock = System.Windows.Forms.DockStyle.Top;
-			this.autosavePathLabel.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.autosavePathLabel.ForeColor = System.Drawing.SystemColors.ControlDark;
-			this.autosavePathLabel.Location = new System.Drawing.Point(0, 0);
-			this.autosavePathLabel.Name = "autosavePathLabel";
-			this.autosavePathLabel.Size = new System.Drawing.Size(160, 21);
-			this.autosavePathLabel.TabIndex = 0;
-			this.autosavePathLabel.Text = "Auto Save Directory";
-			// 
-			// directoryControl1
-			// 
-			this.directoryControl1.Dock = System.Windows.Forms.DockStyle.Top;
-			this.directoryControl1.Location = new System.Drawing.Point(0, 21);
-			this.directoryControl1.Name = "directoryControl1";
-			this.directoryControl1.Size = new System.Drawing.Size(530, 22);
-			this.directoryControl1.TabIndex = 1;
-			// 
-			// panel5
-			// 
-			this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panel5.Location = new System.Drawing.Point(0, 43);
-			this.panel5.Name = "panel5";
-			this.panel5.Size = new System.Drawing.Size(530, 10);
-			this.panel5.TabIndex = 6;
+			this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.textBox1.Dock = System.Windows.Forms.DockStyle.Top;
+			this.textBox1.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.textBox1.Location = new System.Drawing.Point(0, 74);
+			this.textBox1.Name = "textBox1";
+			this.textBox1.Size = new System.Drawing.Size(530, 22);
+			this.textBox1.TabIndex = 8;
 			// 
 			// autosaveNamingLabel
 			// 
@@ -205,23 +191,88 @@
 			this.autosaveNamingLabel.TabIndex = 7;
 			this.autosaveNamingLabel.Text = "Auto Save Naming Rule";
 			// 
-			// textBox1
+			// panel5
 			// 
-			this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.textBox1.Dock = System.Windows.Forms.DockStyle.Top;
-			this.textBox1.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.textBox1.Location = new System.Drawing.Point(0, 74);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(530, 22);
-			this.textBox1.TabIndex = 8;
+			this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panel5.Location = new System.Drawing.Point(0, 43);
+			this.panel5.Name = "panel5";
+			this.panel5.Size = new System.Drawing.Size(530, 10);
+			this.panel5.TabIndex = 6;
 			// 
-			// panel6
+			// directoryControl1
 			// 
-			this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panel6.Location = new System.Drawing.Point(0, 96);
-			this.panel6.Name = "panel6";
-			this.panel6.Size = new System.Drawing.Size(530, 10);
-			this.panel6.TabIndex = 9;
+			this.directoryControl1.Dock = System.Windows.Forms.DockStyle.Top;
+			this.directoryControl1.Location = new System.Drawing.Point(0, 21);
+			this.directoryControl1.Name = "directoryControl1";
+			this.directoryControl1.Size = new System.Drawing.Size(530, 22);
+			this.directoryControl1.TabIndex = 1;
+			// 
+			// autosaveDetailPanel
+			// 
+			this.autosaveDetailPanel.Controls.Add(this.panel8);
+			this.autosaveDetailPanel.Controls.Add(this.panel6);
+			this.autosaveDetailPanel.Controls.Add(this.textBox1);
+			this.autosaveDetailPanel.Controls.Add(this.autosaveNamingLabel);
+			this.autosaveDetailPanel.Controls.Add(this.panel5);
+			this.autosaveDetailPanel.Controls.Add(this.directoryControl1);
+			this.autosaveDetailPanel.Controls.Add(this.autosavePathLabel);
+			this.autosaveDetailPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.autosaveDetailPanel.Location = new System.Drawing.Point(0, 45);
+			this.autosaveDetailPanel.Name = "autosaveDetailPanel";
+			this.autosaveDetailPanel.Size = new System.Drawing.Size(530, 231);
+			this.autosaveDetailPanel.TabIndex = 8;
+			// 
+			// autosavePathLabel
+			// 
+			this.autosavePathLabel.AutoSize = true;
+			this.autosavePathLabel.Dock = System.Windows.Forms.DockStyle.Top;
+			this.autosavePathLabel.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.autosavePathLabel.ForeColor = System.Drawing.SystemColors.ControlDark;
+			this.autosavePathLabel.Location = new System.Drawing.Point(0, 0);
+			this.autosavePathLabel.Name = "autosavePathLabel";
+			this.autosavePathLabel.Size = new System.Drawing.Size(160, 21);
+			this.autosavePathLabel.TabIndex = 0;
+			this.autosavePathLabel.Text = "Auto Save Directory";
+			// 
+			// panel7
+			// 
+			this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panel7.Location = new System.Drawing.Point(0, 35);
+			this.panel7.Name = "panel7";
+			this.panel7.Size = new System.Drawing.Size(530, 10);
+			this.panel7.TabIndex = 7;
+			// 
+			// panel8
+			// 
+			this.panel8.Controls.Add(this.comboBox1);
+			this.panel8.Controls.Add(this.fileFormatLabel);
+			this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panel8.Location = new System.Drawing.Point(0, 106);
+			this.panel8.Name = "panel8";
+			this.panel8.Size = new System.Drawing.Size(530, 34);
+			this.panel8.TabIndex = 10;
+			// 
+			// fileFormatLabel
+			// 
+			this.fileFormatLabel.AutoSize = true;
+			this.fileFormatLabel.Dock = System.Windows.Forms.DockStyle.Left;
+			this.fileFormatLabel.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.fileFormatLabel.ForeColor = System.Drawing.SystemColors.ControlDark;
+			this.fileFormatLabel.Location = new System.Drawing.Point(0, 0);
+			this.fileFormatLabel.Name = "fileFormatLabel";
+			this.fileFormatLabel.Size = new System.Drawing.Size(93, 21);
+			this.fileFormatLabel.TabIndex = 11;
+			this.fileFormatLabel.Text = "File Format";
+			// 
+			// comboBox1
+			// 
+			this.comboBox1.Dock = System.Windows.Forms.DockStyle.Left;
+			this.comboBox1.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.comboBox1.FormattingEnabled = true;
+			this.comboBox1.Location = new System.Drawing.Point(93, 0);
+			this.comboBox1.Name = "comboBox1";
+			this.comboBox1.Size = new System.Drawing.Size(105, 29);
+			this.comboBox1.TabIndex = 12;
 			// 
 			// ImageSettingControl
 			// 
@@ -238,9 +289,12 @@
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.panel2.ResumeLayout(false);
-			this.panel2.PerformLayout();
+			this.panel4.ResumeLayout(false);
+			this.panel4.PerformLayout();
 			this.autosaveDetailPanel.ResumeLayout(false);
 			this.autosaveDetailPanel.PerformLayout();
+			this.panel8.ResumeLayout(false);
+			this.panel8.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -256,13 +310,17 @@
 		private System.Windows.Forms.Panel panel2;
 		private System.Windows.Forms.Panel panel3;
 		private System.Windows.Forms.Panel autosaveDetailPanel;
+		private System.Windows.Forms.Panel panel8;
+		private System.Windows.Forms.ComboBox comboBox1;
+		private System.Windows.Forms.Label fileFormatLabel;
+		private System.Windows.Forms.Panel panel6;
 		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.Label autosaveNamingLabel;
 		private System.Windows.Forms.Panel panel5;
 		private DirectoryControl directoryControl1;
 		private System.Windows.Forms.Label autosavePathLabel;
+		private System.Windows.Forms.Panel panel7;
 		private System.Windows.Forms.Panel panel4;
 		private System.Windows.Forms.CheckBox autosaveCheckbox;
-		private System.Windows.Forms.Panel panel6;
 	}
 }
