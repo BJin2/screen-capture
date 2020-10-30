@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DirectoryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DirectoryControl.Designer.cs">
+      <DependentUpon>DirectoryControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="FlatNumericUpDown.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -72,6 +78,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="DirectoryControl.resx">
+      <DependentUpon>DirectoryControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FlatNumericUpDown.resx">
       <DependentUpon>FlatNumericUpDown.cs</DependentUpon>
     </EmbeddedResource>

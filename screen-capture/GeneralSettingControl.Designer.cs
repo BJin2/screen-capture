@@ -31,8 +31,8 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GeneralSettingControl));
 			this.settingTitleLabel = new System.Windows.Forms.Label();
 			this.detailedSettingPanel = new System.Windows.Forms.Panel();
-			this.syncCheckbox = new System.Windows.Forms.CheckBox();
 			this.topCheckbox = new System.Windows.Forms.CheckBox();
+			this.syncCheckbox = new System.Windows.Forms.CheckBox();
 			this.detailedSettingPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -60,21 +60,6 @@
 			this.detailedSettingPanel.Size = new System.Drawing.Size(540, 313);
 			this.detailedSettingPanel.TabIndex = 1;
 			// 
-			// syncCheckbox
-			// 
-			this.syncCheckbox.AutoSize = true;
-			this.syncCheckbox.Checked = true;
-			this.syncCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.syncCheckbox.Dock = System.Windows.Forms.DockStyle.Top;
-			this.syncCheckbox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.syncCheckbox.ForeColor = System.Drawing.SystemColors.ControlDark;
-			this.syncCheckbox.Location = new System.Drawing.Point(10, 15);
-			this.syncCheckbox.Name = "syncCheckbox";
-			this.syncCheckbox.Size = new System.Drawing.Size(530, 25);
-			this.syncCheckbox.TabIndex = 0;
-			this.syncCheckbox.Text = "Sync image and gif auto save settings";
-			this.syncCheckbox.UseVisualStyleBackColor = true;
-			// 
 			// topCheckbox
 			// 
 			this.topCheckbox.AutoSize = true;
@@ -89,6 +74,21 @@
 			this.topCheckbox.TabIndex = 1;
 			this.topCheckbox.Text = "Always on top (this window)";
 			this.topCheckbox.UseVisualStyleBackColor = true;
+			// 
+			// syncCheckbox
+			// 
+			this.syncCheckbox.AutoSize = true;
+			this.syncCheckbox.Checked = true;
+			this.syncCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.syncCheckbox.Dock = System.Windows.Forms.DockStyle.Top;
+			this.syncCheckbox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.syncCheckbox.ForeColor = System.Drawing.SystemColors.ControlDark;
+			this.syncCheckbox.Location = new System.Drawing.Point(10, 15);
+			this.syncCheckbox.Name = "syncCheckbox";
+			this.syncCheckbox.Size = new System.Drawing.Size(530, 25);
+			this.syncCheckbox.TabIndex = 0;
+			this.syncCheckbox.Text = "Sync image and gif auto save settings";
+			this.syncCheckbox.UseVisualStyleBackColor = true;
 			// 
 			// GeneralSettingControl
 			// 
