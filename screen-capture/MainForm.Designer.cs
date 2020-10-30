@@ -53,6 +53,7 @@
 			this.bottomGap = new System.Windows.Forms.Panel();
 			this.rightGap = new System.Windows.Forms.Panel();
 			this.leftGap = new System.Windows.Forms.Panel();
+			this.flatNumericUpDown1 = new screen_capture.FlatNumericUpDown();
 			this.titlePanel.SuspendLayout();
 			this.topGap.SuspendLayout();
 			this.foldButtonPanel.SuspendLayout();
@@ -62,6 +63,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.imageRectIcon)).BeginInit();
 			this.foldPanel.SuspendLayout();
 			this.appPanel.SuspendLayout();
+			this.settingPanel.SuspendLayout();
 			this.sideMenuPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -247,6 +249,7 @@
 			// settingPanel
 			// 
 			this.settingPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(53)))), ((int)(((byte)(83)))));
+			this.settingPanel.Controls.Add(this.flatNumericUpDown1);
 			this.settingPanel.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.settingPanel.Location = new System.Drawing.Point(200, 0);
 			this.settingPanel.Name = "settingPanel";
@@ -365,6 +368,17 @@
 			this.leftGap.Size = new System.Drawing.Size(18, 385);
 			this.leftGap.TabIndex = 0;
 			// 
+			// flatNumericUpDown1
+			// 
+			this.flatNumericUpDown1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(53)))), ((int)(((byte)(83)))));
+			this.flatNumericUpDown1.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.flatNumericUpDown1.ForeColor = System.Drawing.SystemColors.ControlDark;
+			this.flatNumericUpDown1.Location = new System.Drawing.Point(205, 127);
+			this.flatNumericUpDown1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.flatNumericUpDown1.Name = "flatNumericUpDown1";
+			this.flatNumericUpDown1.Size = new System.Drawing.Size(70, 22);
+			this.flatNumericUpDown1.TabIndex = 0;
+			// 
 			// MainForm
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -387,6 +401,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.imageRectIcon)).EndInit();
 			this.foldPanel.ResumeLayout(false);
 			this.appPanel.ResumeLayout(false);
+			this.settingPanel.ResumeLayout(false);
 			this.sideMenuPanel.ResumeLayout(false);
 			this.ResumeLayout(false);
 
@@ -418,6 +433,7 @@
 		private System.Windows.Forms.Button minimizeButton;
 		private System.Windows.Forms.Button closeButton;
 		private System.Windows.Forms.Panel logoPanel;
+		private FlatNumericUpDown flatNumericUpDown1;
 	}
 }
 
