@@ -29,59 +29,63 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DirectoryControl));
-			this.textBox1 = new System.Windows.Forms.TextBox();
-			this.button1 = new System.Windows.Forms.Button();
-			this.button2 = new System.Windows.Forms.Button();
+			this.pathBox = new System.Windows.Forms.TextBox();
+			this.browseButton = new System.Windows.Forms.Button();
+			this.openButton = new System.Windows.Forms.Button();
+			this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
 			this.SuspendLayout();
 			// 
-			// textBox1
+			// pathBox
 			// 
-			this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.textBox1.Dock = System.Windows.Forms.DockStyle.Left;
-			this.textBox1.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.textBox1.Location = new System.Drawing.Point(0, 0);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(380, 22);
-			this.textBox1.TabIndex = 0;
-			this.textBox1.WordWrap = false;
+			this.pathBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.pathBox.Dock = System.Windows.Forms.DockStyle.Left;
+			this.pathBox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.pathBox.Location = new System.Drawing.Point(0, 0);
+			this.pathBox.Name = "pathBox";
+			this.pathBox.Size = new System.Drawing.Size(380, 22);
+			this.pathBox.TabIndex = 0;
+			this.pathBox.WordWrap = false;
+			this.pathBox.TextChanged += new System.EventHandler(this.pathBox_TextChanged);
 			// 
-			// button1
+			// browseButton
 			// 
-			this.button1.BackColor = System.Drawing.SystemColors.ControlDark;
-			this.button1.Dock = System.Windows.Forms.DockStyle.Left;
-			this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
-			this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.button1.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-			this.button1.Location = new System.Drawing.Point(380, 0);
-			this.button1.Margin = new System.Windows.Forms.Padding(0);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(60, 22);
-			this.button1.TabIndex = 1;
-			this.button1.UseVisualStyleBackColor = false;
+			this.browseButton.BackColor = System.Drawing.SystemColors.ControlDark;
+			this.browseButton.Dock = System.Windows.Forms.DockStyle.Left;
+			this.browseButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
+			this.browseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.browseButton.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.browseButton.Image = ((System.Drawing.Image)(resources.GetObject("browseButton.Image")));
+			this.browseButton.Location = new System.Drawing.Point(380, 0);
+			this.browseButton.Margin = new System.Windows.Forms.Padding(0);
+			this.browseButton.Name = "browseButton";
+			this.browseButton.Size = new System.Drawing.Size(60, 22);
+			this.browseButton.TabIndex = 1;
+			this.browseButton.UseVisualStyleBackColor = false;
+			this.browseButton.Click += new System.EventHandler(this.browseButton_Click);
 			// 
-			// button2
+			// openButton
 			// 
-			this.button2.BackColor = System.Drawing.SystemColors.ControlDark;
-			this.button2.Dock = System.Windows.Forms.DockStyle.Left;
-			this.button2.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
-			this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.button2.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-			this.button2.Location = new System.Drawing.Point(440, 0);
-			this.button2.Margin = new System.Windows.Forms.Padding(0);
-			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(60, 22);
-			this.button2.TabIndex = 2;
-			this.button2.UseVisualStyleBackColor = false;
+			this.openButton.BackColor = System.Drawing.SystemColors.ControlDark;
+			this.openButton.Dock = System.Windows.Forms.DockStyle.Left;
+			this.openButton.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
+			this.openButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.openButton.Font = new System.Drawing.Font("Malgun Gothic", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.openButton.Image = ((System.Drawing.Image)(resources.GetObject("openButton.Image")));
+			this.openButton.Location = new System.Drawing.Point(440, 0);
+			this.openButton.Margin = new System.Windows.Forms.Padding(0);
+			this.openButton.Name = "openButton";
+			this.openButton.Size = new System.Drawing.Size(60, 22);
+			this.openButton.TabIndex = 2;
+			this.openButton.UseVisualStyleBackColor = false;
+			this.openButton.Click += new System.EventHandler(this.openButton_Click);
 			// 
 			// DirectoryControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.button2);
-			this.Controls.Add(this.button1);
-			this.Controls.Add(this.textBox1);
+			this.Controls.Add(this.openButton);
+			this.Controls.Add(this.browseButton);
+			this.Controls.Add(this.pathBox);
 			this.Name = "DirectoryControl";
 			this.Size = new System.Drawing.Size(500, 22);
 			this.ResumeLayout(false);
@@ -91,8 +95,9 @@
 
 		#endregion
 
-		private System.Windows.Forms.TextBox textBox1;
-		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.TextBox pathBox;
+		private System.Windows.Forms.Button browseButton;
+		private System.Windows.Forms.Button openButton;
+		private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
 	}
 }

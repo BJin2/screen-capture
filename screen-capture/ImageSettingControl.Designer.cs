@@ -31,30 +31,30 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImageSettingControl));
 			this.settingTitleLabel = new System.Windows.Forms.Label();
 			this.detailedSettingPanel = new System.Windows.Forms.Panel();
-			this.panel1 = new System.Windows.Forms.Panel();
-			this.numRectLabel = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.numImageRect = new screen_capture.FlatNumericUpDown();
-			this.panel3 = new System.Windows.Forms.Panel();
-			this.panel4 = new System.Windows.Forms.Panel();
-			this.autosaveCheckbox = new System.Windows.Forms.CheckBox();
+			this.autosaveDetailPanel = new System.Windows.Forms.Panel();
+			this.panel8 = new System.Windows.Forms.Panel();
+			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.fileFormatLabel = new System.Windows.Forms.Label();
 			this.panel6 = new System.Windows.Forms.Panel();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.autosaveNamingLabel = new System.Windows.Forms.Label();
 			this.panel5 = new System.Windows.Forms.Panel();
 			this.directoryControl1 = new screen_capture.DirectoryControl();
-			this.autosaveDetailPanel = new System.Windows.Forms.Panel();
 			this.autosavePathLabel = new System.Windows.Forms.Label();
 			this.panel7 = new System.Windows.Forms.Panel();
-			this.panel8 = new System.Windows.Forms.Panel();
-			this.fileFormatLabel = new System.Windows.Forms.Label();
-			this.comboBox1 = new System.Windows.Forms.ComboBox();
+			this.panel4 = new System.Windows.Forms.Panel();
+			this.autosaveCheckbox = new System.Windows.Forms.CheckBox();
+			this.panel3 = new System.Windows.Forms.Panel();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.numRectLabel = new System.Windows.Forms.Label();
+			this.numImageRect = new screen_capture.FlatNumericUpDown();
 			this.detailedSettingPanel.SuspendLayout();
-			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
-			this.panel4.SuspendLayout();
 			this.autosaveDetailPanel.SuspendLayout();
 			this.panel8.SuspendLayout();
+			this.panel4.SuspendLayout();
+			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// settingTitleLabel
@@ -81,29 +81,6 @@
 			this.detailedSettingPanel.Size = new System.Drawing.Size(540, 313);
 			this.detailedSettingPanel.TabIndex = 2;
 			// 
-			// panel1
-			// 
-			this.panel1.Controls.Add(this.numRectLabel);
-			this.panel1.Controls.Add(this.numImageRect);
-			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panel1.Location = new System.Drawing.Point(10, 15);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(530, 22);
-			this.panel1.TabIndex = 1;
-			// 
-			// numRectLabel
-			// 
-			this.numRectLabel.AutoSize = true;
-			this.numRectLabel.Dock = System.Windows.Forms.DockStyle.Left;
-			this.numRectLabel.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.numRectLabel.ForeColor = System.Drawing.SystemColors.ControlDark;
-			this.numRectLabel.Location = new System.Drawing.Point(70, 0);
-			this.numRectLabel.Margin = new System.Windows.Forms.Padding(0);
-			this.numRectLabel.Name = "numRectLabel";
-			this.numRectLabel.Size = new System.Drawing.Size(244, 21);
-			this.numRectLabel.TabIndex = 1;
-			this.numRectLabel.Text = " Number of Image Capture Box";
-			// 
 			// panel2
 			// 
 			this.panel2.Controls.Add(this.autosaveDetailPanel);
@@ -116,50 +93,52 @@
 			this.panel2.Size = new System.Drawing.Size(530, 276);
 			this.panel2.TabIndex = 3;
 			// 
-			// numImageRect
+			// autosaveDetailPanel
 			// 
-			this.numImageRect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(53)))), ((int)(((byte)(83)))));
-			this.numImageRect.Dock = System.Windows.Forms.DockStyle.Left;
-			this.numImageRect.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.numImageRect.ForeColor = System.Drawing.SystemColors.ControlDark;
-			this.numImageRect.Location = new System.Drawing.Point(0, 0);
-			this.numImageRect.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.numImageRect.Name = "numImageRect";
-			this.numImageRect.Size = new System.Drawing.Size(70, 22);
-			this.numImageRect.TabIndex = 0;
+			this.autosaveDetailPanel.Controls.Add(this.panel8);
+			this.autosaveDetailPanel.Controls.Add(this.panel6);
+			this.autosaveDetailPanel.Controls.Add(this.textBox1);
+			this.autosaveDetailPanel.Controls.Add(this.autosaveNamingLabel);
+			this.autosaveDetailPanel.Controls.Add(this.panel5);
+			this.autosaveDetailPanel.Controls.Add(this.directoryControl1);
+			this.autosaveDetailPanel.Controls.Add(this.autosavePathLabel);
+			this.autosaveDetailPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.autosaveDetailPanel.Location = new System.Drawing.Point(0, 45);
+			this.autosaveDetailPanel.Name = "autosaveDetailPanel";
+			this.autosaveDetailPanel.Size = new System.Drawing.Size(530, 231);
+			this.autosaveDetailPanel.TabIndex = 8;
 			// 
-			// panel3
+			// panel8
 			// 
-			this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panel3.Location = new System.Drawing.Point(0, 0);
-			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(530, 10);
-			this.panel3.TabIndex = 3;
+			this.panel8.Controls.Add(this.comboBox1);
+			this.panel8.Controls.Add(this.fileFormatLabel);
+			this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panel8.Location = new System.Drawing.Point(0, 106);
+			this.panel8.Name = "panel8";
+			this.panel8.Size = new System.Drawing.Size(530, 34);
+			this.panel8.TabIndex = 10;
 			// 
-			// panel4
+			// comboBox1
 			// 
-			this.panel4.Controls.Add(this.autosaveCheckbox);
-			this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panel4.Location = new System.Drawing.Point(0, 10);
-			this.panel4.Name = "panel4";
-			this.panel4.Size = new System.Drawing.Size(530, 25);
-			this.panel4.TabIndex = 4;
+			this.comboBox1.Dock = System.Windows.Forms.DockStyle.Left;
+			this.comboBox1.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.comboBox1.FormattingEnabled = true;
+			this.comboBox1.Location = new System.Drawing.Point(93, 0);
+			this.comboBox1.Name = "comboBox1";
+			this.comboBox1.Size = new System.Drawing.Size(105, 29);
+			this.comboBox1.TabIndex = 12;
 			// 
-			// autosaveCheckbox
+			// fileFormatLabel
 			// 
-			this.autosaveCheckbox.AutoSize = true;
-			this.autosaveCheckbox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.autosaveCheckbox.Checked = true;
-			this.autosaveCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this.autosaveCheckbox.Dock = System.Windows.Forms.DockStyle.Left;
-			this.autosaveCheckbox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.autosaveCheckbox.ForeColor = System.Drawing.SystemColors.ControlDark;
-			this.autosaveCheckbox.Location = new System.Drawing.Point(0, 0);
-			this.autosaveCheckbox.Name = "autosaveCheckbox";
-			this.autosaveCheckbox.Size = new System.Drawing.Size(105, 25);
-			this.autosaveCheckbox.TabIndex = 0;
-			this.autosaveCheckbox.Text = "Auto Save";
-			this.autosaveCheckbox.UseVisualStyleBackColor = true;
+			this.fileFormatLabel.AutoSize = true;
+			this.fileFormatLabel.Dock = System.Windows.Forms.DockStyle.Left;
+			this.fileFormatLabel.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.fileFormatLabel.ForeColor = System.Drawing.SystemColors.ControlDark;
+			this.fileFormatLabel.Location = new System.Drawing.Point(0, 0);
+			this.fileFormatLabel.Name = "fileFormatLabel";
+			this.fileFormatLabel.Size = new System.Drawing.Size(93, 21);
+			this.fileFormatLabel.TabIndex = 11;
+			this.fileFormatLabel.Text = "File Format";
 			// 
 			// panel6
 			// 
@@ -207,21 +186,6 @@
 			this.directoryControl1.Size = new System.Drawing.Size(530, 22);
 			this.directoryControl1.TabIndex = 1;
 			// 
-			// autosaveDetailPanel
-			// 
-			this.autosaveDetailPanel.Controls.Add(this.panel8);
-			this.autosaveDetailPanel.Controls.Add(this.panel6);
-			this.autosaveDetailPanel.Controls.Add(this.textBox1);
-			this.autosaveDetailPanel.Controls.Add(this.autosaveNamingLabel);
-			this.autosaveDetailPanel.Controls.Add(this.panel5);
-			this.autosaveDetailPanel.Controls.Add(this.directoryControl1);
-			this.autosaveDetailPanel.Controls.Add(this.autosavePathLabel);
-			this.autosaveDetailPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.autosaveDetailPanel.Location = new System.Drawing.Point(0, 45);
-			this.autosaveDetailPanel.Name = "autosaveDetailPanel";
-			this.autosaveDetailPanel.Size = new System.Drawing.Size(530, 231);
-			this.autosaveDetailPanel.TabIndex = 8;
-			// 
 			// autosavePathLabel
 			// 
 			this.autosavePathLabel.AutoSize = true;
@@ -242,37 +206,73 @@
 			this.panel7.Size = new System.Drawing.Size(530, 10);
 			this.panel7.TabIndex = 7;
 			// 
-			// panel8
+			// panel4
 			// 
-			this.panel8.Controls.Add(this.comboBox1);
-			this.panel8.Controls.Add(this.fileFormatLabel);
-			this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panel8.Location = new System.Drawing.Point(0, 106);
-			this.panel8.Name = "panel8";
-			this.panel8.Size = new System.Drawing.Size(530, 34);
-			this.panel8.TabIndex = 10;
+			this.panel4.Controls.Add(this.autosaveCheckbox);
+			this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panel4.Location = new System.Drawing.Point(0, 10);
+			this.panel4.Name = "panel4";
+			this.panel4.Size = new System.Drawing.Size(530, 25);
+			this.panel4.TabIndex = 4;
 			// 
-			// fileFormatLabel
+			// autosaveCheckbox
 			// 
-			this.fileFormatLabel.AutoSize = true;
-			this.fileFormatLabel.Dock = System.Windows.Forms.DockStyle.Left;
-			this.fileFormatLabel.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.fileFormatLabel.ForeColor = System.Drawing.SystemColors.ControlDark;
-			this.fileFormatLabel.Location = new System.Drawing.Point(0, 0);
-			this.fileFormatLabel.Name = "fileFormatLabel";
-			this.fileFormatLabel.Size = new System.Drawing.Size(93, 21);
-			this.fileFormatLabel.TabIndex = 11;
-			this.fileFormatLabel.Text = "File Format";
+			this.autosaveCheckbox.AutoSize = true;
+			this.autosaveCheckbox.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.autosaveCheckbox.Checked = true;
+			this.autosaveCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.autosaveCheckbox.Dock = System.Windows.Forms.DockStyle.Left;
+			this.autosaveCheckbox.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.autosaveCheckbox.ForeColor = System.Drawing.SystemColors.ControlDark;
+			this.autosaveCheckbox.Location = new System.Drawing.Point(0, 0);
+			this.autosaveCheckbox.Name = "autosaveCheckbox";
+			this.autosaveCheckbox.Size = new System.Drawing.Size(105, 25);
+			this.autosaveCheckbox.TabIndex = 0;
+			this.autosaveCheckbox.Text = "Auto Save";
+			this.autosaveCheckbox.UseVisualStyleBackColor = true;
 			// 
-			// comboBox1
+			// panel3
 			// 
-			this.comboBox1.Dock = System.Windows.Forms.DockStyle.Left;
-			this.comboBox1.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(93, 0);
-			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(105, 29);
-			this.comboBox1.TabIndex = 12;
+			this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panel3.Location = new System.Drawing.Point(0, 0);
+			this.panel3.Name = "panel3";
+			this.panel3.Size = new System.Drawing.Size(530, 10);
+			this.panel3.TabIndex = 3;
+			// 
+			// panel1
+			// 
+			this.panel1.Controls.Add(this.numRectLabel);
+			this.panel1.Controls.Add(this.numImageRect);
+			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panel1.Location = new System.Drawing.Point(10, 15);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(530, 22);
+			this.panel1.TabIndex = 1;
+			// 
+			// numRectLabel
+			// 
+			this.numRectLabel.AutoSize = true;
+			this.numRectLabel.Dock = System.Windows.Forms.DockStyle.Left;
+			this.numRectLabel.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.numRectLabel.ForeColor = System.Drawing.SystemColors.ControlDark;
+			this.numRectLabel.Location = new System.Drawing.Point(70, 0);
+			this.numRectLabel.Margin = new System.Windows.Forms.Padding(0);
+			this.numRectLabel.Name = "numRectLabel";
+			this.numRectLabel.Size = new System.Drawing.Size(244, 21);
+			this.numRectLabel.TabIndex = 1;
+			this.numRectLabel.Text = " Number of Image Capture Box";
+			// 
+			// numImageRect
+			// 
+			this.numImageRect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(53)))), ((int)(((byte)(83)))));
+			this.numImageRect.Dock = System.Windows.Forms.DockStyle.Left;
+			this.numImageRect.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.numImageRect.ForeColor = System.Drawing.SystemColors.ControlDark;
+			this.numImageRect.Location = new System.Drawing.Point(0, 0);
+			this.numImageRect.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.numImageRect.Name = "numImageRect";
+			this.numImageRect.Size = new System.Drawing.Size(70, 22);
+			this.numImageRect.TabIndex = 0;
 			// 
 			// ImageSettingControl
 			// 
@@ -286,15 +286,15 @@
 			this.Padding = new System.Windows.Forms.Padding(10);
 			this.Size = new System.Drawing.Size(560, 363);
 			this.detailedSettingPanel.ResumeLayout(false);
-			this.panel1.ResumeLayout(false);
-			this.panel1.PerformLayout();
 			this.panel2.ResumeLayout(false);
-			this.panel4.ResumeLayout(false);
-			this.panel4.PerformLayout();
 			this.autosaveDetailPanel.ResumeLayout(false);
 			this.autosaveDetailPanel.PerformLayout();
 			this.panel8.ResumeLayout(false);
 			this.panel8.PerformLayout();
+			this.panel4.ResumeLayout(false);
+			this.panel4.PerformLayout();
+			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

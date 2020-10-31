@@ -53,6 +53,7 @@
 			this.bottomGap = new System.Windows.Forms.Panel();
 			this.rightGap = new System.Windows.Forms.Panel();
 			this.leftGap = new System.Windows.Forms.Panel();
+			this.directoryControl1 = new screen_capture.DirectoryControl();
 			this.titlePanel.SuspendLayout();
 			this.topGap.SuspendLayout();
 			this.foldButtonPanel.SuspendLayout();
@@ -62,6 +63,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.imageRectIcon)).BeginInit();
 			this.foldPanel.SuspendLayout();
 			this.appPanel.SuspendLayout();
+			this.settingPanel.SuspendLayout();
 			this.sideMenuPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -247,6 +249,7 @@
 			// settingPanel
 			// 
 			this.settingPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(53)))), ((int)(((byte)(83)))));
+			this.settingPanel.Controls.Add(this.directoryControl1);
 			this.settingPanel.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.settingPanel.Location = new System.Drawing.Point(200, 0);
 			this.settingPanel.Name = "settingPanel";
@@ -365,6 +368,13 @@
 			this.leftGap.Size = new System.Drawing.Size(18, 385);
 			this.leftGap.TabIndex = 0;
 			// 
+			// directoryControl1
+			// 
+			this.directoryControl1.Location = new System.Drawing.Point(31, 177);
+			this.directoryControl1.Name = "directoryControl1";
+			this.directoryControl1.Size = new System.Drawing.Size(500, 22);
+			this.directoryControl1.TabIndex = 0;
+			// 
 			// MainForm
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -387,6 +397,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.imageRectIcon)).EndInit();
 			this.foldPanel.ResumeLayout(false);
 			this.appPanel.ResumeLayout(false);
+			this.settingPanel.ResumeLayout(false);
 			this.sideMenuPanel.ResumeLayout(false);
 			this.ResumeLayout(false);
 
@@ -418,6 +429,7 @@
 		private System.Windows.Forms.Button minimizeButton;
 		private System.Windows.Forms.Button closeButton;
 		private System.Windows.Forms.Panel logoPanel;
+		private DirectoryControl directoryControl1;
 	}
 }
 
