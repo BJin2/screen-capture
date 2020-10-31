@@ -90,6 +90,7 @@
 			this.minimizeButton.Size = new System.Drawing.Size(35, 35);
 			this.minimizeButton.TabIndex = 2;
 			this.minimizeButton.UseVisualStyleBackColor = true;
+			this.minimizeButton.Click += new System.EventHandler(this.minimizeButton_Click);
 			// 
 			// closeButton
 			// 
@@ -104,6 +105,7 @@
 			this.closeButton.Size = new System.Drawing.Size(35, 35);
 			this.closeButton.TabIndex = 1;
 			this.closeButton.UseVisualStyleBackColor = true;
+			this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
 			// 
 			// logoPanel
 			// 
