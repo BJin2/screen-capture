@@ -79,6 +79,10 @@
 			this.openButton.UseVisualStyleBackColor = false;
 			this.openButton.Click += new System.EventHandler(this.openButton_Click);
 			// 
+			// folderBrowserDialog
+			// 
+			this.folderBrowserDialog.RootFolder = System.Environment.SpecialFolder.MyDocuments;
+			// 
 			// DirectoryControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
