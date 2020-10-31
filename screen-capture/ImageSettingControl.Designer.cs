@@ -32,40 +32,40 @@
 			this.settingTitleLabel = new System.Windows.Forms.Label();
 			this.contentsContainer = new System.Windows.Forms.Panel();
 			this.detailedContentsPanel = new System.Windows.Forms.Panel();
+			this.panel12 = new System.Windows.Forms.Panel();
+			this.allShortcut = new System.Windows.Forms.CheckBox();
+			this.allRecord = new System.Windows.Forms.TextBox();
+			this.panel9 = new System.Windows.Forms.Panel();
+			this.panel10 = new System.Windows.Forms.Panel();
+			this.oneShortcut = new System.Windows.Forms.CheckBox();
+			this.oneRecord = new System.Windows.Forms.TextBox();
 			this.autosaveDetailPanel = new System.Windows.Forms.Panel();
+			this.panel8 = new System.Windows.Forms.Panel();
+			this.fileFormatList = new System.Windows.Forms.ComboBox();
+			this.fileFormatLabel = new System.Windows.Forms.Label();
+			this.panel6 = new System.Windows.Forms.Panel();
+			this.panel2 = new System.Windows.Forms.Panel();
+			this.namingRule = new System.Windows.Forms.TextBox();
+			this.label1 = new System.Windows.Forms.Label();
 			this.panel5 = new System.Windows.Forms.Panel();
+			this.directoryControl1 = new screen_capture.DirectoryControl();
 			this.autosavePathLabel = new System.Windows.Forms.Label();
 			this.panel7 = new System.Windows.Forms.Panel();
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.autosaveCheckbox = new System.Windows.Forms.CheckBox();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.numRectLabel = new System.Windows.Forms.Label();
-			this.panel2 = new System.Windows.Forms.Panel();
-			this.label1 = new System.Windows.Forms.Label();
-			this.namingRule = new System.Windows.Forms.TextBox();
-			this.panel8 = new System.Windows.Forms.Panel();
-			this.fileFormatList = new System.Windows.Forms.ComboBox();
-			this.fileFormatLabel = new System.Windows.Forms.Label();
-			this.panel6 = new System.Windows.Forms.Panel();
-			this.directoryControl1 = new screen_capture.DirectoryControl();
 			this.numImageRect = new screen_capture.FlatNumericUpDown();
-			this.panel9 = new System.Windows.Forms.Panel();
-			this.panel10 = new System.Windows.Forms.Panel();
-			this.oneRecord = new System.Windows.Forms.TextBox();
-			this.panel12 = new System.Windows.Forms.Panel();
-			this.allRecord = new System.Windows.Forms.TextBox();
-			this.oneShortcut = new System.Windows.Forms.CheckBox();
-			this.allShortcut = new System.Windows.Forms.CheckBox();
+			this.numRectLabel = new System.Windows.Forms.Label();
 			this.contentsContainer.SuspendLayout();
 			this.detailedContentsPanel.SuspendLayout();
+			this.panel12.SuspendLayout();
+			this.panel10.SuspendLayout();
 			this.autosaveDetailPanel.SuspendLayout();
+			this.panel8.SuspendLayout();
+			this.panel2.SuspendLayout();
 			this.panel4.SuspendLayout();
 			this.panel1.SuspendLayout();
-			this.panel2.SuspendLayout();
-			this.panel8.SuspendLayout();
-			this.panel10.SuspendLayout();
-			this.panel12.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// settingTitleLabel
@@ -107,6 +107,82 @@
 			this.detailedContentsPanel.Size = new System.Drawing.Size(530, 276);
 			this.detailedContentsPanel.TabIndex = 3;
 			// 
+			// panel12
+			// 
+			this.panel12.Controls.Add(this.allShortcut);
+			this.panel12.Controls.Add(this.allRecord);
+			this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panel12.Location = new System.Drawing.Point(0, 206);
+			this.panel12.Name = "panel12";
+			this.panel12.Size = new System.Drawing.Size(530, 22);
+			this.panel12.TabIndex = 14;
+			// 
+			// allShortcut
+			// 
+			this.allShortcut.AutoSize = true;
+			this.allShortcut.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.allShortcut.Dock = System.Windows.Forms.DockStyle.Left;
+			this.allShortcut.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.allShortcut.ForeColor = System.Drawing.SystemColors.ControlDark;
+			this.allShortcut.Location = new System.Drawing.Point(0, 0);
+			this.allShortcut.Name = "allShortcut";
+			this.allShortcut.Size = new System.Drawing.Size(139, 22);
+			this.allShortcut.TabIndex = 3;
+			this.allShortcut.Text = "1 ~ n Shortcut";
+			this.allShortcut.UseVisualStyleBackColor = true;
+			// 
+			// allRecord
+			// 
+			this.allRecord.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.allRecord.Dock = System.Windows.Forms.DockStyle.Right;
+			this.allRecord.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.allRecord.Location = new System.Drawing.Point(177, 0);
+			this.allRecord.Name = "allRecord";
+			this.allRecord.Size = new System.Drawing.Size(353, 22);
+			this.allRecord.TabIndex = 1;
+			// 
+			// panel9
+			// 
+			this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panel9.Location = new System.Drawing.Point(0, 196);
+			this.panel9.Name = "panel9";
+			this.panel9.Size = new System.Drawing.Size(530, 10);
+			this.panel9.TabIndex = 13;
+			// 
+			// panel10
+			// 
+			this.panel10.Controls.Add(this.oneShortcut);
+			this.panel10.Controls.Add(this.oneRecord);
+			this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panel10.Location = new System.Drawing.Point(0, 174);
+			this.panel10.Name = "panel10";
+			this.panel10.Size = new System.Drawing.Size(530, 22);
+			this.panel10.TabIndex = 12;
+			// 
+			// oneShortcut
+			// 
+			this.oneShortcut.AutoSize = true;
+			this.oneShortcut.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.oneShortcut.Dock = System.Windows.Forms.DockStyle.Left;
+			this.oneShortcut.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.oneShortcut.ForeColor = System.Drawing.SystemColors.ControlDark;
+			this.oneShortcut.Location = new System.Drawing.Point(0, 0);
+			this.oneShortcut.Name = "oneShortcut";
+			this.oneShortcut.Size = new System.Drawing.Size(139, 22);
+			this.oneShortcut.TabIndex = 2;
+			this.oneShortcut.Text = "Box n Shortcut";
+			this.oneShortcut.UseVisualStyleBackColor = true;
+			// 
+			// oneRecord
+			// 
+			this.oneRecord.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.oneRecord.Dock = System.Windows.Forms.DockStyle.Right;
+			this.oneRecord.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.oneRecord.Location = new System.Drawing.Point(177, 0);
+			this.oneRecord.Name = "oneRecord";
+			this.oneRecord.Size = new System.Drawing.Size(353, 22);
+			this.oneRecord.TabIndex = 1;
+			// 
 			// autosaveDetailPanel
 			// 
 			this.autosaveDetailPanel.Controls.Add(this.panel8);
@@ -121,6 +197,78 @@
 			this.autosaveDetailPanel.Size = new System.Drawing.Size(530, 129);
 			this.autosaveDetailPanel.TabIndex = 8;
 			// 
+			// panel8
+			// 
+			this.panel8.Controls.Add(this.fileFormatList);
+			this.panel8.Controls.Add(this.fileFormatLabel);
+			this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panel8.Location = new System.Drawing.Point(0, 85);
+			this.panel8.Name = "panel8";
+			this.panel8.Size = new System.Drawing.Size(530, 34);
+			this.panel8.TabIndex = 12;
+			// 
+			// fileFormatList
+			// 
+			this.fileFormatList.Dock = System.Windows.Forms.DockStyle.Left;
+			this.fileFormatList.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.fileFormatList.FormattingEnabled = true;
+			this.fileFormatList.Location = new System.Drawing.Point(93, 0);
+			this.fileFormatList.Name = "fileFormatList";
+			this.fileFormatList.Size = new System.Drawing.Size(105, 29);
+			this.fileFormatList.TabIndex = 12;
+			// 
+			// fileFormatLabel
+			// 
+			this.fileFormatLabel.AutoSize = true;
+			this.fileFormatLabel.Dock = System.Windows.Forms.DockStyle.Left;
+			this.fileFormatLabel.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.fileFormatLabel.ForeColor = System.Drawing.SystemColors.ControlDark;
+			this.fileFormatLabel.Location = new System.Drawing.Point(0, 0);
+			this.fileFormatLabel.Name = "fileFormatLabel";
+			this.fileFormatLabel.Size = new System.Drawing.Size(93, 21);
+			this.fileFormatLabel.TabIndex = 11;
+			this.fileFormatLabel.Text = "File Format";
+			// 
+			// panel6
+			// 
+			this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panel6.Location = new System.Drawing.Point(0, 75);
+			this.panel6.Name = "panel6";
+			this.panel6.Size = new System.Drawing.Size(530, 10);
+			this.panel6.TabIndex = 11;
+			// 
+			// panel2
+			// 
+			this.panel2.Controls.Add(this.namingRule);
+			this.panel2.Controls.Add(this.label1);
+			this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panel2.Location = new System.Drawing.Point(0, 53);
+			this.panel2.Name = "panel2";
+			this.panel2.Size = new System.Drawing.Size(530, 22);
+			this.panel2.TabIndex = 7;
+			// 
+			// namingRule
+			// 
+			this.namingRule.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.namingRule.Dock = System.Windows.Forms.DockStyle.Left;
+			this.namingRule.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.namingRule.Location = new System.Drawing.Point(105, 0);
+			this.namingRule.Name = "namingRule";
+			this.namingRule.Size = new System.Drawing.Size(396, 22);
+			this.namingRule.TabIndex = 1;
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Dock = System.Windows.Forms.DockStyle.Left;
+			this.label1.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.label1.ForeColor = System.Drawing.SystemColors.ControlDark;
+			this.label1.Location = new System.Drawing.Point(0, 0);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(105, 21);
+			this.label1.TabIndex = 0;
+			this.label1.Text = "Naming Rule";
+			// 
 			// panel5
 			// 
 			this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
@@ -128,6 +276,14 @@
 			this.panel5.Name = "panel5";
 			this.panel5.Size = new System.Drawing.Size(530, 10);
 			this.panel5.TabIndex = 6;
+			// 
+			// directoryControl1
+			// 
+			this.directoryControl1.Dock = System.Windows.Forms.DockStyle.Top;
+			this.directoryControl1.Location = new System.Drawing.Point(0, 21);
+			this.directoryControl1.Name = "directoryControl1";
+			this.directoryControl1.Size = new System.Drawing.Size(530, 22);
+			this.directoryControl1.TabIndex = 1;
 			// 
 			// autosavePathLabel
 			// 
@@ -192,99 +348,6 @@
 			this.panel1.Size = new System.Drawing.Size(530, 22);
 			this.panel1.TabIndex = 1;
 			// 
-			// numRectLabel
-			// 
-			this.numRectLabel.AutoSize = true;
-			this.numRectLabel.Dock = System.Windows.Forms.DockStyle.Left;
-			this.numRectLabel.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.numRectLabel.ForeColor = System.Drawing.SystemColors.ControlDark;
-			this.numRectLabel.Location = new System.Drawing.Point(0, 0);
-			this.numRectLabel.Margin = new System.Windows.Forms.Padding(0);
-			this.numRectLabel.Name = "numRectLabel";
-			this.numRectLabel.Size = new System.Drawing.Size(157, 21);
-			this.numRectLabel.TabIndex = 1;
-			this.numRectLabel.Text = "Image Capture Box ";
-			// 
-			// panel2
-			// 
-			this.panel2.Controls.Add(this.namingRule);
-			this.panel2.Controls.Add(this.label1);
-			this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panel2.Location = new System.Drawing.Point(0, 53);
-			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(530, 22);
-			this.panel2.TabIndex = 7;
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Dock = System.Windows.Forms.DockStyle.Left;
-			this.label1.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.label1.ForeColor = System.Drawing.SystemColors.ControlDark;
-			this.label1.Location = new System.Drawing.Point(0, 0);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(105, 21);
-			this.label1.TabIndex = 0;
-			this.label1.Text = "Naming Rule";
-			// 
-			// namingRule
-			// 
-			this.namingRule.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.namingRule.Dock = System.Windows.Forms.DockStyle.Left;
-			this.namingRule.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.namingRule.Location = new System.Drawing.Point(105, 0);
-			this.namingRule.Name = "namingRule";
-			this.namingRule.Size = new System.Drawing.Size(396, 22);
-			this.namingRule.TabIndex = 1;
-			// 
-			// panel8
-			// 
-			this.panel8.Controls.Add(this.fileFormatList);
-			this.panel8.Controls.Add(this.fileFormatLabel);
-			this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panel8.Location = new System.Drawing.Point(0, 85);
-			this.panel8.Name = "panel8";
-			this.panel8.Size = new System.Drawing.Size(530, 34);
-			this.panel8.TabIndex = 12;
-			// 
-			// fileFormatList
-			// 
-			this.fileFormatList.Dock = System.Windows.Forms.DockStyle.Left;
-			this.fileFormatList.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.fileFormatList.FormattingEnabled = true;
-			this.fileFormatList.Location = new System.Drawing.Point(93, 0);
-			this.fileFormatList.Name = "fileFormatList";
-			this.fileFormatList.Size = new System.Drawing.Size(105, 29);
-			this.fileFormatList.TabIndex = 12;
-			// 
-			// fileFormatLabel
-			// 
-			this.fileFormatLabel.AutoSize = true;
-			this.fileFormatLabel.Dock = System.Windows.Forms.DockStyle.Left;
-			this.fileFormatLabel.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.fileFormatLabel.ForeColor = System.Drawing.SystemColors.ControlDark;
-			this.fileFormatLabel.Location = new System.Drawing.Point(0, 0);
-			this.fileFormatLabel.Name = "fileFormatLabel";
-			this.fileFormatLabel.Size = new System.Drawing.Size(93, 21);
-			this.fileFormatLabel.TabIndex = 11;
-			this.fileFormatLabel.Text = "File Format";
-			// 
-			// panel6
-			// 
-			this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panel6.Location = new System.Drawing.Point(0, 75);
-			this.panel6.Name = "panel6";
-			this.panel6.Size = new System.Drawing.Size(530, 10);
-			this.panel6.TabIndex = 11;
-			// 
-			// directoryControl1
-			// 
-			this.directoryControl1.Dock = System.Windows.Forms.DockStyle.Top;
-			this.directoryControl1.Location = new System.Drawing.Point(0, 21);
-			this.directoryControl1.Name = "directoryControl1";
-			this.directoryControl1.Size = new System.Drawing.Size(530, 22);
-			this.directoryControl1.TabIndex = 1;
-			// 
 			// numImageRect
 			// 
 			this.numImageRect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(53)))), ((int)(((byte)(83)))));
@@ -297,81 +360,18 @@
 			this.numImageRect.Size = new System.Drawing.Size(70, 22);
 			this.numImageRect.TabIndex = 2;
 			// 
-			// panel9
+			// numRectLabel
 			// 
-			this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panel9.Location = new System.Drawing.Point(0, 196);
-			this.panel9.Name = "panel9";
-			this.panel9.Size = new System.Drawing.Size(530, 10);
-			this.panel9.TabIndex = 13;
-			// 
-			// panel10
-			// 
-			this.panel10.Controls.Add(this.oneShortcut);
-			this.panel10.Controls.Add(this.oneRecord);
-			this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panel10.Location = new System.Drawing.Point(0, 174);
-			this.panel10.Name = "panel10";
-			this.panel10.Size = new System.Drawing.Size(530, 22);
-			this.panel10.TabIndex = 12;
-			// 
-			// oneRecord
-			// 
-			this.oneRecord.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.oneRecord.Dock = System.Windows.Forms.DockStyle.Right;
-			this.oneRecord.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.oneRecord.Location = new System.Drawing.Point(177, 0);
-			this.oneRecord.Name = "oneRecord";
-			this.oneRecord.Size = new System.Drawing.Size(353, 22);
-			this.oneRecord.TabIndex = 1;
-			// 
-			// panel12
-			// 
-			this.panel12.Controls.Add(this.allShortcut);
-			this.panel12.Controls.Add(this.allRecord);
-			this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panel12.Location = new System.Drawing.Point(0, 206);
-			this.panel12.Name = "panel12";
-			this.panel12.Size = new System.Drawing.Size(530, 22);
-			this.panel12.TabIndex = 14;
-			// 
-			// allRecord
-			// 
-			this.allRecord.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.allRecord.Dock = System.Windows.Forms.DockStyle.Right;
-			this.allRecord.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.allRecord.Location = new System.Drawing.Point(177, 0);
-			this.allRecord.Name = "allRecord";
-			this.allRecord.Size = new System.Drawing.Size(353, 22);
-			this.allRecord.TabIndex = 1;
-			// 
-			// oneShortcut
-			// 
-			this.oneShortcut.AutoSize = true;
-			this.oneShortcut.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.oneShortcut.Dock = System.Windows.Forms.DockStyle.Left;
-			this.oneShortcut.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.oneShortcut.ForeColor = System.Drawing.SystemColors.ControlDark;
-			this.oneShortcut.Location = new System.Drawing.Point(0, 0);
-			this.oneShortcut.Name = "oneShortcut";
-			this.oneShortcut.Size = new System.Drawing.Size(139, 22);
-			this.oneShortcut.TabIndex = 2;
-			this.oneShortcut.Text = "Box n Shortcut";
-			this.oneShortcut.UseVisualStyleBackColor = true;
-			// 
-			// allShortcut
-			// 
-			this.allShortcut.AutoSize = true;
-			this.allShortcut.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.allShortcut.Dock = System.Windows.Forms.DockStyle.Left;
-			this.allShortcut.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.allShortcut.ForeColor = System.Drawing.SystemColors.ControlDark;
-			this.allShortcut.Location = new System.Drawing.Point(0, 0);
-			this.allShortcut.Name = "allShortcut";
-			this.allShortcut.Size = new System.Drawing.Size(139, 22);
-			this.allShortcut.TabIndex = 3;
-			this.allShortcut.Text = "1 ~ n Shortcut";
-			this.allShortcut.UseVisualStyleBackColor = true;
+			this.numRectLabel.AutoSize = true;
+			this.numRectLabel.Dock = System.Windows.Forms.DockStyle.Left;
+			this.numRectLabel.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.numRectLabel.ForeColor = System.Drawing.SystemColors.ControlDark;
+			this.numRectLabel.Location = new System.Drawing.Point(0, 0);
+			this.numRectLabel.Margin = new System.Windows.Forms.Padding(0);
+			this.numRectLabel.Name = "numRectLabel";
+			this.numRectLabel.Size = new System.Drawing.Size(157, 21);
+			this.numRectLabel.TabIndex = 1;
+			this.numRectLabel.Text = "Image Capture Box ";
 			// 
 			// ImageSettingControl
 			// 
@@ -386,20 +386,20 @@
 			this.Size = new System.Drawing.Size(560, 363);
 			this.contentsContainer.ResumeLayout(false);
 			this.detailedContentsPanel.ResumeLayout(false);
+			this.panel12.ResumeLayout(false);
+			this.panel12.PerformLayout();
+			this.panel10.ResumeLayout(false);
+			this.panel10.PerformLayout();
 			this.autosaveDetailPanel.ResumeLayout(false);
 			this.autosaveDetailPanel.PerformLayout();
+			this.panel8.ResumeLayout(false);
+			this.panel8.PerformLayout();
+			this.panel2.ResumeLayout(false);
+			this.panel2.PerformLayout();
 			this.panel4.ResumeLayout(false);
 			this.panel4.PerformLayout();
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
-			this.panel2.ResumeLayout(false);
-			this.panel2.PerformLayout();
-			this.panel8.ResumeLayout(false);
-			this.panel8.PerformLayout();
-			this.panel10.ResumeLayout(false);
-			this.panel10.PerformLayout();
-			this.panel12.ResumeLayout(false);
-			this.panel12.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
