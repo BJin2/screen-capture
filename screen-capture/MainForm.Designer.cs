@@ -45,6 +45,7 @@
 			this.foldPanel = new System.Windows.Forms.Panel();
 			this.appPanel = new System.Windows.Forms.Panel();
 			this.settingPanel = new System.Windows.Forms.Panel();
+			this.shortcutControl1 = new screen_capture.ShortcutControl();
 			this.sideMenuPanel = new System.Windows.Forms.Panel();
 			this.infoButton = new System.Windows.Forms.Button();
 			this.gifButton = new System.Windows.Forms.Button();
@@ -53,7 +54,6 @@
 			this.bottomGap = new System.Windows.Forms.Panel();
 			this.rightGap = new System.Windows.Forms.Panel();
 			this.leftGap = new System.Windows.Forms.Panel();
-			this.shortcutControl1 = new screen_capture.ShortcutControl();
 			this.titlePanel.SuspendLayout();
 			this.topGap.SuspendLayout();
 			this.foldButtonPanel.SuspendLayout();
@@ -258,6 +258,13 @@
 			this.settingPanel.Size = new System.Drawing.Size(560, 363);
 			this.settingPanel.TabIndex = 1;
 			// 
+			// shortcutControl1
+			// 
+			this.shortcutControl1.Location = new System.Drawing.Point(32, 160);
+			this.shortcutControl1.Name = "shortcutControl1";
+			this.shortcutControl1.Size = new System.Drawing.Size(353, 22);
+			this.shortcutControl1.TabIndex = 0;
+			// 
 			// sideMenuPanel
 			// 
 			this.sideMenuPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(36)))), ((int)(((byte)(54)))));
@@ -369,13 +376,6 @@
 			this.leftGap.Name = "leftGap";
 			this.leftGap.Size = new System.Drawing.Size(18, 385);
 			this.leftGap.TabIndex = 0;
-			// 
-			// shortcutControl1
-			// 
-			this.shortcutControl1.Location = new System.Drawing.Point(32, 160);
-			this.shortcutControl1.Name = "shortcutControl1";
-			this.shortcutControl1.Size = new System.Drawing.Size(353, 22);
-			this.shortcutControl1.TabIndex = 0;
 			// 
 			// MainForm
 			// 

@@ -38,6 +38,7 @@
 			this.shortcutText.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
 			this.shortcutText.Location = new System.Drawing.Point(0, 0);
 			this.shortcutText.Name = "shortcutText";
+			this.shortcutText.ReadOnly = true;
 			this.shortcutText.Size = new System.Drawing.Size(353, 22);
 			this.shortcutText.TabIndex = 0;
 			// 

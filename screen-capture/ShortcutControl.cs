@@ -13,15 +13,18 @@ namespace screen_capture
 {
 	public partial class ShortcutControl : UserControl
 	{
+		public bool enabled = true;
+
 		public ShortcutControl()
 		{
 			InitializeComponent();
 			shortcutText.KeyDown += shortcutText_Down;
-			//shortcutText.KeyUp += shortcutText_Up;
 		}
 
 		private void shortcutText_Down(object sender, KeyEventArgs e)
 		{
+			if (!enabled)
+				return;
 			Keys k = e.KeyCode;
 			int mod = KeysModToMod(e.Modifiers);
 			shortcutText.Text = "";
@@ -34,8 +37,6 @@ namespace screen_capture
 				string modifiers = converter.ConvertToString(e.Modifiers);
 				
 				shortcutText.Text = modifiers.Replace("None", "") + converter.ConvertToString(k);
-				
-				
 			}
 		}
 		private int KeysModToMod(Keys m)
@@ -59,6 +60,21 @@ namespace screen_capture
 			}
 
 			return mod;
+		}
+
+		public void Enable()
+		{
+			enabled = true;
+			shortcutText.Enabled = true;
+			shortcutText.ForeColor = SystemColors.WindowText;
+			//TODO register hotkey
+		}
+		public void Disable()
+		{
+			enabled = false;
+			shortcutText.Enabled = false;
+			shortcutText.ForeColor = SystemColors.ControlDark;
+			//TODO unregister hotkey
 		}
 	}
 }
