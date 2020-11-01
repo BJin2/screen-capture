@@ -13,24 +13,52 @@ namespace screen_capture
 {
 	public partial class ShortcutControl : UserControl
 	{
-		Hotkey hotkey;
-
 		public ShortcutControl()
 		{
 			InitializeComponent();
 			shortcutText.KeyDown += shortcutText_Down;
-			shortcutText.KeyUp += shortcutText_Up;
-			hotkey = new Hotkey(-1, -1);
+			//shortcutText.KeyUp += shortcutText_Up;
 		}
 
 		private void shortcutText_Down(object sender, KeyEventArgs e)
 		{
-			KeysConverter converter = new KeysConverter();
-			MessageBox.Show(converter.ConvertToString(e.Modifiers));
+			Keys k = e.KeyCode;
+			int mod = KeysModToMod(e.Modifiers);
+			shortcutText.Text = "";
+
+			if ((k != Keys.ControlKey) &&
+				(k != Keys.ShiftKey) &&
+				(k != Keys.Menu))
+			{
+				KeysConverter converter = new KeysConverter();
+				string modifiers = converter.ConvertToString(e.Modifiers);
+				
+				shortcutText.Text = modifiers.Replace("None", "") + converter.ConvertToString(k);
+				
+				
+			}
 		}
-		private void shortcutText_Up(object sender, KeyEventArgs e)
+		private int KeysModToMod(Keys m)
 		{
-			
+			int mod = 0;
+
+			if (m == Keys.None)
+				return mod;
+
+			if ((Keys.Control & m) == Keys.Control)
+			{
+				mod = mod | (int)MOD.CTRL;
+			}
+			if ((Keys.Shift & m) == Keys.Shift)
+			{
+				mod = mod | (int)MOD.SHIFT;
+			}
+			if ((Keys.Alt & m) == Keys.Alt)
+			{
+				mod = mod | (int)MOD.ALT;
+			}
+
+			return mod;
 		}
 	}
 }

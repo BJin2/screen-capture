@@ -17,11 +17,13 @@ namespace Shortcut
 	{
 		public int MOD;
 		public int KEY;
+		public string NAME;
 
-		public Hotkey(int mod, int key)
+		public Hotkey(int mod, int key, string name)
 		{
 			MOD = mod;
 			KEY = key;
+			NAME = name;
 		}
 
 		public void RemoveMOD(int mod)
