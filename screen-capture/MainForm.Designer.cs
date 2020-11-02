@@ -45,7 +45,6 @@
 			this.foldPanel = new System.Windows.Forms.Panel();
 			this.appPanel = new System.Windows.Forms.Panel();
 			this.settingPanel = new System.Windows.Forms.Panel();
-			this.shortcutControl1 = new screen_capture.ShortcutControl();
 			this.sideMenuPanel = new System.Windows.Forms.Panel();
 			this.infoButton = new System.Windows.Forms.Button();
 			this.gifButton = new System.Windows.Forms.Button();
@@ -63,7 +62,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.imageRectIcon)).BeginInit();
 			this.foldPanel.SuspendLayout();
 			this.appPanel.SuspendLayout();
-			this.settingPanel.SuspendLayout();
 			this.sideMenuPanel.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -251,20 +249,11 @@
 			// settingPanel
 			// 
 			this.settingPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(53)))), ((int)(((byte)(83)))));
-			this.settingPanel.Controls.Add(this.shortcutControl1);
 			this.settingPanel.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.settingPanel.Location = new System.Drawing.Point(200, 0);
 			this.settingPanel.Name = "settingPanel";
 			this.settingPanel.Size = new System.Drawing.Size(560, 363);
 			this.settingPanel.TabIndex = 1;
-			// 
-			// shortcutControl1
-			// 
-			this.shortcutControl1.AssignedFunction = screen_capture.SHORTCUT_FUNCTION.CAPTURE_AT;
-			this.shortcutControl1.Location = new System.Drawing.Point(32, 160);
-			this.shortcutControl1.Name = "shortcutControl1";
-			this.shortcutControl1.Size = new System.Drawing.Size(353, 22);
-			this.shortcutControl1.TabIndex = 0;
 			// 
 			// sideMenuPanel
 			// 
@@ -400,7 +389,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.imageRectIcon)).EndInit();
 			this.foldPanel.ResumeLayout(false);
 			this.appPanel.ResumeLayout(false);
-			this.settingPanel.ResumeLayout(false);
 			this.sideMenuPanel.ResumeLayout(false);
 			this.ResumeLayout(false);
 
@@ -432,7 +420,6 @@
 		private System.Windows.Forms.Button minimizeButton;
 		private System.Windows.Forms.Button closeButton;
 		private System.Windows.Forms.Panel logoPanel;
-		private ShortcutControl shortcutControl1;
 	}
 }
 
