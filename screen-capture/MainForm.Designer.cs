@@ -260,6 +260,7 @@
 			// 
 			// shortcutControl1
 			// 
+			this.shortcutControl1.AssignedFunction = screen_capture.SHORTCUT_FUNCTION.CAPTURE_AT;
 			this.shortcutControl1.Location = new System.Drawing.Point(32, 160);
 			this.shortcutControl1.Name = "shortcutControl1";
 			this.shortcutControl1.Size = new System.Drawing.Size(353, 22);
