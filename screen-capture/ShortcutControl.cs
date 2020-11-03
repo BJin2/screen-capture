@@ -15,10 +15,10 @@ namespace screen_capture
 {
 	public enum SHORTCUT_FUNCTION
 	{
-		CAPTURE_AT = 1,
-		CAPTURE_FROM,
-		RECORD_AT,
-		RECORD_FROM
+		CAPTURE_SELECTION = 1,
+		CAPTURE_ALL,
+		RECORD_SELECTION,
+		RECORD_ALL
 	}
 
 	public partial class ShortcutControl : UserControl

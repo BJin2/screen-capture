@@ -28,16 +28,16 @@ namespace screen_capture
 			{
 				switch ((int)m.WParam)
 				{
-					case (int)SHORTCUT_FUNCTION.CAPTURE_AT:
+					case (int)SHORTCUT_FUNCTION.CAPTURE_SELECTION:
 						MessageBox.Show(((int)m.WParam).ToString());
 						break;
-					case (int)SHORTCUT_FUNCTION.CAPTURE_FROM:
+					case (int)SHORTCUT_FUNCTION.CAPTURE_ALL:
 						MessageBox.Show(((int)m.WParam).ToString());
 						break;
-					case (int)SHORTCUT_FUNCTION.RECORD_AT:
+					case (int)SHORTCUT_FUNCTION.RECORD_SELECTION:
 						MessageBox.Show(((int)m.WParam).ToString());
 						break;
-					case (int)SHORTCUT_FUNCTION.RECORD_FROM:
+					case (int)SHORTCUT_FUNCTION.RECORD_ALL:
 						MessageBox.Show(((int)m.WParam).ToString());
 						break;
 					default:

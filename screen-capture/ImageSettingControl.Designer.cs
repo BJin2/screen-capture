@@ -53,10 +53,10 @@
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.numRectLabel = new System.Windows.Forms.Label();
-			this.directoryControl1 = new screen_capture.DirectoryControl();
-			this.numImageRect = new screen_capture.FlatNumericUpDown();
-			this.shortcutControl1 = new screen_capture.ShortcutControl();
 			this.shortcutControl2 = new screen_capture.ShortcutControl();
+			this.shortcutControl1 = new screen_capture.ShortcutControl();
+			this.path = new screen_capture.DirectoryControl();
+			this.numImageRect = new screen_capture.FlatNumericUpDown();
 			this.contentsContainer.SuspendLayout();
 			this.detailedContentsPanel.SuspendLayout();
 			this.panel12.SuspendLayout();
@@ -169,7 +169,7 @@
 			this.autosaveDetailPanel.Controls.Add(this.panel6);
 			this.autosaveDetailPanel.Controls.Add(this.panel2);
 			this.autosaveDetailPanel.Controls.Add(this.panel5);
-			this.autosaveDetailPanel.Controls.Add(this.directoryControl1);
+			this.autosaveDetailPanel.Controls.Add(this.path);
 			this.autosaveDetailPanel.Controls.Add(this.autosavePathLabel);
 			this.autosaveDetailPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.autosaveDetailPanel.Location = new System.Drawing.Point(0, 45);
@@ -333,13 +333,31 @@
 			this.numRectLabel.TabIndex = 1;
 			this.numRectLabel.Text = "Image Capture Box ";
 			// 
-			// directoryControl1
+			// shortcutControl2
 			// 
-			this.directoryControl1.Dock = System.Windows.Forms.DockStyle.Top;
-			this.directoryControl1.Location = new System.Drawing.Point(0, 21);
-			this.directoryControl1.Name = "directoryControl1";
-			this.directoryControl1.Size = new System.Drawing.Size(530, 22);
-			this.directoryControl1.TabIndex = 1;
+			this.shortcutControl2.AssignedFunction = screen_capture.SHORTCUT_FUNCTION.CAPTURE_ALL;
+			this.shortcutControl2.Dock = System.Windows.Forms.DockStyle.Right;
+			this.shortcutControl2.Location = new System.Drawing.Point(177, 0);
+			this.shortcutControl2.Name = "shortcutControl2";
+			this.shortcutControl2.Size = new System.Drawing.Size(353, 22);
+			this.shortcutControl2.TabIndex = 4;
+			// 
+			// shortcutControl1
+			// 
+			this.shortcutControl1.AssignedFunction = screen_capture.SHORTCUT_FUNCTION.CAPTURE_SELECTION;
+			this.shortcutControl1.Dock = System.Windows.Forms.DockStyle.Right;
+			this.shortcutControl1.Location = new System.Drawing.Point(177, 0);
+			this.shortcutControl1.Name = "shortcutControl1";
+			this.shortcutControl1.Size = new System.Drawing.Size(353, 22);
+			this.shortcutControl1.TabIndex = 3;
+			// 
+			// path
+			// 
+			this.path.Dock = System.Windows.Forms.DockStyle.Top;
+			this.path.Location = new System.Drawing.Point(0, 21);
+			this.path.Name = "path";
+			this.path.Size = new System.Drawing.Size(530, 22);
+			this.path.TabIndex = 1;
 			// 
 			// numImageRect
 			// 
@@ -352,24 +370,6 @@
 			this.numImageRect.Name = "numImageRect";
 			this.numImageRect.Size = new System.Drawing.Size(70, 22);
 			this.numImageRect.TabIndex = 2;
-			// 
-			// shortcutControl1
-			// 
-			this.shortcutControl1.AssignedFunction = screen_capture.SHORTCUT_FUNCTION.CAPTURE_AT;
-			this.shortcutControl1.Dock = System.Windows.Forms.DockStyle.Right;
-			this.shortcutControl1.Location = new System.Drawing.Point(177, 0);
-			this.shortcutControl1.Name = "shortcutControl1";
-			this.shortcutControl1.Size = new System.Drawing.Size(353, 22);
-			this.shortcutControl1.TabIndex = 3;
-			// 
-			// shortcutControl2
-			// 
-			this.shortcutControl2.AssignedFunction = screen_capture.SHORTCUT_FUNCTION.CAPTURE_FROM;
-			this.shortcutControl2.Dock = System.Windows.Forms.DockStyle.Right;
-			this.shortcutControl2.Location = new System.Drawing.Point(177, 0);
-			this.shortcutControl2.Name = "shortcutControl2";
-			this.shortcutControl2.Size = new System.Drawing.Size(353, 22);
-			this.shortcutControl2.TabIndex = 4;
 			// 
 			// ImageSettingControl
 			// 
@@ -413,7 +413,7 @@
 		private System.Windows.Forms.Panel panel3;
 		private System.Windows.Forms.Panel autosaveDetailPanel;
 		private System.Windows.Forms.Panel panel5;
-		private DirectoryControl directoryControl1;
+		private DirectoryControl path;
 		private System.Windows.Forms.Label autosavePathLabel;
 		private System.Windows.Forms.Panel panel7;
 		private System.Windows.Forms.Panel panel4;
