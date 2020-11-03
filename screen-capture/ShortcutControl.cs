@@ -38,7 +38,7 @@ namespace screen_capture
 		{
 			InitializeComponent();
 			shortcutText.KeyDown += shortcutText_Down;
-			Load();
+			LoadSetting();
 		}
 
 		private void shortcutText_Down(object sender, KeyEventArgs e)
@@ -72,15 +72,15 @@ namespace screen_capture
 
 			if ((Keys.Control & m) == Keys.Control)
 			{
-				mod = mod | (int)MOD.CTRL;
+				mod |= (int)MOD.CTRL;
 			}
 			if ((Keys.Shift & m) == Keys.Shift)
 			{
-				mod = mod | (int)MOD.SHIFT;
+				mod |= (int)MOD.SHIFT;
 			}
 			if ((Keys.Alt & m) == Keys.Alt)
 			{
-				mod = mod | (int)MOD.ALT;
+				mod |= (int)MOD.ALT;
 			}
 
 			return mod;
@@ -102,7 +102,7 @@ namespace screen_capture
 			Save();
 		}
 
-		private void Load()
+		private void LoadSetting()
 		{
 			hotkey = new Hotkey(0, 0, "");
 			hotkey.MOD = (int)Settings.Default["hotkey_mod"];
