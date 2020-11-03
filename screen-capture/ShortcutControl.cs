@@ -99,7 +99,7 @@ namespace screen_capture
 				return;
 			}
 			shortcutText.Text = h.TEXT;
-			Save();
+			SaveSetting();
 		}
 
 		private void LoadSetting()
@@ -109,7 +109,7 @@ namespace screen_capture
 			hotkey.KEY = (int)Settings.Default["hotkey_key"];
 			hotkey.TEXT = (string)Settings.Default["hotkey_text"];
 		}
-		private void Save()
+		private void SaveSetting()
 		{
 			Settings.Default["hotkey_mod"] = hotkey.MOD;
 			Settings.Default["hotkey_key"] = hotkey.KEY;
