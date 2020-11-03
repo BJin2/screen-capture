@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Shortcut;
 using System.Runtime.InteropServices;
+using screen_capture.Properties;
 
 namespace screen_capture
 {
@@ -37,8 +38,7 @@ namespace screen_capture
 		{
 			InitializeComponent();
 			shortcutText.KeyDown += shortcutText_Down;
-			//TODO Load hotkey data from setting data file
-			hotkey = new Hotkey(0, 0, "");
+			Load();
 		}
 
 		private void shortcutText_Down(object sender, KeyEventArgs e)
@@ -96,9 +96,27 @@ namespace screen_capture
 			if (!RegisterHotKey(MainForm.Instance.Handle, (int)AssignedFunction, h.MOD, h.KEY))
 			{
 				MessageBox.Show("Cannot register " + h.TEXT);
+				return;
 			}
 			shortcutText.Text = h.TEXT;
+			Save();
 		}
+
+		private void Load()
+		{
+			hotkey = new Hotkey(0, 0, "");
+			hotkey.MOD = (int)Settings.Default["hotkey_mod"];
+			hotkey.KEY = (int)Settings.Default["hotkey_key"];
+			hotkey.TEXT = (string)Settings.Default["hotkey_text"];
+		}
+		private void Save()
+		{
+			Settings.Default["hotkey_mod"] = hotkey.MOD;
+			Settings.Default["hotkey_key"] = hotkey.KEY;
+			Settings.Default["hotkey_text"] = hotkey.TEXT;
+			Settings.Default.Save();
+		}
+
 		public void Enable()
 		{
 			enabled = true;

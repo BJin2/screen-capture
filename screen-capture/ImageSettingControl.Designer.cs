@@ -34,11 +34,9 @@
 			this.detailedContentsPanel = new System.Windows.Forms.Panel();
 			this.panel12 = new System.Windows.Forms.Panel();
 			this.allShortcut = new System.Windows.Forms.CheckBox();
-			this.allRecord = new System.Windows.Forms.TextBox();
 			this.panel9 = new System.Windows.Forms.Panel();
 			this.panel10 = new System.Windows.Forms.Panel();
 			this.oneShortcut = new System.Windows.Forms.CheckBox();
-			this.oneRecord = new System.Windows.Forms.TextBox();
 			this.autosaveDetailPanel = new System.Windows.Forms.Panel();
 			this.panel8 = new System.Windows.Forms.Panel();
 			this.fileFormatList = new System.Windows.Forms.ComboBox();
@@ -48,15 +46,17 @@
 			this.namingRule = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel5 = new System.Windows.Forms.Panel();
-			this.directoryControl1 = new screen_capture.DirectoryControl();
 			this.autosavePathLabel = new System.Windows.Forms.Label();
 			this.panel7 = new System.Windows.Forms.Panel();
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.autosaveCheckbox = new System.Windows.Forms.CheckBox();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.numImageRect = new screen_capture.FlatNumericUpDown();
 			this.numRectLabel = new System.Windows.Forms.Label();
+			this.directoryControl1 = new screen_capture.DirectoryControl();
+			this.numImageRect = new screen_capture.FlatNumericUpDown();
+			this.shortcutControl1 = new screen_capture.ShortcutControl();
+			this.shortcutControl2 = new screen_capture.ShortcutControl();
 			this.contentsContainer.SuspendLayout();
 			this.detailedContentsPanel.SuspendLayout();
 			this.panel12.SuspendLayout();
@@ -109,8 +109,8 @@
 			// 
 			// panel12
 			// 
+			this.panel12.Controls.Add(this.shortcutControl2);
 			this.panel12.Controls.Add(this.allShortcut);
-			this.panel12.Controls.Add(this.allRecord);
 			this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel12.Location = new System.Drawing.Point(0, 206);
 			this.panel12.Name = "panel12";
@@ -131,16 +131,6 @@
 			this.allShortcut.Text = "1 ~ n Shortcut";
 			this.allShortcut.UseVisualStyleBackColor = true;
 			// 
-			// allRecord
-			// 
-			this.allRecord.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.allRecord.Dock = System.Windows.Forms.DockStyle.Right;
-			this.allRecord.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.allRecord.Location = new System.Drawing.Point(177, 0);
-			this.allRecord.Name = "allRecord";
-			this.allRecord.Size = new System.Drawing.Size(353, 22);
-			this.allRecord.TabIndex = 1;
-			// 
 			// panel9
 			// 
 			this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
@@ -151,8 +141,8 @@
 			// 
 			// panel10
 			// 
+			this.panel10.Controls.Add(this.shortcutControl1);
 			this.panel10.Controls.Add(this.oneShortcut);
-			this.panel10.Controls.Add(this.oneRecord);
 			this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel10.Location = new System.Drawing.Point(0, 174);
 			this.panel10.Name = "panel10";
@@ -172,16 +162,6 @@
 			this.oneShortcut.TabIndex = 2;
 			this.oneShortcut.Text = "Box n Shortcut";
 			this.oneShortcut.UseVisualStyleBackColor = true;
-			// 
-			// oneRecord
-			// 
-			this.oneRecord.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.oneRecord.Dock = System.Windows.Forms.DockStyle.Right;
-			this.oneRecord.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.oneRecord.Location = new System.Drawing.Point(177, 0);
-			this.oneRecord.Name = "oneRecord";
-			this.oneRecord.Size = new System.Drawing.Size(353, 22);
-			this.oneRecord.TabIndex = 1;
 			// 
 			// autosaveDetailPanel
 			// 
@@ -277,14 +257,6 @@
 			this.panel5.Size = new System.Drawing.Size(530, 10);
 			this.panel5.TabIndex = 6;
 			// 
-			// directoryControl1
-			// 
-			this.directoryControl1.Dock = System.Windows.Forms.DockStyle.Top;
-			this.directoryControl1.Location = new System.Drawing.Point(0, 21);
-			this.directoryControl1.Name = "directoryControl1";
-			this.directoryControl1.Size = new System.Drawing.Size(530, 22);
-			this.directoryControl1.TabIndex = 1;
-			// 
 			// autosavePathLabel
 			// 
 			this.autosavePathLabel.AutoSize = true;
@@ -348,18 +320,6 @@
 			this.panel1.Size = new System.Drawing.Size(530, 22);
 			this.panel1.TabIndex = 1;
 			// 
-			// numImageRect
-			// 
-			this.numImageRect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(53)))), ((int)(((byte)(83)))));
-			this.numImageRect.Dock = System.Windows.Forms.DockStyle.Left;
-			this.numImageRect.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.numImageRect.ForeColor = System.Drawing.SystemColors.ControlDark;
-			this.numImageRect.Location = new System.Drawing.Point(157, 0);
-			this.numImageRect.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.numImageRect.Name = "numImageRect";
-			this.numImageRect.Size = new System.Drawing.Size(70, 22);
-			this.numImageRect.TabIndex = 2;
-			// 
 			// numRectLabel
 			// 
 			this.numRectLabel.AutoSize = true;
@@ -372,6 +332,44 @@
 			this.numRectLabel.Size = new System.Drawing.Size(157, 21);
 			this.numRectLabel.TabIndex = 1;
 			this.numRectLabel.Text = "Image Capture Box ";
+			// 
+			// directoryControl1
+			// 
+			this.directoryControl1.Dock = System.Windows.Forms.DockStyle.Top;
+			this.directoryControl1.Location = new System.Drawing.Point(0, 21);
+			this.directoryControl1.Name = "directoryControl1";
+			this.directoryControl1.Size = new System.Drawing.Size(530, 22);
+			this.directoryControl1.TabIndex = 1;
+			// 
+			// numImageRect
+			// 
+			this.numImageRect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(53)))), ((int)(((byte)(83)))));
+			this.numImageRect.Dock = System.Windows.Forms.DockStyle.Left;
+			this.numImageRect.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.numImageRect.ForeColor = System.Drawing.SystemColors.ControlDark;
+			this.numImageRect.Location = new System.Drawing.Point(157, 0);
+			this.numImageRect.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.numImageRect.Name = "numImageRect";
+			this.numImageRect.Size = new System.Drawing.Size(70, 22);
+			this.numImageRect.TabIndex = 2;
+			// 
+			// shortcutControl1
+			// 
+			this.shortcutControl1.AssignedFunction = screen_capture.SHORTCUT_FUNCTION.CAPTURE_AT;
+			this.shortcutControl1.Dock = System.Windows.Forms.DockStyle.Right;
+			this.shortcutControl1.Location = new System.Drawing.Point(177, 0);
+			this.shortcutControl1.Name = "shortcutControl1";
+			this.shortcutControl1.Size = new System.Drawing.Size(353, 22);
+			this.shortcutControl1.TabIndex = 3;
+			// 
+			// shortcutControl2
+			// 
+			this.shortcutControl2.AssignedFunction = screen_capture.SHORTCUT_FUNCTION.CAPTURE_FROM;
+			this.shortcutControl2.Dock = System.Windows.Forms.DockStyle.Right;
+			this.shortcutControl2.Location = new System.Drawing.Point(177, 0);
+			this.shortcutControl2.Name = "shortcutControl2";
+			this.shortcutControl2.Size = new System.Drawing.Size(353, 22);
+			this.shortcutControl2.TabIndex = 4;
 			// 
 			// ImageSettingControl
 			// 
@@ -430,10 +428,10 @@
 		private FlatNumericUpDown numImageRect;
 		private System.Windows.Forms.Panel panel12;
 		private System.Windows.Forms.CheckBox allShortcut;
-		private System.Windows.Forms.TextBox allRecord;
 		private System.Windows.Forms.Panel panel9;
 		private System.Windows.Forms.Panel panel10;
 		private System.Windows.Forms.CheckBox oneShortcut;
-		private System.Windows.Forms.TextBox oneRecord;
+		private ShortcutControl shortcutControl2;
+		private ShortcutControl shortcutControl1;
 	}
 }
