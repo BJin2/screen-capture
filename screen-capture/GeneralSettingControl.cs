@@ -15,31 +15,29 @@ namespace screen_capture
 		public GeneralSettingControl()
 		{
 			InitializeComponent();
-			LoadSetting();
 		}
 
-		private void LoadSetting()
+		public void LoadSetting()
 		{
 			topCheckbox.Checked = (bool)Properties.Settings.Default["AlwaysTop"];
 			syncCheckbox.Checked = (bool)Properties.Settings.Default["Sync"];
 		}
 
-		private void SaveSetting()
+		private void SaveSetting(object value, string key)
 		{
-			Properties.Settings.Default["AlwaysTop"] = topCheckbox.Checked;
-			Properties.Settings.Default["Sync"] = syncCheckbox.Checked;
+			Properties.Settings.Default[key] = value;
 			Properties.Settings.Default.Save();
 		}
 
 		private void syncCheckbox_CheckedChanged(object sender, EventArgs e)
 		{
-			SaveSetting();
+			SaveSetting(syncCheckbox.Checked, "Sync");
 			//TODO sync both settings
 		}
 
 		private void topCheckbox_CheckedChanged(object sender, EventArgs e)
 		{
-			SaveSetting();
+			SaveSetting(topCheckbox.Checked, "AlwaysTop");
 			MainForm.Instance.TopMost = topCheckbox.Checked;
 		}
 	}

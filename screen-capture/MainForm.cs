@@ -20,6 +20,8 @@ namespace screen_capture
 		{
 			Instance = this;
 			InitializeComponent();
+			generalSetting.LoadSetting();
+			imageSetting.LoadSetting();
 		}
 
 		protected override void WndProc(ref Message m)

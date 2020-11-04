@@ -40,7 +40,6 @@ namespace screen_capture
 		{
 			InitializeComponent();
 			shortcutText.KeyDown += shortcutText_Down;
-			LoadSetting();
 		}
 
 		private void shortcutText_Down(object sender, KeyEventArgs e)
@@ -104,7 +103,7 @@ namespace screen_capture
 			SaveSetting();
 		}
 
-		private void LoadSetting()
+		public void LoadSetting()
 		{
 			if (AssignedFunction == SHORTCUT_FUNCTION.NONE)
 			{
@@ -112,11 +111,12 @@ namespace screen_capture
 				return;
 			}
 			string af = AssignedFunction.ToString();
-			MessageBox.Show(af);
 			hotkey = new Hotkey(0, 0, "");
 			hotkey.MOD = (int)Settings.Default[af + "_MOD"];
 			hotkey.KEY = (int)Settings.Default[af + "_KEY"];
 			hotkey.TEXT = (string)Settings.Default[af + "_TEXT"];
+
+			RegisterHotKeyShortcut(hotkey);
 		}
 		private void SaveSetting()
 		{
@@ -132,19 +132,20 @@ namespace screen_capture
 			Settings.Default.Save();
 		}
 
-		public void Enable()
+		public void Enable(bool e)
 		{
-			enabled = true;
-			shortcutText.Enabled = true;
-			shortcutText.ForeColor = SystemColors.WindowText;
-			//TODO register hotkey
-		}
-		public void Disable()
-		{
-			enabled = false;
-			shortcutText.Enabled = false;
-			shortcutText.ForeColor = SystemColors.ControlDark;
-			//TODO unregister hotkey
+			enabled = e;
+			shortcutText.Enabled = e;
+			if (e)
+			{
+				shortcutText.ForeColor = SystemColors.WindowText;
+				RegisterHotKeyShortcut(hotkey);
+			}
+			else
+			{
+				shortcutText.ForeColor = SystemColors.ControlDark;
+				UnregisterHotKey(MainForm.Instance.Handle, (int)AssignedFunction);
+			}
 		}
 	}
 }

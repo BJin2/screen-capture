@@ -15,6 +15,7 @@ namespace screen_capture
 		private int maxValue = 10;
 		private int minValue = 0;
 		public int NumValue { get; private set; }
+		[DefaultValue(SHORTCUT_FUNCTION.NONE)]
 		public CAPTURE_TYPE CaptureType { get; set; }
 
 		public FlatNumericUpDown()
@@ -22,7 +23,6 @@ namespace screen_capture
 			InitializeComponent();
 			this.MouseWheel += flatNumericUpDown_Wheel;
 			numberBox.KeyPress += new KeyPressEventHandler(numberBox_KeyPress);
-			LoadSetting();
 		}
 
 		private void numberBox_TextChanged(object sender, EventArgs e)
@@ -76,10 +76,14 @@ namespace screen_capture
 			ValueChange((e.Delta / Math.Abs(e.Delta)));
 		}
 
-		private void LoadSetting()
+		public void LoadSetting()
 		{
 			if (CaptureType == CAPTURE_TYPE.NONE)
+			{
+				if (NumValue != 0)
+					ValueChange(0);
 				return;
+			}
 			ValueChange((int)Properties.Settings.Default[CaptureType.ToString() + "_NUM_RECT"]);
 		}
 		private void SaveSetting()

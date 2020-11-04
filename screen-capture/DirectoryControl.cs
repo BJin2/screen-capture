@@ -23,12 +23,12 @@ namespace screen_capture
 	public partial class DirectoryControl : UserControl
 	{
 		public string Path { get; private set; }
+		[DefaultValue(SHORTCUT_FUNCTION.NONE)]
 		public CAPTURE_TYPE CaptureType{get; set;}
 
 		public DirectoryControl()
 		{
 			InitializeComponent();
-			LoadSetting();
 		}
 
 		private void openButton_Click(object sender, EventArgs e)
@@ -68,7 +68,7 @@ namespace screen_capture
 			Path = pathBox.Text;
 		}
 
-		private void LoadSetting()
+		public void LoadSetting()
 		{
 			if (CaptureType == CAPTURE_TYPE.NONE)
 			{
