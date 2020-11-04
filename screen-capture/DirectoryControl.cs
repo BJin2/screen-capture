@@ -58,6 +58,8 @@ namespace screen_capture
 
 		private void SetPath(string path)
 		{
+			if (path == "")
+				path = Environment.GetFolderPath(folderBrowserDialog.RootFolder);
 			Path = path;
 			pathBox.Text = Path;
 			SaveSetting();

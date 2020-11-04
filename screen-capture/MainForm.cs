@@ -22,6 +22,7 @@ namespace screen_capture
 			InitializeComponent();
 			generalSetting.LoadSetting();
 			imageSetting.LoadSetting();
+			gifSetting.LoadSetting();
 		}
 
 		protected override void WndProc(ref Message m)
@@ -73,6 +74,11 @@ namespace screen_capture
 		private void imageButton_Click(object sender, EventArgs e)
 		{
 			imageSetting.BringToFront();
+		}
+
+		private void gifButton_Click(object sender, EventArgs e)
+		{
+			gifSetting.BringToFront();
 		}
 	}
 }

@@ -25,7 +25,7 @@ namespace screen_capture.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public int CAPTURE_SELECTION_MOD {
             get {
                 return ((int)(this["CAPTURE_SELECTION_MOD"]));
@@ -49,7 +49,7 @@ namespace screen_capture.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Ctrl+Q")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string CAPTURE_SELECTION_TEXT {
             get {
                 return ((string)(this["CAPTURE_SELECTION_TEXT"]));
@@ -109,7 +109,7 @@ namespace screen_capture.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public int CAPTURE_ALL_MOD {
             get {
                 return ((int)(this["CAPTURE_ALL_MOD"]));
@@ -145,7 +145,7 @@ namespace screen_capture.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool AlwaysTop {
             get {
                 return ((bool)(this["AlwaysTop"]));
@@ -284,6 +284,78 @@ namespace screen_capture.Properties {
             }
             set {
                 this["GIF_ALL"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("6")]
+        public int RECORD_SELECTION_MOD {
+            get {
+                return ((int)(this["RECORD_SELECTION_MOD"]));
+            }
+            set {
+                this["RECORD_SELECTION_MOD"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("81")]
+        public int RECORD_SELECTION_KEY {
+            get {
+                return ((int)(this["RECORD_SELECTION_KEY"]));
+            }
+            set {
+                this["RECORD_SELECTION_KEY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string RECORD_SELECTION_TEXT {
+            get {
+                return ((string)(this["RECORD_SELECTION_TEXT"]));
+            }
+            set {
+                this["RECORD_SELECTION_TEXT"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("6")]
+        public int RECORD_ALL_MOD {
+            get {
+                return ((int)(this["RECORD_ALL_MOD"]));
+            }
+            set {
+                this["RECORD_ALL_MOD"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("87")]
+        public int RECORD_ALL_KEY {
+            get {
+                return ((int)(this["RECORD_ALL_KEY"]));
+            }
+            set {
+                this["RECORD_ALL_KEY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string RECORD_ALL_TEXT {
+            get {
+                return ((string)(this["RECORD_ALL_TEXT"]));
+            }
+            set {
+                this["RECORD_ALL_TEXT"] = value;
             }
         }
     }

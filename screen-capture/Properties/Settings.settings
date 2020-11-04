@@ -3,13 +3,13 @@
   <Profiles />
   <Settings>
     <Setting Name="CAPTURE_SELECTION_MOD" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">1</Value>
+      <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="CAPTURE_SELECTION_KEY" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">81</Value>
     </Setting>
     <Setting Name="CAPTURE_SELECTION_TEXT" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Ctrl+Q</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="IMG_PATH" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -24,7 +24,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="CAPTURE_ALL_MOD" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">1</Value>
+      <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="CAPTURE_ALL_KEY" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">87</Value>
@@ -33,7 +33,7 @@
       <Value Profile="(Default)">Ctrl+W</Value>
     </Setting>
     <Setting Name="AlwaysTop" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="Sync" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -67,6 +67,24 @@
     </Setting>
     <Setting Name="GIF_ALL" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="RECORD_SELECTION_MOD" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">6</Value>
+    </Setting>
+    <Setting Name="RECORD_SELECTION_KEY" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">81</Value>
+    </Setting>
+    <Setting Name="RECORD_SELECTION_TEXT" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="RECORD_ALL_MOD" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">6</Value>
+    </Setting>
+    <Setting Name="RECORD_ALL_KEY" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">87</Value>
+    </Setting>
+    <Setting Name="RECORD_ALL_TEXT" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

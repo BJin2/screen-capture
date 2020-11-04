@@ -88,7 +88,7 @@
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel1.Location = new System.Drawing.Point(10, 15);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(550, 22);
+			this.panel1.Size = new System.Drawing.Size(530, 22);
 			this.panel1.TabIndex = 1;
 			// 
 			// panel3
@@ -96,7 +96,7 @@
 			this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel3.Location = new System.Drawing.Point(0, 0);
 			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(550, 10);
+			this.panel3.Size = new System.Drawing.Size(530, 10);
 			this.panel3.TabIndex = 3;
 			// 
 			// autosaveCheckbox
@@ -121,7 +121,7 @@
 			this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel7.Location = new System.Drawing.Point(0, 35);
 			this.panel7.Name = "panel7";
-			this.panel7.Size = new System.Drawing.Size(550, 10);
+			this.panel7.Size = new System.Drawing.Size(530, 10);
 			this.panel7.TabIndex = 7;
 			// 
 			// panel4
@@ -130,7 +130,7 @@
 			this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel4.Location = new System.Drawing.Point(0, 10);
 			this.panel4.Name = "panel4";
-			this.panel4.Size = new System.Drawing.Size(550, 25);
+			this.panel4.Size = new System.Drawing.Size(530, 25);
 			this.panel4.TabIndex = 4;
 			// 
 			// panel5
@@ -138,7 +138,7 @@
 			this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel5.Location = new System.Drawing.Point(0, 43);
 			this.panel5.Name = "panel5";
-			this.panel5.Size = new System.Drawing.Size(550, 10);
+			this.panel5.Size = new System.Drawing.Size(530, 10);
 			this.panel5.TabIndex = 6;
 			// 
 			// autosavePathLabel
@@ -183,7 +183,7 @@
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel2.Location = new System.Drawing.Point(0, 53);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(550, 22);
+			this.panel2.Size = new System.Drawing.Size(530, 22);
 			this.panel2.TabIndex = 7;
 			// 
 			// qualityList
@@ -207,7 +207,7 @@
 			this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel6.Location = new System.Drawing.Point(0, 75);
 			this.panel6.Name = "panel6";
-			this.panel6.Size = new System.Drawing.Size(550, 10);
+			this.panel6.Size = new System.Drawing.Size(530, 10);
 			this.panel6.TabIndex = 11;
 			// 
 			// gifQualityLabel
@@ -229,7 +229,7 @@
 			this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel8.Location = new System.Drawing.Point(0, 85);
 			this.panel8.Name = "panel8";
-			this.panel8.Size = new System.Drawing.Size(550, 34);
+			this.panel8.Size = new System.Drawing.Size(530, 34);
 			this.panel8.TabIndex = 12;
 			// 
 			// autosaveDetailPanel
@@ -243,7 +243,7 @@
 			this.autosaveDetailPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.autosaveDetailPanel.Location = new System.Drawing.Point(0, 45);
 			this.autosaveDetailPanel.Name = "autosaveDetailPanel";
-			this.autosaveDetailPanel.Size = new System.Drawing.Size(550, 129);
+			this.autosaveDetailPanel.Size = new System.Drawing.Size(530, 129);
 			this.autosaveDetailPanel.TabIndex = 8;
 			// 
 			// enableSelectShortcut
@@ -266,7 +266,7 @@
 			this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel9.Location = new System.Drawing.Point(0, 196);
 			this.panel9.Name = "panel9";
-			this.panel9.Size = new System.Drawing.Size(550, 10);
+			this.panel9.Size = new System.Drawing.Size(530, 10);
 			this.panel9.TabIndex = 13;
 			// 
 			// panel10
@@ -276,7 +276,7 @@
 			this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel10.Location = new System.Drawing.Point(0, 174);
 			this.panel10.Name = "panel10";
-			this.panel10.Size = new System.Drawing.Size(550, 22);
+			this.panel10.Size = new System.Drawing.Size(530, 22);
 			this.panel10.TabIndex = 12;
 			// 
 			// enableAllShortcut
@@ -301,7 +301,7 @@
 			this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panel12.Location = new System.Drawing.Point(0, 206);
 			this.panel12.Name = "panel12";
-			this.panel12.Size = new System.Drawing.Size(550, 22);
+			this.panel12.Size = new System.Drawing.Size(530, 22);
 			this.panel12.TabIndex = 14;
 			// 
 			// detailedContentsPanel
@@ -316,7 +316,7 @@
 			this.detailedContentsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.detailedContentsPanel.Location = new System.Drawing.Point(10, 37);
 			this.detailedContentsPanel.Name = "detailedContentsPanel";
-			this.detailedContentsPanel.Size = new System.Drawing.Size(550, 296);
+			this.detailedContentsPanel.Size = new System.Drawing.Size(530, 276);
 			this.detailedContentsPanel.TabIndex = 3;
 			// 
 			// contentsContainer
@@ -325,10 +325,10 @@
 			this.contentsContainer.Controls.Add(this.detailedContentsPanel);
 			this.contentsContainer.Controls.Add(this.panel1);
 			this.contentsContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.contentsContainer.Location = new System.Drawing.Point(0, 30);
+			this.contentsContainer.Location = new System.Drawing.Point(10, 40);
 			this.contentsContainer.Name = "contentsContainer";
 			this.contentsContainer.Padding = new System.Windows.Forms.Padding(10, 15, 0, 0);
-			this.contentsContainer.Size = new System.Drawing.Size(560, 333);
+			this.contentsContainer.Size = new System.Drawing.Size(540, 313);
 			this.contentsContainer.TabIndex = 4;
 			// 
 			// settingTitleLabel
@@ -337,7 +337,7 @@
 			this.settingTitleLabel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.settingTitleLabel.Font = new System.Drawing.Font("Malgun Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
 			this.settingTitleLabel.ForeColor = System.Drawing.SystemColors.ControlDark;
-			this.settingTitleLabel.Location = new System.Drawing.Point(0, 0);
+			this.settingTitleLabel.Location = new System.Drawing.Point(10, 10);
 			this.settingTitleLabel.Name = "settingTitleLabel";
 			this.settingTitleLabel.Size = new System.Drawing.Size(131, 30);
 			this.settingTitleLabel.TabIndex = 3;
@@ -347,7 +347,7 @@
 			// 
 			this.allShortcut.AssignedFunction = screen_capture.SHORTCUT_FUNCTION.RECORD_ALL;
 			this.allShortcut.Dock = System.Windows.Forms.DockStyle.Right;
-			this.allShortcut.Location = new System.Drawing.Point(197, 0);
+			this.allShortcut.Location = new System.Drawing.Point(177, 0);
 			this.allShortcut.Name = "allShortcut";
 			this.allShortcut.Size = new System.Drawing.Size(353, 22);
 			this.allShortcut.TabIndex = 4;
@@ -356,7 +356,7 @@
 			// 
 			this.selectShortcut.AssignedFunction = screen_capture.SHORTCUT_FUNCTION.RECORD_SELECTION;
 			this.selectShortcut.Dock = System.Windows.Forms.DockStyle.Right;
-			this.selectShortcut.Location = new System.Drawing.Point(197, 0);
+			this.selectShortcut.Location = new System.Drawing.Point(177, 0);
 			this.selectShortcut.Name = "selectShortcut";
 			this.selectShortcut.Size = new System.Drawing.Size(353, 22);
 			this.selectShortcut.TabIndex = 3;
@@ -367,7 +367,7 @@
 			this.path.Dock = System.Windows.Forms.DockStyle.Top;
 			this.path.Location = new System.Drawing.Point(0, 21);
 			this.path.Name = "path";
-			this.path.Size = new System.Drawing.Size(550, 22);
+			this.path.Size = new System.Drawing.Size(530, 22);
 			this.path.TabIndex = 1;
 			// 
 			// numGifRect
@@ -392,6 +392,7 @@
 			this.Controls.Add(this.contentsContainer);
 			this.Controls.Add(this.settingTitleLabel);
 			this.Name = "GifSettingControl";
+			this.Padding = new System.Windows.Forms.Padding(10);
 			this.Size = new System.Drawing.Size(560, 363);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();

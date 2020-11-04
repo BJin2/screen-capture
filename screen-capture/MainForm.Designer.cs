@@ -55,6 +55,7 @@
 			this.bottomGap = new System.Windows.Forms.Panel();
 			this.rightGap = new System.Windows.Forms.Panel();
 			this.leftGap = new System.Windows.Forms.Panel();
+			this.gifSetting = new screen_capture.GifSettingControl();
 			this.titlePanel.SuspendLayout();
 			this.topGap.SuspendLayout();
 			this.foldButtonPanel.SuspendLayout();
@@ -254,6 +255,7 @@
 			this.settingPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(53)))), ((int)(((byte)(83)))));
 			this.settingPanel.Controls.Add(this.generalSetting);
 			this.settingPanel.Controls.Add(this.imageSetting);
+			this.settingPanel.Controls.Add(this.gifSetting);
 			this.settingPanel.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.settingPanel.Location = new System.Drawing.Point(200, 0);
 			this.settingPanel.Name = "settingPanel";
@@ -330,6 +332,7 @@
 			this.gifButton.TabIndex = 2;
 			this.gifButton.Text = "Gif";
 			this.gifButton.UseVisualStyleBackColor = true;
+			this.gifButton.Click += new System.EventHandler(this.gifButton_Click);
 			// 
 			// imageButton
 			// 
@@ -396,6 +399,16 @@
 			this.leftGap.Size = new System.Drawing.Size(18, 385);
 			this.leftGap.TabIndex = 0;
 			// 
+			// gifSetting
+			// 
+			this.gifSetting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(53)))), ((int)(((byte)(83)))));
+			this.gifSetting.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("gifSetting.BackgroundImage")));
+			this.gifSetting.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.gifSetting.Location = new System.Drawing.Point(0, 0);
+			this.gifSetting.Name = "gifSetting";
+			this.gifSetting.Size = new System.Drawing.Size(560, 363);
+			this.gifSetting.TabIndex = 2;
+			// 
 			// MainForm
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -452,6 +465,7 @@
 		private System.Windows.Forms.Panel logoPanel;
 		private GeneralSettingControl generalSetting;
 		private ImageSettingControl imageSetting;
+		private GifSettingControl gifSetting;
 	}
 }
 
