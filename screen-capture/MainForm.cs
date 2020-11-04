@@ -18,8 +18,8 @@ namespace screen_capture
 
 		public MainForm()
 		{
-			InitializeComponent();
 			Instance = this;
+			InitializeComponent();
 		}
 
 		protected override void WndProc(ref Message m)
@@ -62,5 +62,15 @@ namespace screen_capture
 			this.WindowState = FormWindowState.Minimized;
 		}
 		#endregion
+
+		private void generalButton_Click(object sender, EventArgs e)
+		{
+			generalSetting.BringToFront();
+		}
+
+		private void imageButton_Click(object sender, EventArgs e)
+		{
+			imageSetting.BringToFront();
+		}
 	}
 }

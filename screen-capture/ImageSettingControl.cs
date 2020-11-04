@@ -32,6 +32,8 @@ namespace screen_capture
 			Properties.Settings.Default["IMG_FORMAT"] = fileFormatList.SelectedIndex;
 			Properties.Settings.Default["IMG_SELECTION"] = enableSelectShortcut.Checked;
 			Properties.Settings.Default["IMG_ALL"] = enableAllShortcut.Checked;
+
+			Properties.Settings.Default.Save();
 		}
 
 		private void autosaveCheckbox_CheckedChanged(object sender, EventArgs e)

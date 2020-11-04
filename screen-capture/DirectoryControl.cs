@@ -23,7 +23,6 @@ namespace screen_capture
 	public partial class DirectoryControl : UserControl
 	{
 		public string Path { get; private set; }
-		[DefaultValue(CAPTURE_TYPE.NONE)]
 		public CAPTURE_TYPE CaptureType{get; set;}
 
 		public DirectoryControl()

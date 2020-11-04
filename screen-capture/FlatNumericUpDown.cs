@@ -15,7 +15,6 @@ namespace screen_capture
 		private int maxValue = 10;
 		private int minValue = 0;
 		public int NumValue { get; private set; }
-		[DefaultValue(CAPTURE_TYPE.NONE)]
 		public CAPTURE_TYPE CaptureType { get; set; }
 
 		public FlatNumericUpDown()
@@ -81,13 +80,14 @@ namespace screen_capture
 		{
 			if (CaptureType == CAPTURE_TYPE.NONE)
 				return;
-			NumValue = (int)Properties.Settings.Default[CaptureType.ToString() + "_NUM_RECT"];
+			ValueChange((int)Properties.Settings.Default[CaptureType.ToString() + "_NUM_RECT"]);
 		}
 		private void SaveSetting()
 		{
 			if (CaptureType == CAPTURE_TYPE.NONE)
 				return;
 			Properties.Settings.Default[CaptureType.ToString() + "_NUM_RECT"] = NumValue;
+			Properties.Settings.Default.Save();
 		}
 	}
 }

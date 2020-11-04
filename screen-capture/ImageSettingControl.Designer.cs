@@ -212,6 +212,10 @@
 			this.fileFormatList.Dock = System.Windows.Forms.DockStyle.Left;
 			this.fileFormatList.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
 			this.fileFormatList.FormattingEnabled = true;
+			this.fileFormatList.Items.AddRange(new object[] {
+            "BMP",
+            "JPG",
+            "PNG"});
 			this.fileFormatList.Location = new System.Drawing.Point(93, 0);
 			this.fileFormatList.Name = "fileFormatList";
 			this.fileFormatList.Size = new System.Drawing.Size(105, 29);
