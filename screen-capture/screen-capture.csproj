@@ -65,6 +65,12 @@
     <Compile Include="GeneralSettingControl.Designer.cs">
       <DependentUpon>GeneralSettingControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="GifSettingControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GifSettingControl.Designer.cs">
+      <DependentUpon>GifSettingControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ImageSettingControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -94,6 +100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GeneralSettingControl.resx">
       <DependentUpon>GeneralSettingControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GifSettingControl.resx">
+      <DependentUpon>GifSettingControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImageSettingControl.resx">
       <DependentUpon>ImageSettingControl.cs</DependentUpon>
