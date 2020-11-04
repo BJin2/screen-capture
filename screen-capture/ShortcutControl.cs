@@ -15,7 +15,8 @@ namespace screen_capture
 {
 	public enum SHORTCUT_FUNCTION
 	{
-		CAPTURE_SELECTION = 1,
+		NONE,
+		CAPTURE_SELECTION,
 		CAPTURE_ALL,
 		RECORD_SELECTION,
 		RECORD_ALL
@@ -30,6 +31,7 @@ namespace screen_capture
 		private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
 		#endregion
 
+		[DefaultValue(SHORTCUT_FUNCTION.NONE)]
 		public SHORTCUT_FUNCTION AssignedFunction { get; set; }
 		private bool enabled = true;
 		private Hotkey hotkey;
@@ -104,16 +106,29 @@ namespace screen_capture
 
 		private void LoadSetting()
 		{
+			if (AssignedFunction == SHORTCUT_FUNCTION.NONE)
+			{
+				//MessageBox.Show("Behavior not selected");
+				return;
+			}
+			string af = AssignedFunction.ToString();
+			MessageBox.Show(af);
 			hotkey = new Hotkey(0, 0, "");
-			hotkey.MOD = (int)Settings.Default["hotkey_mod"];
-			hotkey.KEY = (int)Settings.Default["hotkey_key"];
-			hotkey.TEXT = (string)Settings.Default["hotkey_text"];
+			hotkey.MOD = (int)Settings.Default[af + "_MOD"];
+			hotkey.KEY = (int)Settings.Default[af + "_KEY"];
+			hotkey.TEXT = (string)Settings.Default[af + "_TEXT"];
 		}
 		private void SaveSetting()
 		{
-			Settings.Default["hotkey_mod"] = hotkey.MOD;
-			Settings.Default["hotkey_key"] = hotkey.KEY;
-			Settings.Default["hotkey_text"] = hotkey.TEXT;
+			if (AssignedFunction == SHORTCUT_FUNCTION.NONE)
+			{
+				//MessageBox.Show("Behavior not selected");
+				return;
+			}
+			string af = AssignedFunction.ToString();
+			Settings.Default[af + "_MOD"] = hotkey.MOD;
+			Settings.Default[af + "_KEY"] = hotkey.KEY;
+			Settings.Default[af + "_TEXT"] = hotkey.TEXT;
 			Settings.Default.Save();
 		}
 

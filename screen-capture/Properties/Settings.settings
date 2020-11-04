@@ -2,26 +2,71 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="screen_capture.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="hotkey_mod" Type="System.Int32" Scope="User">
+    <Setting Name="CAPTURE_SELECTION_MOD" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="CAPTURE_SELECTION_KEY" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">81</Value>
+    </Setting>
+    <Setting Name="CAPTURE_SELECTION_TEXT" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Ctrl+Q</Value>
+    </Setting>
+    <Setting Name="IMG_PATH" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="IMG_NAMING" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="GIF_PATH" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="GIF_NAMING" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="CAPTURE_ALL_MOD" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="CAPTURE_ALL_KEY" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">87</Value>
+    </Setting>
+    <Setting Name="CAPTURE_ALL_TEXT" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Ctrl+W</Value>
+    </Setting>
+    <Setting Name="AlwaysTop" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="Sync" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="IMG_NUM_RECT" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="GIF_NUM_RECT" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="IMG_AUTOSAVE" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="IMG_FORMAT" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="hotkey_key" Type="System.Int32" Scope="User">
+    <Setting Name="GIF_AUTOSAVE" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="GIF_QUALITY" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="hotkey_text" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="IMG_SELECTION" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="image_path" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="IMG_ALL" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="image_naming" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="GIF_SELECTION" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="gif_path" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="gif_naming" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="GIF_ALL" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

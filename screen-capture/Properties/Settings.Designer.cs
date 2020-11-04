@@ -25,85 +25,265 @@ namespace screen_capture.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int CAPTURE_SELECTION_MOD {
+            get {
+                return ((int)(this["CAPTURE_SELECTION_MOD"]));
+            }
+            set {
+                this["CAPTURE_SELECTION_MOD"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("81")]
+        public int CAPTURE_SELECTION_KEY {
+            get {
+                return ((int)(this["CAPTURE_SELECTION_KEY"]));
+            }
+            set {
+                this["CAPTURE_SELECTION_KEY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Ctrl+Q")]
+        public string CAPTURE_SELECTION_TEXT {
+            get {
+                return ((string)(this["CAPTURE_SELECTION_TEXT"]));
+            }
+            set {
+                this["CAPTURE_SELECTION_TEXT"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string IMG_PATH {
+            get {
+                return ((string)(this["IMG_PATH"]));
+            }
+            set {
+                this["IMG_PATH"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string IMG_NAMING {
+            get {
+                return ((string)(this["IMG_NAMING"]));
+            }
+            set {
+                this["IMG_NAMING"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string GIF_PATH {
+            get {
+                return ((string)(this["GIF_PATH"]));
+            }
+            set {
+                this["GIF_PATH"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string GIF_NAMING {
+            get {
+                return ((string)(this["GIF_NAMING"]));
+            }
+            set {
+                this["GIF_NAMING"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int CAPTURE_ALL_MOD {
+            get {
+                return ((int)(this["CAPTURE_ALL_MOD"]));
+            }
+            set {
+                this["CAPTURE_ALL_MOD"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("87")]
+        public int CAPTURE_ALL_KEY {
+            get {
+                return ((int)(this["CAPTURE_ALL_KEY"]));
+            }
+            set {
+                this["CAPTURE_ALL_KEY"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Ctrl+W")]
+        public string CAPTURE_ALL_TEXT {
+            get {
+                return ((string)(this["CAPTURE_ALL_TEXT"]));
+            }
+            set {
+                this["CAPTURE_ALL_TEXT"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool AlwaysTop {
+            get {
+                return ((bool)(this["AlwaysTop"]));
+            }
+            set {
+                this["AlwaysTop"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Sync {
+            get {
+                return ((bool)(this["Sync"]));
+            }
+            set {
+                this["Sync"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int IMG_NUM_RECT {
+            get {
+                return ((int)(this["IMG_NUM_RECT"]));
+            }
+            set {
+                this["IMG_NUM_RECT"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int GIF_NUM_RECT {
+            get {
+                return ((int)(this["GIF_NUM_RECT"]));
+            }
+            set {
+                this["GIF_NUM_RECT"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IMG_AUTOSAVE {
+            get {
+                return ((bool)(this["IMG_AUTOSAVE"]));
+            }
+            set {
+                this["IMG_AUTOSAVE"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int hotkey_mod {
+        public int IMG_FORMAT {
             get {
-                return ((int)(this["hotkey_mod"]));
+                return ((int)(this["IMG_FORMAT"]));
             }
             set {
-                this["hotkey_mod"] = value;
+                this["IMG_FORMAT"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool GIF_AUTOSAVE {
+            get {
+                return ((bool)(this["GIF_AUTOSAVE"]));
+            }
+            set {
+                this["GIF_AUTOSAVE"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int hotkey_key {
+        public int GIF_QUALITY {
             get {
-                return ((int)(this["hotkey_key"]));
+                return ((int)(this["GIF_QUALITY"]));
             }
             set {
-                this["hotkey_key"] = value;
+                this["GIF_QUALITY"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string hotkey_text {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IMG_SELECTION {
             get {
-                return ((string)(this["hotkey_text"]));
+                return ((bool)(this["IMG_SELECTION"]));
             }
             set {
-                this["hotkey_text"] = value;
+                this["IMG_SELECTION"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string image_path {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IMG_ALL {
             get {
-                return ((string)(this["image_path"]));
+                return ((bool)(this["IMG_ALL"]));
             }
             set {
-                this["image_path"] = value;
+                this["IMG_ALL"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string image_naming {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool GIF_SELECTION {
             get {
-                return ((string)(this["image_naming"]));
+                return ((bool)(this["GIF_SELECTION"]));
             }
             set {
-                this["image_naming"] = value;
+                this["GIF_SELECTION"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string gif_path {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool GIF_ALL {
             get {
-                return ((string)(this["gif_path"]));
+                return ((bool)(this["GIF_ALL"]));
             }
             set {
-                this["gif_path"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string gif_naming {
-            get {
-                return ((string)(this["gif_naming"]));
-            }
-            set {
-                this["gif_naming"] = value;
+                this["GIF_ALL"] = value;
             }
         }
     }
