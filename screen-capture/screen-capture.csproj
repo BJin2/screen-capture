@@ -47,67 +47,67 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DirectoryControl.cs">
+    <Compile Include="MainForm\DirectoryControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DirectoryControl.Designer.cs">
+    <Compile Include="MainForm\DirectoryControl.Designer.cs">
       <DependentUpon>DirectoryControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="FlatNumericUpDown.cs">
+    <Compile Include="MainForm\FlatNumericUpDown.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FlatNumericUpDown.Designer.cs">
+    <Compile Include="MainForm\FlatNumericUpDown.Designer.cs">
       <DependentUpon>FlatNumericUpDown.cs</DependentUpon>
     </Compile>
-    <Compile Include="GeneralSettingControl.cs">
+    <Compile Include="MainForm\GeneralSettingControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GeneralSettingControl.Designer.cs">
+    <Compile Include="MainForm\GeneralSettingControl.Designer.cs">
       <DependentUpon>GeneralSettingControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="GifSettingControl.cs">
+    <Compile Include="MainForm\GifSettingControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GifSettingControl.Designer.cs">
+    <Compile Include="MainForm\GifSettingControl.Designer.cs">
       <DependentUpon>GifSettingControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImageSettingControl.cs">
+    <Compile Include="MainForm\ImageSettingControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ImageSettingControl.Designer.cs">
+    <Compile Include="MainForm\ImageSettingControl.Designer.cs">
       <DependentUpon>ImageSettingControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs">
+    <Compile Include="MainForm\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="MainForm\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shortcut.cs" />
-    <Compile Include="ShortcutControl.cs">
+    <Compile Include="MainForm\ShortcutControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ShortcutControl.Designer.cs">
+    <Compile Include="MainForm\ShortcutControl.Designer.cs">
       <DependentUpon>ShortcutControl.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="DirectoryControl.resx">
+    <EmbeddedResource Include="MainForm\DirectoryControl.resx">
       <DependentUpon>DirectoryControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FlatNumericUpDown.resx">
+    <EmbeddedResource Include="MainForm\FlatNumericUpDown.resx">
       <DependentUpon>FlatNumericUpDown.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GeneralSettingControl.resx">
+    <EmbeddedResource Include="MainForm\GeneralSettingControl.resx">
       <DependentUpon>GeneralSettingControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GifSettingControl.resx">
+    <EmbeddedResource Include="MainForm\GifSettingControl.resx">
       <DependentUpon>GifSettingControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ImageSettingControl.resx">
+    <EmbeddedResource Include="MainForm\ImageSettingControl.resx">
       <DependentUpon>ImageSettingControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="MainForm\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -119,7 +119,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ShortcutControl.resx">
+    <EmbeddedResource Include="MainForm\ShortcutControl.resx">
       <DependentUpon>ShortcutControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">

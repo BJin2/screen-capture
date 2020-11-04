@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,7 +13,13 @@ namespace screen_capture
 {
 	public partial class MainForm : Form
 	{
+		public const int WM_NCLBUTTONDOWN = 0xA1;
 		public const int WM_HOTKEY = 0x312;
+		public const int HTCAPTION = 0x2;
+		[DllImport("user32.dll")]
+		public static extern bool ReleaseCapture();
+		[DllImport("user32.dll")]
+		public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
 
 		public static MainForm Instance { get; private set; }
 
@@ -23,6 +30,8 @@ namespace screen_capture
 			generalSetting.LoadSetting();
 			imageSetting.LoadSetting();
 			gifSetting.LoadSetting();
+
+			titlePanel.MouseDown += titleBar_MouseDown;
 		}
 
 		protected override void WndProc(ref Message m)
@@ -54,7 +63,7 @@ namespace screen_capture
 			}
 		}
 
-		#region Title bar buttons
+		#region Title bar
 		private void closeButton_Click(object sender, EventArgs e)
 		{
 			this.Close();
@@ -63,6 +72,15 @@ namespace screen_capture
 		private void minimizeButton_Click(object sender, EventArgs e)
 		{
 			this.WindowState = FormWindowState.Minimized;
+		}
+
+		private void titleBar_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+		{
+			if (e.Button == MouseButtons.Left)
+			{
+				ReleaseCapture();
+				SendMessage(Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
+			}
 		}
 		#endregion
 
