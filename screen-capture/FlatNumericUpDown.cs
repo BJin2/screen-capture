@@ -15,14 +15,14 @@ namespace screen_capture
 		private int maxValue = 10;
 		private int minValue = 0;
 		public int NumValue { get; private set; }
+		[DefaultValue(SHORTCUT_FUNCTION.NONE)]
+		public CAPTURE_TYPE CaptureType { get; set; }
 
 		public FlatNumericUpDown()
 		{
 			InitializeComponent();
 			this.MouseWheel += flatNumericUpDown_Wheel;
 			numberBox.KeyPress += new KeyPressEventHandler(numberBox_KeyPress);
-			//TODO load form setting data
-			NumValue = minValue;
 		}
 
 		private void numberBox_TextChanged(object sender, EventArgs e)
@@ -45,6 +45,7 @@ namespace screen_capture
 		{
 			NumValue = Clamp(NumValue + delta, minValue, maxValue);
 			numberBox.Text = NumValue.ToString();
+			SaveSetting();
 		}
 
 		private int Clamp(int val, int min, int max)
@@ -73,6 +74,24 @@ namespace screen_capture
 				return;
 
 			ValueChange((e.Delta / Math.Abs(e.Delta)));
+		}
+
+		public void LoadSetting()
+		{
+			if (CaptureType == CAPTURE_TYPE.NONE)
+			{
+				if (NumValue != 0)
+					ValueChange(0);
+				return;
+			}
+			ValueChange((int)Properties.Settings.Default[CaptureType.ToString() + "_NUM_RECT"]);
+		}
+		private void SaveSetting()
+		{
+			if (CaptureType == CAPTURE_TYPE.NONE)
+				return;
+			Properties.Settings.Default[CaptureType.ToString() + "_NUM_RECT"] = NumValue;
+			Properties.Settings.Default.Save();
 		}
 	}
 }

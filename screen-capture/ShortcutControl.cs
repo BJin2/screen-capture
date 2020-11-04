@@ -15,10 +15,11 @@ namespace screen_capture
 {
 	public enum SHORTCUT_FUNCTION
 	{
-		CAPTURE_AT = 1,
-		CAPTURE_FROM,
-		RECORD_AT,
-		RECORD_FROM
+		NONE,
+		CAPTURE_SELECTION,
+		CAPTURE_ALL,
+		RECORD_SELECTION,
+		RECORD_ALL
 	}
 
 	public partial class ShortcutControl : UserControl
@@ -30,6 +31,7 @@ namespace screen_capture
 		private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
 		#endregion
 
+		[DefaultValue(SHORTCUT_FUNCTION.NONE)]
 		public SHORTCUT_FUNCTION AssignedFunction { get; set; }
 		private bool enabled = true;
 		private Hotkey hotkey;
@@ -38,7 +40,6 @@ namespace screen_capture
 		{
 			InitializeComponent();
 			shortcutText.KeyDown += shortcutText_Down;
-			LoadSetting();
 		}
 
 		private void shortcutText_Down(object sender, KeyEventArgs e)
@@ -99,37 +100,52 @@ namespace screen_capture
 				return;
 			}
 			shortcutText.Text = h.TEXT;
-			Save();
+			SaveSetting();
 		}
 
-		private void LoadSetting()
+		public void LoadSetting()
 		{
+			if (AssignedFunction == SHORTCUT_FUNCTION.NONE)
+			{
+				//MessageBox.Show("Behavior not selected");
+				return;
+			}
+			string af = AssignedFunction.ToString();
 			hotkey = new Hotkey(0, 0, "");
-			hotkey.MOD = (int)Settings.Default["hotkey_mod"];
-			hotkey.KEY = (int)Settings.Default["hotkey_key"];
-			hotkey.TEXT = (string)Settings.Default["hotkey_text"];
+			hotkey.MOD = (int)Settings.Default[af + "_MOD"];
+			hotkey.KEY = (int)Settings.Default[af + "_KEY"];
+			hotkey.TEXT = (string)Settings.Default[af + "_TEXT"];
+
+			RegisterHotKeyShortcut(hotkey);
 		}
-		private void Save()
+		private void SaveSetting()
 		{
-			Settings.Default["hotkey_mod"] = hotkey.MOD;
-			Settings.Default["hotkey_key"] = hotkey.KEY;
-			Settings.Default["hotkey_text"] = hotkey.TEXT;
+			if (AssignedFunction == SHORTCUT_FUNCTION.NONE)
+			{
+				//MessageBox.Show("Behavior not selected");
+				return;
+			}
+			string af = AssignedFunction.ToString();
+			Settings.Default[af + "_MOD"] = hotkey.MOD;
+			Settings.Default[af + "_KEY"] = hotkey.KEY;
+			Settings.Default[af + "_TEXT"] = hotkey.TEXT;
 			Settings.Default.Save();
 		}
 
-		public void Enable()
+		public void Enable(bool e)
 		{
-			enabled = true;
-			shortcutText.Enabled = true;
-			shortcutText.ForeColor = SystemColors.WindowText;
-			//TODO register hotkey
-		}
-		public void Disable()
-		{
-			enabled = false;
-			shortcutText.Enabled = false;
-			shortcutText.ForeColor = SystemColors.ControlDark;
-			//TODO unregister hotkey
+			enabled = e;
+			shortcutText.Enabled = e;
+			if (e)
+			{
+				shortcutText.ForeColor = SystemColors.WindowText;
+				RegisterHotKeyShortcut(hotkey);
+			}
+			else
+			{
+				shortcutText.ForeColor = SystemColors.ControlDark;
+				UnregisterHotKey(MainForm.Instance.Handle, (int)AssignedFunction);
+			}
 		}
 	}
 }

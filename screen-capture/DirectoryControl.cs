@@ -13,15 +13,22 @@ using System.Windows.Forms.VisualStyles;
 
 namespace screen_capture
 {
+	public enum CAPTURE_TYPE
+	{
+		NONE,
+		IMG,
+		GIF
+	}
+
 	public partial class DirectoryControl : UserControl
 	{
 		public string Path { get; private set; }
+		[DefaultValue(SHORTCUT_FUNCTION.NONE)]
+		public CAPTURE_TYPE CaptureType{get; set;}
 
 		public DirectoryControl()
 		{
 			InitializeComponent();
-			//TODO load path from setting data file
-			SetPath(Environment.GetFolderPath(folderBrowserDialog.RootFolder));
 		}
 
 		private void openButton_Click(object sender, EventArgs e)
@@ -53,11 +60,29 @@ namespace screen_capture
 		{
 			Path = path;
 			pathBox.Text = Path;
+			SaveSetting();
 		}
 
 		private void pathBox_TextChanged(object sender, EventArgs e)
 		{
 			Path = pathBox.Text;
+		}
+
+		public void LoadSetting()
+		{
+			if (CaptureType == CAPTURE_TYPE.NONE)
+			{
+				SetPath(Environment.GetFolderPath(folderBrowserDialog.RootFolder));
+				return;
+			}
+			SetPath((string)Properties.Settings.Default[CaptureType.ToString()+"_PATH"]);
+		}
+		private void SaveSetting()
+		{
+			if (CaptureType == CAPTURE_TYPE.NONE)
+				return;
+			Properties.Settings.Default[CaptureType.ToString() + "_PATH"] = Path;
+			Properties.Settings.Default.Save();
 		}
 	}
 }

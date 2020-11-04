@@ -74,6 +74,7 @@
 			this.topCheckbox.TabIndex = 1;
 			this.topCheckbox.Text = "Always on top (this window)";
 			this.topCheckbox.UseVisualStyleBackColor = true;
+			this.topCheckbox.CheckedChanged += new System.EventHandler(this.topCheckbox_CheckedChanged);
 			// 
 			// syncCheckbox
 			// 
@@ -89,6 +90,7 @@
 			this.syncCheckbox.TabIndex = 0;
 			this.syncCheckbox.Text = "Sync image and gif auto save settings";
 			this.syncCheckbox.UseVisualStyleBackColor = true;
+			this.syncCheckbox.CheckedChanged += new System.EventHandler(this.syncCheckbox_CheckedChanged);
 			// 
 			// GeneralSettingControl
 			// 

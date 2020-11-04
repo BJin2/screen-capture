@@ -18,8 +18,10 @@ namespace screen_capture
 
 		public MainForm()
 		{
-			InitializeComponent();
 			Instance = this;
+			InitializeComponent();
+			generalSetting.LoadSetting();
+			imageSetting.LoadSetting();
 		}
 
 		protected override void WndProc(ref Message m)
@@ -28,16 +30,16 @@ namespace screen_capture
 			{
 				switch ((int)m.WParam)
 				{
-					case (int)SHORTCUT_FUNCTION.CAPTURE_AT:
+					case (int)SHORTCUT_FUNCTION.CAPTURE_SELECTION:
 						MessageBox.Show(((int)m.WParam).ToString());
 						break;
-					case (int)SHORTCUT_FUNCTION.CAPTURE_FROM:
+					case (int)SHORTCUT_FUNCTION.CAPTURE_ALL:
 						MessageBox.Show(((int)m.WParam).ToString());
 						break;
-					case (int)SHORTCUT_FUNCTION.RECORD_AT:
+					case (int)SHORTCUT_FUNCTION.RECORD_SELECTION:
 						MessageBox.Show(((int)m.WParam).ToString());
 						break;
-					case (int)SHORTCUT_FUNCTION.RECORD_FROM:
+					case (int)SHORTCUT_FUNCTION.RECORD_ALL:
 						MessageBox.Show(((int)m.WParam).ToString());
 						break;
 					default:
@@ -62,5 +64,15 @@ namespace screen_capture
 			this.WindowState = FormWindowState.Minimized;
 		}
 		#endregion
+
+		private void generalButton_Click(object sender, EventArgs e)
+		{
+			generalSetting.BringToFront();
+		}
+
+		private void imageButton_Click(object sender, EventArgs e)
+		{
+			imageSetting.BringToFront();
+		}
 	}
 }
