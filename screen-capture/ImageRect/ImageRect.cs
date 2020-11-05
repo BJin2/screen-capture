@@ -22,17 +22,30 @@ namespace screen_capture.ImageRect
 		{
 			InitializeComponent();
 			this.SetStyle(ControlStyles.ResizeRedraw, true);
-
 			titlePanel.MouseDown += title_MouseDown;
 
-			top.MouseDown += resize_MouseDown;
-			left.MouseDown += resize_MouseDown;
-			right.MouseDown += resize_MouseDown;
-			bottom.MouseDown += resize_MouseDown;
-			topLeft.MouseDown += resize_MouseDown;
-			topRight.MouseDown += resize_MouseDown;
-			bottomLeft.MouseDown += resize_MouseDown;
-			bottomRight.MouseDown += resize_MouseDown;
+			foreach (var p in borderPanel.Controls)
+			{
+				if (p == captureArea ||
+					p.GetType() != typeof(Panel))
+					continue;
+
+				AddBorderResizeHandler((Panel)p);
+			}
+		}
+
+		private void AddBorderResizeHandler(Panel p)
+		{
+			if (!p.HasChildren)
+			{
+				p.MouseDown += resize_MouseDown;
+				return;
+			}
+
+			foreach (var panel in p.Controls)
+			{
+				AddBorderResizeHandler((Panel)panel);
+			}
 		}
 
 		private void title_MouseDown(object sender, MouseEventArgs e)
