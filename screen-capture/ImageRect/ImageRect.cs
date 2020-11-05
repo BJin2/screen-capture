@@ -13,13 +13,18 @@ namespace screen_capture.ImageRect
 {
 	public partial class ImageRect : Form
 	{
+		#region winapi imported functions
 		[DllImport("User32.dll")]
 		public static extern bool ReleaseCapture();
 		[DllImport("user32.dll")]
 		public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+		#endregion
 
-		public ImageRect()
+		private readonly int id;
+
+		public ImageRect(int _id)
 		{
+			id = _id;
 			InitializeComponent();
 			this.SetStyle(ControlStyles.ResizeRedraw, true);
 			titlePanel.MouseDown += title_MouseDown;
@@ -32,8 +37,56 @@ namespace screen_capture.ImageRect
 
 				AddBorderResizeHandler((Panel)p);
 			}
+
+			LoadSize();
 		}
 
+		#region Save & Load Size
+		private void LoadSize()
+		{
+			int x;
+			int y;
+			int width;
+			int height;
+			try
+			{
+				string prefix = "IMG_" + id.ToString();
+				x = (int)Properties.Settings.Default[prefix + "_X" ];
+				y = (int)Properties.Settings.Default[prefix + "_Y"];
+				width = (int)Properties.Settings.Default[prefix + "_WIDTH"];
+				height = (int)Properties.Settings.Default[prefix + "_HEIGHT"];
+			}
+			catch // Capture box opens in fixed size if error occurs while loading position or size value
+			{
+				width = 128 + 10;
+				height = 128 + 10 + titlePanel.Height;
+				x = (Screen.PrimaryScreen.Bounds.Width / 2) - (width/2);
+				y = (Screen.PrimaryScreen.Bounds.Height / 2) - (height/2);
+			}
+			Location = new Point(x, y);
+			Size = new Size(width, height);
+		}
+		private void SaveSize()
+		{
+			try
+			{
+				string prefix = "IMG_" + id.ToString();
+				Properties.Settings.Default[prefix + "_X"] = Location.X;
+				Properties.Settings.Default[prefix + "_Y"] = Location.Y;
+				Properties.Settings.Default[prefix + "_WIDTH"] = Size.Width;
+				Properties.Settings.Default[prefix + "_HEIGHT"] = Size.Height;
+			}
+			catch
+			{
+				MessageBox.Show("Capture Box Properties Save Failed");
+			}
+		}
+		#endregion
+
+		#region Capture
+		#endregion
+
+		#region Window behavior
 		private void AddBorderResizeHandler(Panel p)
 		{
 			if (!p.HasChildren)
@@ -62,6 +115,8 @@ namespace screen_capture.ImageRect
 				return;
 			ReleaseCapture();
 			SendMessage(this.Handle, WinMessage.WM_NCLBUTTONDOWN, WinMessage.HITTEST[((Panel)sender).Name], 0);
+			SaveSize();
 		}
+		#endregion
 	}
 }

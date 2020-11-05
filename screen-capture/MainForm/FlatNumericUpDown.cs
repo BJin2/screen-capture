@@ -15,6 +15,7 @@ namespace screen_capture
 		private int maxValue = 10;
 		private int minValue = 0;
 		public int NumValue { get; private set; }
+		public event EventHandler<NumberChangeEventArgs> ValueChanged;
 		[DefaultValue(SHORTCUT_FUNCTION.NONE)]
 		public CAPTURE_TYPE CaptureType { get; set; }
 
@@ -46,6 +47,8 @@ namespace screen_capture
 			NumValue = Clamp(NumValue + delta, minValue, maxValue);
 			numberBox.Text = NumValue.ToString();
 			SaveSetting();
+			EventArgs args = new EventArgs();
+			ValueChanged?.Invoke(this, new NumberChangeEventArgs(NumValue, CaptureType));
 		}
 
 		private int Clamp(int val, int min, int max)

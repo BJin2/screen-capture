@@ -3,6 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
+namespace screen_capture
+{
+	public class NumberChangeEventArgs : EventArgs
+	{
+		public int ChangedValue { get; private set; }
+		public CAPTURE_TYPE CaptureType { get; private set; }
+
+		public NumberChangeEventArgs(int cv, CAPTURE_TYPE ct)
+		{
+			ChangedValue = cv;
+			CaptureType = ct;
+		}
+	}
+}
+
 namespace Shortcut
 {
 	enum MOD

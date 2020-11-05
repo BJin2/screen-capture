@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using ImgRect = screen_capture.ImageRect.ImageRect;
+
 namespace screen_capture
 {
 	public partial class MainForm : Form
@@ -22,19 +24,20 @@ namespace screen_capture
 		public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
 
 		public static MainForm Instance { get; private set; }
-		private ImageRect.ImageRect imageRect;
-
+		private List<Form> irects;
+		private List<Form> grects;
 		public MainForm()
 		{
 			Instance = this;
+			irects = new List<Form>();
+			grects = new List<Form>();
+
 			InitializeComponent();
 			generalSetting.LoadSetting();
 			imageSetting.LoadSetting();
 			gifSetting.LoadSetting();
 
 			titlePanel.MouseDown += titleBar_MouseDown;
-			imageRect = new ImageRect.ImageRect();
-			imageRect.Show();
 		}
 
 		protected override void WndProc(ref Message m)
@@ -69,7 +72,13 @@ namespace screen_capture
 		#region Title bar
 		private void closeButton_Click(object sender, EventArgs e)
 		{
-			imageRect.Close();
+			if (irects != null && irects.Count > 0)
+			{
+				foreach (ImgRect r in irects)
+				{
+					r.Close();
+				}
+			}
 			this.Close();
 		}
 
@@ -88,6 +97,7 @@ namespace screen_capture
 		}
 		#endregion
 
+		#region button event handler
 		private void generalButton_Click(object sender, EventArgs e)
 		{
 			generalSetting.BringToFront();
@@ -101,6 +111,40 @@ namespace screen_capture
 		private void gifButton_Click(object sender, EventArgs e)
 		{
 			gifSetting.BringToFront();
+		}
+		#endregion
+
+		public void RectNumberChanged(int num, CAPTURE_TYPE ct)
+		{
+			var rects = ct == CAPTURE_TYPE.IMG ? irects : grects;
+			int diff = num - rects.Count;
+
+			if (diff > 0)
+			{
+				for (int i = 0; i < diff; i++)
+				{
+					int id = rects.Count;
+					if (ct == CAPTURE_TYPE.IMG)
+					{
+						rects.Add(new ImgRect(id));
+					}
+					else if (ct == CAPTURE_TYPE.GIF)
+					{
+						//TODO change ImgRect to GifRect
+						rects.Add(new ImgRect(id));
+					}
+					rects.Last().Show();
+				}
+				return;
+			}
+
+			if (rects.Count == 0)
+				return;
+
+			//sudden removal of multiple capture rects never happens(except closing the whole app)
+			//Remove count 1 is guaranteed
+			rects.Last().Close();
+			rects.RemoveAt(rects.Count - 1);
 		}
 	}
 }
