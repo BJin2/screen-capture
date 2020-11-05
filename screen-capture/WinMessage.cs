@@ -1,0 +1,36 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace screen_capture
+{
+	abstract class WinMessage
+	{
+		public const int WM_NCLBUTTONDOWN = 0xa1;
+		public const int WM_NCHITTEST = 0x84;
+		public const int WM_HOTKEY = 0x312;
+
+		public const int HTCAPTION = 0x2;
+		public const int HTLEFT = 10;
+		public const int HTRIGHT = 11;
+		public const int HTTOP = 12;
+		public const int HTTOPLEFT = 13;
+		public const int HTTOPRIGHT = 14;
+		public const int HTBOTTOM = 15;
+		public const int HTBOTTOMLEFT = 16;
+		public const int HTBOTTOMRIGHT = 17;
+		public static readonly Dictionary<string, int> HITTEST = new Dictionary<string, int>
+		{
+			{ "top", HTTOP },
+			{ "left", HTLEFT },
+			{ "right", HTRIGHT },
+			{ "bottom", HTBOTTOM },
+			{ "topLeft", HTTOPLEFT },
+			{ "topRight", HTTOPRIGHT },
+			{ "bottomLeft", HTBOTTOMLEFT },
+			{ "bottomRight", HTBOTTOMRIGHT }
+		};
+}
+}

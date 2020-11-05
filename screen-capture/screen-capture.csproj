@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ImageRect\ImageRect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageRect\ImageRect.Designer.cs">
+      <DependentUpon>ImageRect.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm\DirectoryControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -92,6 +98,10 @@
     <Compile Include="MainForm\ShortcutControl.Designer.cs">
       <DependentUpon>ShortcutControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="WinMessage.cs" />
+    <EmbeddedResource Include="ImageRect\ImageRect.resx">
+      <DependentUpon>ImageRect.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm\DirectoryControl.resx">
       <DependentUpon>DirectoryControl.cs</DependentUpon>
     </EmbeddedResource>

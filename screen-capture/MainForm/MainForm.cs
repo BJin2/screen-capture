@@ -22,6 +22,7 @@ namespace screen_capture
 		public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
 
 		public static MainForm Instance { get; private set; }
+		private ImageRect.ImageRect imageRect;
 
 		public MainForm()
 		{
@@ -32,6 +33,8 @@ namespace screen_capture
 			gifSetting.LoadSetting();
 
 			titlePanel.MouseDown += titleBar_MouseDown;
+			imageRect = new ImageRect.ImageRect();
+			imageRect.Show();
 		}
 
 		protected override void WndProc(ref Message m)
@@ -66,6 +69,7 @@ namespace screen_capture
 		#region Title bar
 		private void closeButton_Click(object sender, EventArgs e)
 		{
+			imageRect.Close();
 			this.Close();
 		}
 
