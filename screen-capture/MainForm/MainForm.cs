@@ -138,13 +138,15 @@ namespace screen_capture
 				return;
 			}
 
-			if (rects.Count == 0)
+			if (diff == 0 || rects.Count == 0)
 				return;
 
-			//sudden removal of multiple capture rects never happens(except closing the whole app)
-			//Remove count 1 is guaranteed
-			rects.Last().Close();
-			rects.RemoveAt(rects.Count - 1);
+			diff *= -1;
+			for (int i = 0; i < diff; i++)
+			{
+				rects.Last().Close();
+				rects.RemoveAt(rects.Count - 1);
+			}
 		}
 	}
 }

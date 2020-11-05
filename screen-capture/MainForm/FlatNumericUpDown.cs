@@ -28,10 +28,9 @@ namespace screen_capture
 
 		private void numberBox_TextChanged(object sender, EventArgs e)
 		{
-			if (numberBox.Text == "")
+			if (numberBox.Text == "" || !numberBox.Enabled)
 				return;
-			NumValue = Clamp(int.Parse(numberBox.Text), minValue, maxValue);
-			numberBox.Text = NumValue.ToString();
+			SetValue(int.Parse(numberBox.Text));
 		}
 
 		private void numberBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -42,13 +41,20 @@ namespace screen_capture
 			}
 		}
 
-		private void ValueChange(int delta)
+
+		private void SetValue(int v)
 		{
-			NumValue = Clamp(NumValue + delta, minValue, maxValue);
+			NumValue = Clamp(v, minValue, maxValue);
+			numberBox.Enabled = false;
 			numberBox.Text = NumValue.ToString();
+			numberBox.Enabled = true;
 			SaveSetting();
 			EventArgs args = new EventArgs();
 			ValueChanged?.Invoke(this, new NumberChangeEventArgs(NumValue, CaptureType));
+		}
+		private void ChangeValue(int delta)
+		{
+			SetValue(NumValue + delta);
 		}
 
 		private int Clamp(int val, int min, int max)
@@ -63,12 +69,12 @@ namespace screen_capture
 
 		private void upButton_Click(object sender, EventArgs e)
 		{
-			ValueChange(1);
+			ChangeValue(1);
 		}
 
 		private void downButton_Click(object sender, EventArgs e)
 		{
-			ValueChange(-1);
+			ChangeValue(-1);
 		}
 
 		private void flatNumericUpDown_Wheel(object sender, MouseEventArgs e)
@@ -76,7 +82,7 @@ namespace screen_capture
 			if (e.Delta == 0)
 				return;
 
-			ValueChange((e.Delta / Math.Abs(e.Delta)));
+			ChangeValue((e.Delta / Math.Abs(e.Delta)));
 		}
 
 		public void LoadSetting()
@@ -84,10 +90,10 @@ namespace screen_capture
 			if (CaptureType == CAPTURE_TYPE.NONE)
 			{
 				if (NumValue != 0)
-					ValueChange(0);
+					ChangeValue(0);
 				return;
 			}
-			ValueChange((int)Properties.Settings.Default[CaptureType.ToString() + "_NUM_RECT"]);
+			ChangeValue((int)Properties.Settings.Default[CaptureType.ToString() + "_NUM_RECT"]);
 		}
 		private void SaveSetting()
 		{
