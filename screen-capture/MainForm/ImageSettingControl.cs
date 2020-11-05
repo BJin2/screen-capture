@@ -15,6 +15,7 @@ namespace screen_capture
 		public ImageSettingControl()
 		{
 			InitializeComponent();
+			numImageRect.ValueChanged += numImageRect_ValueChanged;
 		}
 		public void LoadSetting()
 		{
@@ -39,6 +40,11 @@ namespace screen_capture
 		}
 
 		#region value changed handlers
+		private void numImageRect_ValueChanged(object sender, NumberChangeEventArgs e)
+		{
+			MainForm.Instance.RectNumberChanged(e.ChangedValue, e.CaptureType);
+		}
+
 		private void autosaveCheckbox_CheckedChanged(object sender, EventArgs e)
 		{
 			SaveSetting(autosaveCheckbox.Checked, "IMG_AUTOSAVE");

@@ -418,6 +418,7 @@
 			this.Controls.Add(this.foldPanel);
 			this.Controls.Add(this.topGap);
 			this.Controls.Add(this.titlePanel);
+			this.DoubleBuffered = true;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Name = "MainForm";
 			this.Text = "MainForm";
