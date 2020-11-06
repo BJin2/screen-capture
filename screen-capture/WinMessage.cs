@@ -6,8 +6,30 @@ using System.Threading.Tasks;
 
 namespace screen_capture
 {
+	public struct POINT
+	{
+		public Int32 x;
+		public Int32 y;
+	}
+	public struct ICONINFO
+	{
+		public bool fIcon;
+		public Int32 xHotspot;
+		public Int32 yHotspot;
+		public IntPtr hbmMask;
+		public IntPtr hbmColor;
+	}
+	public struct CURSORINFO
+	{
+		public Int32 cbSize;
+		public Int32 flags;
+		public IntPtr hCursor;
+		public POINT ptScreenPos;
+	}
 	abstract class WinMessage
 	{
+		public const Int32 CURSOR_SHOWING = 0x00000001;
+
 		public const int WM_NCLBUTTONDOWN = 0xa1;
 		public const int WM_NCHITTEST = 0x84;
 		public const int WM_HOTKEY = 0x312;

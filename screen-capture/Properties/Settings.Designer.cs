@@ -373,7 +373,7 @@ namespace screen_capture.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("230, 188")]
+        [global::System.Configuration.DefaultSettingValueAttribute("280, 188")]
         public global::System.Drawing.Size IMG_0_RES {
             get {
                 return ((global::System.Drawing.Size)(this["IMG_0_RES"]));
@@ -397,7 +397,7 @@ namespace screen_capture.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("230, 188")]
+        [global::System.Configuration.DefaultSettingValueAttribute("280, 188")]
         public global::System.Drawing.Size IMG_1_RES {
             get {
                 return ((global::System.Drawing.Size)(this["IMG_1_RES"]));
@@ -421,7 +421,7 @@ namespace screen_capture.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("230, 188")]
+        [global::System.Configuration.DefaultSettingValueAttribute("280, 188")]
         public global::System.Drawing.Size IMG_2_RES {
             get {
                 return ((global::System.Drawing.Size)(this["IMG_2_RES"]));
@@ -445,7 +445,7 @@ namespace screen_capture.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("230, 188")]
+        [global::System.Configuration.DefaultSettingValueAttribute("280, 188")]
         public global::System.Drawing.Size IMG_3_RES {
             get {
                 return ((global::System.Drawing.Size)(this["IMG_3_RES"]));
@@ -469,7 +469,7 @@ namespace screen_capture.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("230, 188")]
+        [global::System.Configuration.DefaultSettingValueAttribute("280, 188")]
         public global::System.Drawing.Size IMG_4_RES {
             get {
                 return ((global::System.Drawing.Size)(this["IMG_4_RES"]));
@@ -493,7 +493,7 @@ namespace screen_capture.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("230, 188")]
+        [global::System.Configuration.DefaultSettingValueAttribute("280, 188")]
         public global::System.Drawing.Size IMG_5_RES {
             get {
                 return ((global::System.Drawing.Size)(this["IMG_5_RES"]));
@@ -517,7 +517,7 @@ namespace screen_capture.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("230, 188")]
+        [global::System.Configuration.DefaultSettingValueAttribute("280, 188")]
         public global::System.Drawing.Size IMG_6_RES {
             get {
                 return ((global::System.Drawing.Size)(this["IMG_6_RES"]));
@@ -541,7 +541,7 @@ namespace screen_capture.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("230, 188")]
+        [global::System.Configuration.DefaultSettingValueAttribute("280, 188")]
         public global::System.Drawing.Size IMG_7_RES {
             get {
                 return ((global::System.Drawing.Size)(this["IMG_7_RES"]));

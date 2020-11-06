@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -19,6 +21,10 @@ namespace screen_capture
 		public static extern bool ReleaseCapture();
 		[DllImport("user32.dll")]
 		public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+		[DllImport("user32.dll")]
+		public static extern bool GetCursorInfo(out CURSORINFO pci);
+		[DllImport("user32.dll")]
+		public static extern bool GetIconInfo(IntPtr hIcon, out ICONINFO piconinfo);
 
 		public static MainForm Instance { get; private set; }
 		private List<Form> irects;
@@ -146,6 +152,49 @@ namespace screen_capture
 			{
 				rects.Last().Close();
 				rects.RemoveAt(rects.Count - 1);
+			}
+		}
+
+		public static ImageFormat GetImageFormat(string filename)
+		{
+			String ext = Path.GetExtension(filename).ToLower();
+			ImageFormat imgfmt = ImageFormat.Bmp;
+			if (ext != "")
+			{
+				switch (ext)
+				{
+					case ".jpg":
+						imgfmt = ImageFormat.Jpeg;
+						break;
+					case ".png":
+						imgfmt = ImageFormat.Png;
+						break;
+					case ".bmp":
+						imgfmt = ImageFormat.Bmp;
+						break;
+					case ".tif":
+						imgfmt = ImageFormat.Tiff;
+						break;
+				}
+			}
+
+			return imgfmt;
+		}
+		public static void DrawMousePointer(Graphics g, int x, int y)
+		{
+			IntPtr hIcon;
+			CURSORINFO cursorInfo = new CURSORINFO();
+			cursorInfo.cbSize = Marshal.SizeOf(cursorInfo);
+			if (GetCursorInfo(out cursorInfo))
+			{
+				if (cursorInfo.flags == WinMessage.CURSOR_SHOWING)
+				{
+					hIcon = cursorInfo.hCursor;
+					if (GetIconInfo(hIcon, out ICONINFO iconInfo))
+					{
+						g.DrawIcon(Icon.FromHandle(hIcon), x - ((int)iconInfo.xHotspot), y - ((int)iconInfo.yHotspot));
+					}
+				}
 			}
 		}
 	}

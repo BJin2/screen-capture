@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -39,7 +40,7 @@ namespace screen_capture.ImageRect
 			AddBorderResizeHandler(borderPanel);
 			AddSizePositionHandler(textArea);
 
-			minWidth = textArea.Width + captureButton.Width;
+			minWidth = textArea.Width + captureButton.Width + saveButton.Width;
 			widthOffset = left.Width + right.Width;
 			minHeight = titlePanel.Height + top.Height + bottom.Height;
 
@@ -197,6 +198,49 @@ namespace screen_capture.ImageRect
 		#endregion
 
 		#region Capture
+		private void captureButton_Click(object sender, EventArgs e)
+		{
+			CaptureImage();
+		}
+		private void saveButton_Click(object sender, EventArgs e)
+		{
+			if (captured.Image == null)
+				return;
+
+			string filename;
+			ImageFormat format;
+			saveFile.FileName = "";
+			if (saveFile.ShowDialog() == DialogResult.OK)
+			{
+				filename = saveFile.FileName;
+				format = MainForm.GetImageFormat(filename);
+				this.captured.Image.Save(filename, format);
+			}
+		}
+		private void clearButton_Click(object sender, EventArgs e)
+		{
+			Clear();
+		}
+
+		private void Clear()
+		{
+			captured.BackColor = Color.FromArgb(224, 224, 224);
+			captured.Image = null;
+		}
+		public void CaptureImage()
+		{
+			captured.BackColor = Color.White;
+			Rectangle rect = new Rectangle(this.Left+5, this.Top+55, this.Left+5 + this.Width-10, this.Top + 55 + this.Height - 60);
+			int width = rect.Width - rect.Left;
+			int height = rect.Height - rect.Top;
+			Bitmap bm = new Bitmap(width, height);
+			Graphics g = Graphics.FromImage(bm);
+			g.CopyFromScreen(rect.Left, rect.Top, 0, 0, new Size(width, height));
+			//TODO make draw cursor option
+			MainForm.DrawMousePointer(g, Cursor.Position.X - rect.Left, Cursor.Position.Y - rect.Top);
+
+			captured.Image = bm;
+		}
 		#endregion
 
 		#region Window behavior
@@ -242,6 +286,10 @@ namespace screen_capture.ImageRect
 			ReleaseCapture();
 			SendMessage(this.Handle, WinMessage.WM_NCLBUTTONDOWN, WinMessage.HITTEST[((Panel)sender).Name], 0);
 		}
+
+
 		#endregion
+
+		
 	}
 }
