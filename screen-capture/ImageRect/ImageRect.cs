@@ -24,11 +24,13 @@ namespace screen_capture.ImageRect
 
 		public ImageRect(int _id)
 		{
-			id = _id;
 			InitializeComponent();
 			this.SetStyle(ControlStyles.ResizeRedraw, true);
+
+			this.Load += ImageRect_Load;
 			titlePanel.MouseDown += title_MouseDown;
 
+			id = _id;
 			foreach (var p in borderPanel.Controls)
 			{
 				if (p == captureArea ||
@@ -87,6 +89,11 @@ namespace screen_capture.ImageRect
 		#endregion
 
 		#region Window behavior
+		private void ImageRect_Load(object sender, EventArgs e)
+		{
+			this.ActiveControl = textArea;
+		}
+
 		private void AddBorderResizeHandler(Panel p)
 		{
 			if (!p.HasChildren)
