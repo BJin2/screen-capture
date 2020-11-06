@@ -116,6 +116,9 @@ namespace screen_capture
 
 		public void RectNumberChanged(int num, CAPTURE_TYPE ct)
 		{
+			var text = ct == CAPTURE_TYPE.IMG ? imageRectNumberLabel : gifRectNumberLabel;
+			text.Text = num.ToString();
+
 			var rects = ct == CAPTURE_TYPE.IMG ? irects : grects;
 			int diff = num - rects.Count;
 
