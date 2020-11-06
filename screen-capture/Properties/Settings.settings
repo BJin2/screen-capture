@@ -86,5 +86,65 @@
     <Setting Name="RECORD_ALL_TEXT" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="IMG_0_POS" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">100, 100</Value>
+    </Setting>
+    <Setting Name="IMG_0_RES" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">230, 188</Value>
+    </Setting>
+    <Setting Name="IMG_1_POS" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">130, 130</Value>
+    </Setting>
+    <Setting Name="IMG_1_RES" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">230, 188</Value>
+    </Setting>
+    <Setting Name="IMG_2_POS" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">160, 160</Value>
+    </Setting>
+    <Setting Name="IMG_2_RES" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">230, 188</Value>
+    </Setting>
+    <Setting Name="IMG_3_POS" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">190, 190</Value>
+    </Setting>
+    <Setting Name="IMG_3_RES" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">230, 188</Value>
+    </Setting>
+    <Setting Name="IMG_4_POS" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">220, 220</Value>
+    </Setting>
+    <Setting Name="IMG_4_RES" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">230, 188</Value>
+    </Setting>
+    <Setting Name="IMG_5_POS" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">250, 250</Value>
+    </Setting>
+    <Setting Name="IMG_5_RES" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">230, 188</Value>
+    </Setting>
+    <Setting Name="IMG_6_POS" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">280, 280</Value>
+    </Setting>
+    <Setting Name="IMG_6_RES" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">230, 188</Value>
+    </Setting>
+    <Setting Name="IMG_7_POS" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">310, 310</Value>
+    </Setting>
+    <Setting Name="IMG_7_RES" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">230, 188</Value>
+    </Setting>
+    <Setting Name="IMG_8_POS" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">340, 340</Value>
+    </Setting>
+    <Setting Name="IMG_8_RES" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">230, 188</Value>
+    </Setting>
+    <Setting Name="IMG_9_POS" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">370, 370</Value>
+    </Setting>
+    <Setting Name="IMG_9_RES" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">230, 188</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

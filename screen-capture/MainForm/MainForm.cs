@@ -15,9 +15,6 @@ namespace screen_capture
 {
 	public partial class MainForm : Form
 	{
-		public const int WM_NCLBUTTONDOWN = 0xA1;
-		public const int WM_HOTKEY = 0x312;
-		public const int HTCAPTION = 0x2;
 		[DllImport("user32.dll")]
 		public static extern bool ReleaseCapture();
 		[DllImport("user32.dll")]
@@ -42,7 +39,7 @@ namespace screen_capture
 
 		protected override void WndProc(ref Message m)
 		{
-			if (m.Msg == WM_HOTKEY)
+			if (m.Msg == WinMessage.WM_HOTKEY)
 			{
 				switch ((int)m.WParam)
 				{
@@ -92,7 +89,7 @@ namespace screen_capture
 			if (e.Button == MouseButtons.Left)
 			{
 				ReleaseCapture();
-				SendMessage(Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
+				SendMessage(Handle, WinMessage.WM_NCLBUTTONDOWN, WinMessage.HTCAPTION, 0);
 			}
 		}
 		#endregion
@@ -116,6 +113,9 @@ namespace screen_capture
 
 		public void RectNumberChanged(int num, CAPTURE_TYPE ct)
 		{
+			var text = ct == CAPTURE_TYPE.IMG ? imageRectNumberLabel : gifRectNumberLabel;
+			text.Text = num.ToString();
+
 			var rects = ct == CAPTURE_TYPE.IMG ? irects : grects;
 			int diff = num - rects.Count;
 
