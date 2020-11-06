@@ -22,6 +22,7 @@ namespace screen_capture.ImageRect
 
 		private readonly int id;
 		private readonly int minWidth;
+		private readonly int widthOffset;
 		private readonly int minHeight;
 
 		public ImageRect(int _id)
@@ -38,10 +39,14 @@ namespace screen_capture.ImageRect
 			AddBorderResizeHandler(borderPanel);
 			AddSizePositionHandler(textArea);
 
-			minWidth = left.Width + right.Width;
+			minWidth = textArea.Width + captureButton.Width;
+			widthOffset = left.Width + right.Width;
 			minHeight = titlePanel.Height + top.Height + bottom.Height;
 
+			StartPosition = FormStartPosition.Manual;
+
 			LoadSize();
+			LoadLocation();
 		}
 
 		#region Size Position Text
@@ -53,17 +58,18 @@ namespace screen_capture.ImageRect
 			coordY.Text = this.Location.Y.ToString();
 			coordX.Enabled = true;
 			coordY.Enabled = true;
+			SaveLocation();
 		}
 		private void Form_SizeChanged(object sender, EventArgs e)
 		{
 			resWidth.Enabled = false;
 			resHeight.Enabled = false;
-			resWidth.Text = (this.Size.Width - minWidth).ToString();
+			resWidth.Text = (this.Size.Width - widthOffset).ToString();
 			resHeight.Text = (this.Size.Height - minHeight).ToString();
 			resWidth.Enabled = true;
 			resHeight.Enabled = true;
+			SaveSize();
 		}
-
 
 		private void AddSizePositionHandler(Control c)
 		{
@@ -118,7 +124,7 @@ namespace screen_capture.ImageRect
 					this.Location = new Point(this.Location.X, value);
 					break;
 				case "resWidth":
-					int width = value + minWidth;
+					int width = value + widthOffset;
 					this.Size = new Size(width, this.Size.Height);
 					break;
 				case "resHeight":
@@ -135,42 +141,57 @@ namespace screen_capture.ImageRect
 		#region Save & Load Size
 		private void LoadSize()
 		{
-			int x;
-			int y;
-			int width;
-			int height;
+			Size size;
 			try
 			{
-				string prefix = "IMG_" + id.ToString();
-				x = (int)Properties.Settings.Default[prefix + "_X" ];
-				y = (int)Properties.Settings.Default[prefix + "_Y"];
-				width = (int)Properties.Settings.Default[prefix + "_WIDTH"];
-				height = (int)Properties.Settings.Default[prefix + "_HEIGHT"];
+				size = (Size)Properties.Settings.Default["IMG_" + id.ToString() + "_RES"];
 			}
-			catch // Capture box opens in fixed size if error occurs while loading position or size value
+			catch // Capture box opens in fixed size if error occurs while loading size value
 			{
-				width = minWidth + 128;
-				height = minHeight + 128;
-				x = (Screen.PrimaryScreen.Bounds.Width / 2) - (width/2);
-				y = (Screen.PrimaryScreen.Bounds.Height / 2) - (height/2);
+				MessageBox.Show("Capture Box Size Load Failed");
+				
+				size = new Size(minWidth + 128, minHeight + 128);
 			}
-			Location = new Point(x, y);
-			Size = new Size(width, height);
+			this.Size = size;
 		}
 		private void SaveSize()
 		{
 			try
 			{
-				string prefix = "IMG_" + id.ToString();
-				Properties.Settings.Default[prefix + "_X"] = Location.X;
-				Properties.Settings.Default[prefix + "_Y"] = Location.Y;
-				Properties.Settings.Default[prefix + "_WIDTH"] = Size.Width;
-				Properties.Settings.Default[prefix + "_HEIGHT"] = Size.Height;
+				Properties.Settings.Default["IMG_" + id.ToString() + "_RES"] = this.Size;
+				Properties.Settings.Default.Save();
 			}
 			catch
 			{
-				//TODO activate error message after implementing size position functionality
-				//MessageBox.Show("Capture Box Properties Save Failed");
+				MessageBox.Show("Capture Box Properties Save Failed");
+			}
+		}
+
+		private void LoadLocation()
+		{
+			Point point;
+			try
+			{
+				point = (Point)Properties.Settings.Default["IMG_" + id.ToString() + "_POS"];
+			}
+			catch // Capture box opens in fixed location if error occurs while loading position
+			{
+				MessageBox.Show("Capture Box Location Load Failed");
+				point = new Point(Screen.PrimaryScreen.Bounds.Width / 2, Screen.PrimaryScreen.Bounds.Height / 2);
+			}
+			this.Location = point;
+		}
+		private void SaveLocation()
+		{
+			try
+			{
+				string prefix = "IMG_" + id.ToString();
+				Properties.Settings.Default[prefix + "_POS"] = this.Location;
+				Properties.Settings.Default.Save();
+			}
+			catch
+			{
+				MessageBox.Show("Capture Box Location Save Failed");
 			}
 		}
 		#endregion
@@ -220,7 +241,6 @@ namespace screen_capture.ImageRect
 				return;
 			ReleaseCapture();
 			SendMessage(this.Handle, WinMessage.WM_NCLBUTTONDOWN, WinMessage.HITTEST[((Panel)sender).Name], 0);
-			SaveSize();
 		}
 		#endregion
 	}

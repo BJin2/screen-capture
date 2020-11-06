@@ -358,5 +358,245 @@ namespace screen_capture.Properties {
                 this["RECORD_ALL_TEXT"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
+        public global::System.Drawing.Point IMG_0_POS {
+            get {
+                return ((global::System.Drawing.Point)(this["IMG_0_POS"]));
+            }
+            set {
+                this["IMG_0_POS"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("230, 188")]
+        public global::System.Drawing.Size IMG_0_RES {
+            get {
+                return ((global::System.Drawing.Size)(this["IMG_0_RES"]));
+            }
+            set {
+                this["IMG_0_RES"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("130, 130")]
+        public global::System.Drawing.Point IMG_1_POS {
+            get {
+                return ((global::System.Drawing.Point)(this["IMG_1_POS"]));
+            }
+            set {
+                this["IMG_1_POS"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("230, 188")]
+        public global::System.Drawing.Size IMG_1_RES {
+            get {
+                return ((global::System.Drawing.Size)(this["IMG_1_RES"]));
+            }
+            set {
+                this["IMG_1_RES"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("160, 160")]
+        public global::System.Drawing.Point IMG_2_POS {
+            get {
+                return ((global::System.Drawing.Point)(this["IMG_2_POS"]));
+            }
+            set {
+                this["IMG_2_POS"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("230, 188")]
+        public global::System.Drawing.Size IMG_2_RES {
+            get {
+                return ((global::System.Drawing.Size)(this["IMG_2_RES"]));
+            }
+            set {
+                this["IMG_2_RES"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("190, 190")]
+        public global::System.Drawing.Point IMG_3_POS {
+            get {
+                return ((global::System.Drawing.Point)(this["IMG_3_POS"]));
+            }
+            set {
+                this["IMG_3_POS"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("230, 188")]
+        public global::System.Drawing.Size IMG_3_RES {
+            get {
+                return ((global::System.Drawing.Size)(this["IMG_3_RES"]));
+            }
+            set {
+                this["IMG_3_RES"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("220, 220")]
+        public global::System.Drawing.Point IMG_4_POS {
+            get {
+                return ((global::System.Drawing.Point)(this["IMG_4_POS"]));
+            }
+            set {
+                this["IMG_4_POS"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("230, 188")]
+        public global::System.Drawing.Size IMG_4_RES {
+            get {
+                return ((global::System.Drawing.Size)(this["IMG_4_RES"]));
+            }
+            set {
+                this["IMG_4_RES"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("250, 250")]
+        public global::System.Drawing.Point IMG_5_POS {
+            get {
+                return ((global::System.Drawing.Point)(this["IMG_5_POS"]));
+            }
+            set {
+                this["IMG_5_POS"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("230, 188")]
+        public global::System.Drawing.Size IMG_5_RES {
+            get {
+                return ((global::System.Drawing.Size)(this["IMG_5_RES"]));
+            }
+            set {
+                this["IMG_5_RES"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("280, 280")]
+        public global::System.Drawing.Point IMG_6_POS {
+            get {
+                return ((global::System.Drawing.Point)(this["IMG_6_POS"]));
+            }
+            set {
+                this["IMG_6_POS"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("230, 188")]
+        public global::System.Drawing.Size IMG_6_RES {
+            get {
+                return ((global::System.Drawing.Size)(this["IMG_6_RES"]));
+            }
+            set {
+                this["IMG_6_RES"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("310, 310")]
+        public global::System.Drawing.Point IMG_7_POS {
+            get {
+                return ((global::System.Drawing.Point)(this["IMG_7_POS"]));
+            }
+            set {
+                this["IMG_7_POS"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("230, 188")]
+        public global::System.Drawing.Size IMG_7_RES {
+            get {
+                return ((global::System.Drawing.Size)(this["IMG_7_RES"]));
+            }
+            set {
+                this["IMG_7_RES"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("340, 340")]
+        public global::System.Drawing.Point IMG_8_POS {
+            get {
+                return ((global::System.Drawing.Point)(this["IMG_8_POS"]));
+            }
+            set {
+                this["IMG_8_POS"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("230, 188")]
+        public global::System.Drawing.Size IMG_8_RES {
+            get {
+                return ((global::System.Drawing.Size)(this["IMG_8_RES"]));
+            }
+            set {
+                this["IMG_8_RES"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("370, 370")]
+        public global::System.Drawing.Point IMG_9_POS {
+            get {
+                return ((global::System.Drawing.Point)(this["IMG_9_POS"]));
+            }
+            set {
+                this["IMG_9_POS"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("230, 188")]
+        public global::System.Drawing.Size IMG_9_RES {
+            get {
+                return ((global::System.Drawing.Size)(this["IMG_9_RES"]));
+            }
+            set {
+                this["IMG_9_RES"] = value;
+            }
+        }
     }
 }
