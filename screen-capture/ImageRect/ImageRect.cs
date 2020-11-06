@@ -38,6 +38,7 @@ namespace screen_capture.ImageRect
 
 			titlePanel.MouseDown += title_MouseDown;
 			AddBorderResizeHandler(borderPanel);
+			
 			AddSizePositionHandler(textArea);
 
 			minWidth = textArea.Width + captureButton.Width + saveButton.Width;
@@ -50,7 +51,7 @@ namespace screen_capture.ImageRect
 			LoadLocation();
 		}
 
-		#region Size Position Text
+		#region Size Position
 		private void Form_LocationChanged(object sender, EventArgs e)
 		{
 			coordX.Enabled = false;
@@ -125,10 +126,14 @@ namespace screen_capture.ImageRect
 					this.Location = new Point(this.Location.X, value);
 					break;
 				case "resWidth":
+					if (!borderPanel.Enabled)
+						return;
 					int width = value + widthOffset;
 					this.Size = new Size(width, this.Size.Height);
 					break;
 				case "resHeight":
+					if (!borderPanel.Enabled)
+						return;
 					int height = value + minHeight;
 					this.Size = new Size(this.Size.Width, height);
 					break;
@@ -139,7 +144,7 @@ namespace screen_capture.ImageRect
 		}
 		#endregion
 
-		#region Save & Load Size
+		#region Save & Load
 		private void LoadSize()
 		{
 			Size size;
@@ -201,6 +206,8 @@ namespace screen_capture.ImageRect
 		private void captureButton_Click(object sender, EventArgs e)
 		{
 			CaptureImage();
+			//TODO naming
+			//TODO autosave
 		}
 		private void saveButton_Click(object sender, EventArgs e)
 		{
@@ -226,12 +233,16 @@ namespace screen_capture.ImageRect
 		{
 			captured.BackColor = Color.FromArgb(224, 224, 224);
 			captured.Image = null;
+			borderPanel.Enabled = true;
 		}
 		public void CaptureImage()
 		{
 			captured.BackColor = Color.White;
-			Rectangle rect = new Rectangle(this.Left+5, this.Top+55, this.Left+5 + this.Width-10, this.Top + 55 + this.Height - 60);
-			int width = rect.Width - rect.Left;
+			Rectangle rect = new Rectangle(this.Left+left.Width, 
+											this.Top+minHeight-bottom.Height, 
+											this.Left+left.Width + this.Width-widthOffset, 
+											this.Top + minHeight - bottom.Height + this.Height - minHeight);
+											int width = rect.Width - rect.Left;
 			int height = rect.Height - rect.Top;
 			Bitmap bm = new Bitmap(width, height);
 			Graphics g = Graphics.FromImage(bm);
@@ -240,6 +251,7 @@ namespace screen_capture.ImageRect
 			MainForm.DrawMousePointer(g, Cursor.Position.X - rect.Left, Cursor.Position.Y - rect.Top);
 
 			captured.Image = bm;
+			borderPanel.Enabled = false;
 		}
 		#endregion
 
@@ -248,12 +260,7 @@ namespace screen_capture.ImageRect
 		{
 			this.ActiveControl = textArea;
 		}
-		private void ImageRect_Load(object sender, EventArgs e)
-		{
-			//Change focus to non-interactive element
-			LoseControlFocus();
-		}
-
+		
 		private void AddBorderResizeHandler(Panel p)
 		{
 			if (p == captureArea || p.GetType() != typeof(Panel))
@@ -270,6 +277,22 @@ namespace screen_capture.ImageRect
 				AddBorderResizeHandler((Panel)panel);
 			}
 		}
+		private void EnableSizeText(bool e)
+		{
+			resWidth.Enabled = e;
+			resHeight.Enabled = e;
+		}
+
+		private void ImageRect_Load(object sender, EventArgs e)
+		{
+			//Change focus to non-interactive element
+			LoseControlFocus();
+		}
+
+		private void borderPanel_EnalbedChanged(object sender, EventArgs e)
+		{
+			EnableSizeText((sender as Panel).Enabled);
+		}
 
 		private void title_MouseDown(object sender, MouseEventArgs e)
 		{
@@ -281,15 +304,11 @@ namespace screen_capture.ImageRect
 
 		private void resize_MouseDown(object sender, MouseEventArgs e)
 		{
-			if (e.Button != MouseButtons.Left)
+			if (e.Button != MouseButtons.Left || !borderPanel.Enabled)
 				return;
 			ReleaseCapture();
 			SendMessage(this.Handle, WinMessage.WM_NCLBUTTONDOWN, WinMessage.HITTEST[((Panel)sender).Name], 0);
 		}
-
-
 		#endregion
-
-		
 	}
 }
