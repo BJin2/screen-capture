@@ -21,27 +21,116 @@ namespace screen_capture.ImageRect
 		#endregion
 
 		private readonly int id;
+		private readonly int minWidth;
+		private readonly int minHeight;
 
 		public ImageRect(int _id)
 		{
+			id = _id;
 			InitializeComponent();
 			this.SetStyle(ControlStyles.ResizeRedraw, true);
 
 			this.Load += ImageRect_Load;
+			this.LocationChanged += Form_LocationChanged;
+			this.SizeChanged += Form_SizeChanged;
+
 			titlePanel.MouseDown += title_MouseDown;
+			AddBorderResizeHandler(borderPanel);
+			AddSizePositionHandler(textArea);
 
-			id = _id;
-			foreach (var p in borderPanel.Controls)
-			{
-				if (p == captureArea ||
-					p.GetType() != typeof(Panel))
-					continue;
-
-				AddBorderResizeHandler((Panel)p);
-			}
+			minWidth = left.Width + right.Width;
+			minHeight = titlePanel.Height + top.Height + bottom.Height;
 
 			LoadSize();
 		}
+
+		#region Size Position Text
+		private void Form_LocationChanged(object sender, EventArgs e)
+		{
+			coordX.Enabled = false;
+			coordY.Enabled = false;
+			coordX.Text = this.Location.X.ToString();
+			coordY.Text = this.Location.Y.ToString();
+			coordX.Enabled = true;
+			coordY.Enabled = true;
+		}
+		private void Form_SizeChanged(object sender, EventArgs e)
+		{
+			resWidth.Enabled = false;
+			resHeight.Enabled = false;
+			resWidth.Text = (this.Size.Width - minWidth).ToString();
+			resHeight.Text = (this.Size.Height - minHeight).ToString();
+			resWidth.Enabled = true;
+			resHeight.Enabled = true;
+		}
+
+
+		private void AddSizePositionHandler(Control c)
+		{
+			if (!c.HasChildren)
+			{
+				if (c.GetType() == typeof(TextBox))
+				{
+					var textbox = c as TextBox;
+					textbox.KeyPress += Textbox_KeyPress;
+					textbox.KeyDown += Textbox_KeyDown;
+					textbox.LostFocus += Textbox_LostFocus;
+				}
+				return;
+			}
+
+			foreach (var control in c.Controls)
+			{
+				AddSizePositionHandler(control as Control);
+			}
+		}
+		private void Textbox_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+			{
+				e.Handled = true;
+			}
+		}
+		private void Textbox_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode != Keys.Enter)
+				return;
+
+			ChangeSizePosition(sender as TextBox);
+			LoseControlFocus();
+		}
+		private void Textbox_LostFocus(object sender, EventArgs e)
+		{
+			ChangeSizePosition(sender as TextBox);
+		}
+		private void ChangeSizePosition(TextBox textbox)
+		{
+			if (textbox.Text == "" || !textbox.Enabled)
+				return;
+			int value = int.Parse(textbox.Text);
+
+			switch (textbox.Name)
+			{
+				case "coordX":
+					this.Location = new Point(value, this.Location.Y);
+					break;
+				case "coordY":
+					this.Location = new Point(this.Location.X, value);
+					break;
+				case "resWidth":
+					int width = value + minWidth;
+					this.Size = new Size(width, this.Size.Height);
+					break;
+				case "resHeight":
+					int height = value + minHeight;
+					this.Size = new Size(this.Size.Width, height);
+					break;
+				default:
+					MessageBox.Show("Size, Position Error");
+					break;
+			}
+		}
+		#endregion
 
 		#region Save & Load Size
 		private void LoadSize()
@@ -60,8 +149,8 @@ namespace screen_capture.ImageRect
 			}
 			catch // Capture box opens in fixed size if error occurs while loading position or size value
 			{
-				width = 128 + 10;
-				height = 128 + 10 + titlePanel.Height;
+				width = minWidth + 128;
+				height = minHeight + 128;
 				x = (Screen.PrimaryScreen.Bounds.Width / 2) - (width/2);
 				y = (Screen.PrimaryScreen.Bounds.Height / 2) - (height/2);
 			}
@@ -80,7 +169,8 @@ namespace screen_capture.ImageRect
 			}
 			catch
 			{
-				MessageBox.Show("Capture Box Properties Save Failed");
+				//TODO activate error message after implementing size position functionality
+				//MessageBox.Show("Capture Box Properties Save Failed");
 			}
 		}
 		#endregion
@@ -89,13 +179,21 @@ namespace screen_capture.ImageRect
 		#endregion
 
 		#region Window behavior
-		private void ImageRect_Load(object sender, EventArgs e)
+		private void LoseControlFocus()
 		{
 			this.ActiveControl = textArea;
+		}
+		private void ImageRect_Load(object sender, EventArgs e)
+		{
+			//Change focus to non-interactive element
+			LoseControlFocus();
 		}
 
 		private void AddBorderResizeHandler(Panel p)
 		{
+			if (p == captureArea || p.GetType() != typeof(Panel))
+				return;
+
 			if (!p.HasChildren)
 			{
 				p.MouseDown += resize_MouseDown;

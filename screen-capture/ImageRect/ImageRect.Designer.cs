@@ -50,9 +50,9 @@
 			this.label2 = new System.Windows.Forms.Label();
 			this.coordY = new System.Windows.Forms.TextBox();
 			this.res = new System.Windows.Forms.Panel();
-			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.resHeight = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
-			this.textBox2 = new System.Windows.Forms.TextBox();
+			this.resWidth = new System.Windows.Forms.TextBox();
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.label4 = new System.Windows.Forms.Label();
 			this.captureButton = new System.Windows.Forms.Button();
@@ -281,9 +281,9 @@
 			// 
 			// res
 			// 
-			this.res.Controls.Add(this.textBox1);
+			this.res.Controls.Add(this.resHeight);
 			this.res.Controls.Add(this.label3);
-			this.res.Controls.Add(this.textBox2);
+			this.res.Controls.Add(this.resWidth);
 			this.res.Controls.Add(this.panel4);
 			this.res.Dock = System.Windows.Forms.DockStyle.Top;
 			this.res.Location = new System.Drawing.Point(0, 25);
@@ -292,17 +292,17 @@
 			this.res.Size = new System.Drawing.Size(180, 25);
 			this.res.TabIndex = 1;
 			// 
-			// textBox1
+			// resHeight
 			// 
-			this.textBox1.BackColor = System.Drawing.SystemColors.ControlDark;
-			this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.textBox1.Dock = System.Windows.Forms.DockStyle.Right;
-			this.textBox1.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.textBox1.Location = new System.Drawing.Point(131, 2);
-			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(49, 22);
-			this.textBox1.TabIndex = 3;
-			this.textBox1.Text = "00000";
+			this.resHeight.BackColor = System.Drawing.SystemColors.ControlDark;
+			this.resHeight.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.resHeight.Dock = System.Windows.Forms.DockStyle.Right;
+			this.resHeight.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.resHeight.Location = new System.Drawing.Point(131, 2);
+			this.resHeight.Name = "resHeight";
+			this.resHeight.Size = new System.Drawing.Size(49, 22);
+			this.resHeight.TabIndex = 3;
+			this.resHeight.Text = "00000";
 			// 
 			// label3
 			// 
@@ -315,17 +315,17 @@
 			this.label3.TabIndex = 2;
 			this.label3.Text = "x";
 			// 
-			// textBox2
+			// resWidth
 			// 
-			this.textBox2.BackColor = System.Drawing.SystemColors.ControlDark;
-			this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.textBox2.Dock = System.Windows.Forms.DockStyle.Left;
-			this.textBox2.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.textBox2.Location = new System.Drawing.Point(65, 2);
-			this.textBox2.Name = "textBox2";
-			this.textBox2.Size = new System.Drawing.Size(49, 22);
-			this.textBox2.TabIndex = 1;
-			this.textBox2.Text = "00000";
+			this.resWidth.BackColor = System.Drawing.SystemColors.ControlDark;
+			this.resWidth.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.resWidth.Dock = System.Windows.Forms.DockStyle.Left;
+			this.resWidth.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.resWidth.Location = new System.Drawing.Point(65, 2);
+			this.resWidth.Name = "resWidth";
+			this.resWidth.Size = new System.Drawing.Size(49, 22);
+			this.resWidth.TabIndex = 1;
+			this.resWidth.Text = "00000";
 			// 
 			// panel4
 			// 
@@ -412,9 +412,9 @@
 		private System.Windows.Forms.Panel titlePanel;
 		private System.Windows.Forms.Panel textArea;
 		private System.Windows.Forms.Panel res;
-		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.TextBox resHeight;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.TextBox textBox2;
+		private System.Windows.Forms.TextBox resWidth;
 		private System.Windows.Forms.Panel panel4;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Panel pos;
