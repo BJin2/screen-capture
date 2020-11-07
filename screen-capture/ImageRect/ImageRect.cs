@@ -41,7 +41,7 @@ namespace screen_capture.ImageRect
 			
 			AddSizePositionHandler(textArea);
 
-			minWidth = textArea.Width + captureButton.Width + saveButton.Width;
+			minWidth = textArea.Width + captureButton.Width + saveButton.Width + clearButton.Width;
 			widthOffset = left.Width + right.Width;
 			minHeight = titlePanel.Height + top.Height + bottom.Height;
 
@@ -51,7 +51,7 @@ namespace screen_capture.ImageRect
 			LoadLocation();
 		}
 
-		#region Size Position
+		#region Modify Size Location
 		private void Form_LocationChanged(object sender, EventArgs e)
 		{
 			coordX.Enabled = false;
@@ -144,7 +144,7 @@ namespace screen_capture.ImageRect
 		}
 		#endregion
 
-		#region Save & Load
+		#region Save & Load Size & Location
 		private void LoadSize()
 		{
 			Size size;
@@ -205,9 +205,14 @@ namespace screen_capture.ImageRect
 		#region Capture
 		private void captureButton_Click(object sender, EventArgs e)
 		{
-			CaptureImage();
-			//TODO naming
+			CaptureInternalRect();
 			//TODO autosave
+			if ((bool)Properties.Settings.Default["IMG_AUTOSAVE"])
+			{
+				string naming = (string)Properties.Settings.Default["IMG_NAMING"];
+				ImageFormat format = MainForm.GetImageFormat((int)Properties.Settings.Default["IMG_FORMAT"]);
+				Clear();
+			}
 		}
 		private void saveButton_Click(object sender, EventArgs e)
 		{
@@ -235,14 +240,11 @@ namespace screen_capture.ImageRect
 			captured.Image = null;
 			borderPanel.Enabled = true;
 		}
-		public void CaptureImage()
+		private void CaptureRect(Rectangle rect)
 		{
+			Clear();
 			captured.BackColor = Color.White;
-			Rectangle rect = new Rectangle(this.Left+left.Width, 
-											this.Top+minHeight-bottom.Height, 
-											this.Left+left.Width + this.Width-widthOffset, 
-											this.Top + minHeight - bottom.Height + this.Height - minHeight);
-											int width = rect.Width - rect.Left;
+			int width = rect.Width - rect.Left;
 			int height = rect.Height - rect.Top;
 			Bitmap bm = new Bitmap(width, height);
 			Graphics g = Graphics.FromImage(bm);
@@ -252,6 +254,22 @@ namespace screen_capture.ImageRect
 
 			captured.Image = bm;
 			borderPanel.Enabled = false;
+		}
+		public void CaptureInternalRect()
+		{
+			Rectangle rect = new Rectangle(this.Left + left.Width,
+											this.Top + minHeight - bottom.Height,
+											this.Left + left.Width + this.Width - widthOffset,
+											this.Top + minHeight - bottom.Height + this.Height - minHeight);
+			CaptureRect(rect);
+		}
+		public void CaptureWholeRect()
+		{
+			Rectangle rect = new Rectangle(this.Left,
+											this.Top,
+											this.Left + this.Width,
+											this.Top + this.Height);
+			CaptureRect(rect);
 		}
 		#endregion
 

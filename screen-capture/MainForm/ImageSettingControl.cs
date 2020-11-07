@@ -48,6 +48,7 @@ namespace screen_capture
 		private void autosaveCheckbox_CheckedChanged(object sender, EventArgs e)
 		{
 			SaveSetting(autosaveCheckbox.Checked, "IMG_AUTOSAVE");
+			autosaveDetailPanel.Visible = autosaveCheckbox.Checked;
 		}
 
 		private void namingRule_TextChanged(object sender, EventArgs e)

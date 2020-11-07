@@ -39,8 +39,11 @@
 			this.topLeft = new System.Windows.Forms.Panel();
 			this.borderPanel = new System.Windows.Forms.Panel();
 			this.right = new System.Windows.Forms.Panel();
+			this.captureArea = new System.Windows.Forms.Panel();
+			this.captured = new System.Windows.Forms.PictureBox();
 			this.left = new System.Windows.Forms.Panel();
 			this.titlePanel = new System.Windows.Forms.Panel();
+			this.clearButton = new System.Windows.Forms.Button();
 			this.saveButton = new System.Windows.Forms.Button();
 			this.captureButton = new System.Windows.Forms.Button();
 			this.textArea = new System.Windows.Forms.Panel();
@@ -57,20 +60,17 @@
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.label1 = new System.Windows.Forms.Label();
 			this.saveFile = new System.Windows.Forms.SaveFileDialog();
-			this.clearButton = new System.Windows.Forms.Button();
-			this.captureArea = new System.Windows.Forms.Panel();
-			this.captured = new System.Windows.Forms.PictureBox();
 			this.panel5.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.borderPanel.SuspendLayout();
+			this.captureArea.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.captured)).BeginInit();
 			this.titlePanel.SuspendLayout();
 			this.textArea.SuspendLayout();
 			this.res.SuspendLayout();
 			this.panel4.SuspendLayout();
 			this.pos.SuspendLayout();
 			this.panel3.SuspendLayout();
-			this.captureArea.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.captured)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// panel5
@@ -178,6 +178,26 @@
 			this.right.Size = new System.Drawing.Size(5, 390);
 			this.right.TabIndex = 11;
 			// 
+			// captureArea
+			// 
+			this.captureArea.AutoScroll = true;
+			this.captureArea.Controls.Add(this.captured);
+			this.captureArea.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.captureArea.Location = new System.Drawing.Point(5, 5);
+			this.captureArea.Name = "captureArea";
+			this.captureArea.Size = new System.Drawing.Size(795, 390);
+			this.captureArea.TabIndex = 12;
+			// 
+			// captured
+			// 
+			this.captured.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+			this.captured.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.captured.Location = new System.Drawing.Point(0, 0);
+			this.captured.Name = "captured";
+			this.captured.Size = new System.Drawing.Size(795, 390);
+			this.captured.TabIndex = 1;
+			this.captured.TabStop = false;
+			// 
 			// left
 			// 
 			this.left.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
@@ -200,6 +220,21 @@
 			this.titlePanel.Name = "titlePanel";
 			this.titlePanel.Size = new System.Drawing.Size(800, 50);
 			this.titlePanel.TabIndex = 0;
+			// 
+			// clearButton
+			// 
+			this.clearButton.Dock = System.Windows.Forms.DockStyle.Right;
+			this.clearButton.FlatAppearance.BorderSize = 0;
+			this.clearButton.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlDarkDark;
+			this.clearButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ActiveCaption;
+			this.clearButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.clearButton.Image = ((System.Drawing.Image)(resources.GetObject("clearButton.Image")));
+			this.clearButton.Location = new System.Drawing.Point(650, 0);
+			this.clearButton.Name = "clearButton";
+			this.clearButton.Size = new System.Drawing.Size(50, 50);
+			this.clearButton.TabIndex = 3;
+			this.clearButton.UseVisualStyleBackColor = true;
+			this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
 			// 
 			// saveButton
 			// 
@@ -381,41 +416,6 @@
 			// 
 			this.saveFile.Filter = "Bitmap|*.bmp|JPeg|*.jpg|Png|*.png|Tiff|*.tif";
 			// 
-			// clearButton
-			// 
-			this.clearButton.Dock = System.Windows.Forms.DockStyle.Right;
-			this.clearButton.FlatAppearance.BorderSize = 0;
-			this.clearButton.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlDarkDark;
-			this.clearButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ActiveCaption;
-			this.clearButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.clearButton.Image = ((System.Drawing.Image)(resources.GetObject("clearButton.Image")));
-			this.clearButton.Location = new System.Drawing.Point(650, 0);
-			this.clearButton.Name = "clearButton";
-			this.clearButton.Size = new System.Drawing.Size(50, 50);
-			this.clearButton.TabIndex = 3;
-			this.clearButton.UseVisualStyleBackColor = true;
-			this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
-			// 
-			// captureArea
-			// 
-			this.captureArea.AutoScroll = true;
-			this.captureArea.Controls.Add(this.captured);
-			this.captureArea.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.captureArea.Location = new System.Drawing.Point(5, 5);
-			this.captureArea.Name = "captureArea";
-			this.captureArea.Size = new System.Drawing.Size(795, 390);
-			this.captureArea.TabIndex = 12;
-			// 
-			// captured
-			// 
-			this.captured.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-			this.captured.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.captured.Location = new System.Drawing.Point(0, 0);
-			this.captured.Name = "captured";
-			this.captured.Size = new System.Drawing.Size(795, 390);
-			this.captured.TabIndex = 1;
-			this.captured.TabStop = false;
-			// 
 			// ImageRect
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -428,7 +428,7 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.MinimumSize = new System.Drawing.Size(280, 60);
+			this.MinimumSize = new System.Drawing.Size(330, 60);
 			this.Name = "ImageRect";
 			this.ShowInTaskbar = false;
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
@@ -437,6 +437,8 @@
 			this.panel5.ResumeLayout(false);
 			this.panel1.ResumeLayout(false);
 			this.borderPanel.ResumeLayout(false);
+			this.captureArea.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.captured)).EndInit();
 			this.titlePanel.ResumeLayout(false);
 			this.textArea.ResumeLayout(false);
 			this.res.ResumeLayout(false);
@@ -447,8 +449,6 @@
 			this.pos.PerformLayout();
 			this.panel3.ResumeLayout(false);
 			this.panel3.PerformLayout();
-			this.captureArea.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.captured)).EndInit();
 			this.ResumeLayout(false);
 
 		}

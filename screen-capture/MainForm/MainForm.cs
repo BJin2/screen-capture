@@ -17,6 +17,7 @@ namespace screen_capture
 {
 	public partial class MainForm : Form
 	{
+		#region winapi imported functions
 		[DllImport("user32.dll")]
 		public static extern bool ReleaseCapture();
 		[DllImport("user32.dll")]
@@ -25,10 +26,13 @@ namespace screen_capture
 		public static extern bool GetCursorInfo(out CURSORINFO pci);
 		[DllImport("user32.dll")]
 		public static extern bool GetIconInfo(IntPtr hIcon, out ICONINFO piconinfo);
+		#endregion
 
 		public static MainForm Instance { get; private set; }
+
 		private List<Form> irects;
 		private List<Form> grects;
+
 		public MainForm()
 		{
 			Instance = this;
@@ -36,6 +40,7 @@ namespace screen_capture
 			grects = new List<Form>();
 
 			InitializeComponent();
+
 			generalSetting.LoadSetting();
 			imageSetting.LoadSetting();
 			gifSetting.LoadSetting();
@@ -53,7 +58,7 @@ namespace screen_capture
 						MessageBox.Show(((int)m.WParam).ToString());
 						break;
 					case (int)SHORTCUT_FUNCTION.CAPTURE_ALL:
-						MessageBox.Show(((int)m.WParam).ToString());
+						CaptureAll();
 						break;
 					case (int)SHORTCUT_FUNCTION.RECORD_SELECTION:
 						MessageBox.Show(((int)m.WParam).ToString());
@@ -157,7 +162,7 @@ namespace screen_capture
 
 		public static ImageFormat GetImageFormat(string filename)
 		{
-			String ext = Path.GetExtension(filename).ToLower();
+			string ext = Path.GetExtension(filename).ToLower();
 			ImageFormat imgfmt = ImageFormat.Bmp;
 			if (ext != "")
 			{
@@ -180,6 +185,28 @@ namespace screen_capture
 
 			return imgfmt;
 		}
+		public static ImageFormat GetImageFormat(int formatIndex)
+		{
+			ImageFormat imgfmt = ImageFormat.Bmp;
+
+			switch (formatIndex)
+			{
+				case 0:
+					imgfmt = ImageFormat.Bmp;
+					break;
+				case 1:
+					imgfmt = ImageFormat.Jpeg;
+					break;
+				case 2:
+					imgfmt = ImageFormat.Png;
+					break;
+				case 3:
+					imgfmt = ImageFormat.Tiff;
+					break;
+			}
+
+			return imgfmt;
+		}
 		public static void DrawMousePointer(Graphics g, int x, int y)
 		{
 			IntPtr hIcon;
@@ -197,5 +224,15 @@ namespace screen_capture
 				}
 			}
 		}
+
+		#region Shortcut functions
+		private void CaptureAll()
+		{
+			for (int i = 0; i < irects.Count; i++)
+			{
+				(irects[i] as ImgRect).CaptureInternalRect();
+			}
+		}
+		#endregion
 	}
 }
