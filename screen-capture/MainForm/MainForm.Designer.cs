@@ -45,9 +45,6 @@
 			this.foldPanel = new System.Windows.Forms.Panel();
 			this.appPanel = new System.Windows.Forms.Panel();
 			this.settingPanel = new System.Windows.Forms.Panel();
-			this.generalSetting = new screen_capture.GeneralSettingControl();
-			this.imageSetting = new screen_capture.ImageSettingControl();
-			this.gifSetting = new screen_capture.GifSettingControl();
 			this.sideMenuPanel = new System.Windows.Forms.Panel();
 			this.infoButton = new System.Windows.Forms.Button();
 			this.gifButton = new System.Windows.Forms.Button();
@@ -56,6 +53,9 @@
 			this.bottomGap = new System.Windows.Forms.Panel();
 			this.rightGap = new System.Windows.Forms.Panel();
 			this.leftGap = new System.Windows.Forms.Panel();
+			this.generalSetting = new screen_capture.GeneralSettingControl();
+			this.imageSetting = new screen_capture.ImageSettingControl();
+			this.gifSetting = new screen_capture.GifSettingControl();
 			this.titlePanel.SuspendLayout();
 			this.topGap.SuspendLayout();
 			this.foldButtonPanel.SuspendLayout();
@@ -262,39 +262,6 @@
 			this.settingPanel.Size = new System.Drawing.Size(560, 363);
 			this.settingPanel.TabIndex = 1;
 			// 
-			// generalSetting
-			// 
-			this.generalSetting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(53)))), ((int)(((byte)(83)))));
-			this.generalSetting.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("generalSetting.BackgroundImage")));
-			this.generalSetting.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.generalSetting.Location = new System.Drawing.Point(0, 0);
-			this.generalSetting.Name = "generalSetting";
-			this.generalSetting.Padding = new System.Windows.Forms.Padding(10);
-			this.generalSetting.Size = new System.Drawing.Size(560, 363);
-			this.generalSetting.TabIndex = 1;
-			// 
-			// imageSetting
-			// 
-			this.imageSetting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(53)))), ((int)(((byte)(83)))));
-			this.imageSetting.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("imageSetting.BackgroundImage")));
-			this.imageSetting.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.imageSetting.Location = new System.Drawing.Point(0, 0);
-			this.imageSetting.Name = "imageSetting";
-			this.imageSetting.Padding = new System.Windows.Forms.Padding(10);
-			this.imageSetting.Size = new System.Drawing.Size(560, 363);
-			this.imageSetting.TabIndex = 0;
-			// 
-			// gifSetting
-			// 
-			this.gifSetting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(53)))), ((int)(((byte)(83)))));
-			this.gifSetting.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("gifSetting.BackgroundImage")));
-			this.gifSetting.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.gifSetting.Location = new System.Drawing.Point(0, 0);
-			this.gifSetting.Name = "gifSetting";
-			this.gifSetting.Padding = new System.Windows.Forms.Padding(10);
-			this.gifSetting.Size = new System.Drawing.Size(560, 363);
-			this.gifSetting.TabIndex = 2;
-			// 
 			// sideMenuPanel
 			// 
 			this.sideMenuPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(36)))), ((int)(((byte)(54)))));
@@ -409,6 +376,39 @@
 			this.leftGap.Name = "leftGap";
 			this.leftGap.Size = new System.Drawing.Size(18, 385);
 			this.leftGap.TabIndex = 0;
+			// 
+			// generalSetting
+			// 
+			this.generalSetting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(53)))), ((int)(((byte)(83)))));
+			this.generalSetting.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("generalSetting.BackgroundImage")));
+			this.generalSetting.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.generalSetting.Location = new System.Drawing.Point(0, 0);
+			this.generalSetting.Name = "generalSetting";
+			this.generalSetting.Padding = new System.Windows.Forms.Padding(10);
+			this.generalSetting.Size = new System.Drawing.Size(560, 363);
+			this.generalSetting.TabIndex = 1;
+			// 
+			// imageSetting
+			// 
+			this.imageSetting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(53)))), ((int)(((byte)(83)))));
+			this.imageSetting.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("imageSetting.BackgroundImage")));
+			this.imageSetting.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.imageSetting.Location = new System.Drawing.Point(0, 0);
+			this.imageSetting.Name = "imageSetting";
+			this.imageSetting.Padding = new System.Windows.Forms.Padding(10);
+			this.imageSetting.Size = new System.Drawing.Size(560, 363);
+			this.imageSetting.TabIndex = 0;
+			// 
+			// gifSetting
+			// 
+			this.gifSetting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(53)))), ((int)(((byte)(83)))));
+			this.gifSetting.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("gifSetting.BackgroundImage")));
+			this.gifSetting.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.gifSetting.Location = new System.Drawing.Point(0, 0);
+			this.gifSetting.Name = "gifSetting";
+			this.gifSetting.Padding = new System.Windows.Forms.Padding(10);
+			this.gifSetting.Size = new System.Drawing.Size(560, 363);
+			this.gifSetting.TabIndex = 2;
 			// 
 			// MainForm
 			// 
