@@ -73,7 +73,7 @@ namespace screen_capture.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public string IMG_NAMING {
             get {
                 return ((string)(this["IMG_NAMING"]));
@@ -97,7 +97,7 @@ namespace screen_capture.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public string GIF_NAMING {
             get {
                 return ((string)(this["GIF_NAMING"]));

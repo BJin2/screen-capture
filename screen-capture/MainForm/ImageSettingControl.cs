@@ -23,8 +23,8 @@ namespace screen_capture
 			path.LoadSetting();
 			selectShortcut.LoadSetting();
 			allShortcut.LoadSetting();
+			namingConvention.LoadSetting();
 			autosaveCheckbox.Checked = (bool)Properties.Settings.Default["IMG_AUTOSAVE"];
-			namingRule.Text = (string)Properties.Settings.Default["IMG_NAMING"];
 			fileFormatList.SelectedIndex = (int)Properties.Settings.Default["IMG_FORMAT"];
 			enableSelectShortcut.Checked = (bool)Properties.Settings.Default["IMG_SELECTION"];
 			enableAllShortcut.Checked = (bool)Properties.Settings.Default["IMG_ALL"];
@@ -49,11 +49,6 @@ namespace screen_capture
 		{
 			SaveSetting(autosaveCheckbox.Checked, "IMG_AUTOSAVE");
 			autosaveDetailPanel.Visible = autosaveCheckbox.Checked;
-		}
-
-		private void namingRule_TextChanged(object sender, EventArgs e)
-		{
-			SaveSetting(namingRule.Text, "IMG_NAMING");
 		}
 
 		private void fileFormatList_SelectedIndexChanged(object sender, EventArgs e)

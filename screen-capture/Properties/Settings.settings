@@ -15,13 +15,13 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="IMG_NAMING" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="GIF_PATH" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="GIF_NAMING" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="CAPTURE_ALL_MOD" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">2</Value>

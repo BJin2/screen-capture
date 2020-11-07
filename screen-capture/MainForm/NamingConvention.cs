@@ -33,6 +33,9 @@ namespace screen_capture
 			"Remove"
 		};
 
+		[DefaultValue(CAPTURE_TYPE.NONE)]
+		public CAPTURE_TYPE CaptureType { get; set; }
+
 		public NamingConvention()
 		{
 			InitializeComponent();
@@ -40,7 +43,7 @@ namespace screen_capture
 			addedComboBoxes = new List<ComboBox>();
 		}
 
-		private ComboBox NewComboBox()
+		private ComboBox NewComboBox(int defaultValue = 0)
 		{
 			ComboBox c = new ComboBox();
 			foreach (string i in templates)
@@ -53,8 +56,8 @@ namespace screen_capture
 			c.SelectedIndexChanged += ComboBox_ValueChanged;
 
 			addedComboBoxes.Add(c);
-			NamingTemplateIndices.Add(0);
-			c.SelectedIndex = 0;
+			NamingTemplateIndices.Add(defaultValue);
+			c.SelectedIndex = defaultValue;
 
 			return c;
 		}
@@ -74,7 +77,7 @@ namespace screen_capture
 			}
 			int index = addedComboBoxes.IndexOf(c);
 			NamingTemplateIndices[index] = c.SelectedIndex;
-
+			SaveSetting();
 		}
 
 		private void RemoveComboBox(ComboBox c)
@@ -86,6 +89,65 @@ namespace screen_capture
 			Controls.Remove(c);
 			c.Dispose();
 		}
+
+
+		#region Save & Load Setting
+		public static List<int> SaveValueToInt(string saveValue)
+		{
+			List<int> li;
+			if (saveValue == "0")
+			{
+				li = new List<int>
+				{
+					0, 9, 1, 9, 2, 9, 3, 9, 4, 9, 5, 9, 6
+				};
+				return li;
+			}
+
+			List<string> temp = saveValue.Split(',').ToList();
+			li = new List<int>();
+
+			for (int i = 1; i <= int.Parse(temp[0]); i++)
+			{
+				li.Add(int.Parse(temp[i]));
+			}
+			return li;
+		}
+		private string IntToSaveValue(List<int> li)
+		{
+			string saveValue = li.Count.ToString();
+
+			for (int i = 0; i < li.Count; i++)
+			{
+				saveValue += "," + li[i].ToString();
+			}
+
+			return saveValue;
+		}
+
+		private void SaveSetting()
+		{
+			if (CaptureType == CAPTURE_TYPE.NONE)
+				return;
+			Properties.Settings.Default[CaptureType.ToString() + "_NAMING"] = "0";// IntToSaveValue(NamingTemplateIndices);
+			Properties.Settings.Default.Save();
+		}
+		public void LoadSetting()
+		{
+			SaveSetting();
+			if (CaptureType == CAPTURE_TYPE.NONE)
+			{
+				return;
+			}
+			string saveValue = (string)Properties.Settings.Default[CaptureType.ToString() + "_NAMING"];
+			NamingTemplateIndices = SaveValueToInt(saveValue);
+			foreach (int i in NamingTemplateIndices)
+			{
+				Controls.Add(NewComboBox(i));
+			}
+		}
+		#endregion
+
 
 		private static string IndexToString(int i, DateTime dt)
 		{
