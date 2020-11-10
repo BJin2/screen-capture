@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
+using System.Drawing.Imaging;
 
 namespace screen_capture
 {
@@ -195,16 +196,17 @@ namespace screen_capture
 			return result;
 		}
 
-		public static string TemplateToName(List<int> template)
+		public static string TemplateToName(List<int> template, ImageFormat format)
 		{
 			string name = "";
 			DateTime dt = DateTime.Now;
+			template.Reverse();
 			foreach (int i in template)
 			{
 				name += IndexToString(i, dt);
 			}
-
-			return name;
+			template.Reverse();
+			return name + "." + format.ToString().ToLower();
 		}
 	}
 }

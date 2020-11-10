@@ -206,13 +206,6 @@ namespace screen_capture.ImageRect
 		private void captureButton_Click(object sender, EventArgs e)
 		{
 			CaptureInternalRect();
-			//TODO autosave
-			if ((bool)Properties.Settings.Default["IMG_AUTOSAVE"])
-			{
-				string naming = (string)Properties.Settings.Default["IMG_NAMING"];
-				ImageFormat format = MainForm.GetImageFormat((int)Properties.Settings.Default["IMG_FORMAT"]);
-				Clear();
-			}
 		}
 		private void saveButton_Click(object sender, EventArgs e)
 		{
@@ -262,6 +255,10 @@ namespace screen_capture.ImageRect
 											this.Left + left.Width + this.Width - widthOffset,
 											this.Top + minHeight - bottom.Height + this.Height - minHeight);
 			CaptureRect(rect);
+			if ((bool)Properties.Settings.Default["IMG_AUTOSAVE"])
+			{
+				AutoSave();
+			}
 		}
 		public void CaptureWholeRect()
 		{
@@ -270,6 +267,16 @@ namespace screen_capture.ImageRect
 											this.Left + this.Width,
 											this.Top + this.Height);
 			CaptureRect(rect);
+		}
+
+		private void AutoSave()
+		{
+			List<int> namingTemplate = NamingConvention.SaveValueToInt((string)Properties.Settings.Default["IMG_NAMING"]);
+			ImageFormat format = MainForm.GetImageFormat((int)Properties.Settings.Default["IMG_FORMAT"]);
+			string path = (string)Properties.Settings.Default["IMG_PATH"];
+			path += "\\" + NamingConvention.TemplateToName(namingTemplate, format);
+			this.captured.Image.Save(path, format);
+			Clear();
 		}
 		#endregion
 
