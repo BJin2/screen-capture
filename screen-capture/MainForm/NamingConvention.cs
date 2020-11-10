@@ -73,6 +73,7 @@ namespace screen_capture
 			if (templates[c.SelectedIndex] == "Remove")
 			{
 				RemoveComboBox(c);
+				SaveSetting();
 				return;
 			}
 			int index = addedComboBoxes.IndexOf(c);
@@ -99,7 +100,7 @@ namespace screen_capture
 			{
 				li = new List<int>
 				{
-					0, 9, 1, 9, 2, 9, 3, 9, 4, 9, 5, 9, 6
+					6, 9, 5, 9, 4, 9, 3, 9, 2, 9, 1, 9, 0
 				};
 				return li;
 			}
@@ -129,19 +130,18 @@ namespace screen_capture
 		{
 			if (CaptureType == CAPTURE_TYPE.NONE)
 				return;
-			Properties.Settings.Default[CaptureType.ToString() + "_NAMING"] = "0";// IntToSaveValue(NamingTemplateIndices);
+			Properties.Settings.Default[CaptureType.ToString() + "_NAMING"] = IntToSaveValue(NamingTemplateIndices);
 			Properties.Settings.Default.Save();
 		}
 		public void LoadSetting()
 		{
-			SaveSetting();
 			if (CaptureType == CAPTURE_TYPE.NONE)
 			{
 				return;
 			}
 			string saveValue = (string)Properties.Settings.Default[CaptureType.ToString() + "_NAMING"];
-			NamingTemplateIndices = SaveValueToInt(saveValue);
-			foreach (int i in NamingTemplateIndices)
+			List<int> temp = SaveValueToInt(saveValue);
+			foreach (int i in temp)
 			{
 				Controls.Add(NewComboBox(i));
 			}
