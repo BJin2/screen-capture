@@ -29,23 +29,41 @@ namespace screen_capture
 		public DirectoryControl()
 		{
 			InitializeComponent();
+			pathBox.KeyDown += pathBox_KeyDown;
+			pathBox.LostFocus += pathBox_LostFocus;
 		}
 
+		#region Save Load
+		public void LoadSetting()
+		{
+			if (CaptureType == CAPTURE_TYPE.NONE)
+			{
+				SetPath(Environment.GetFolderPath(folderBrowserDialog.RootFolder));
+				return;
+			}
+			SetPath((string)Properties.Settings.Default[CaptureType.ToString() + "_PATH"]);
+		}
+		private void SaveSetting()
+		{
+			if (CaptureType == CAPTURE_TYPE.NONE)
+				return;
+			Properties.Settings.Default[CaptureType.ToString() + "_PATH"] = Path;
+			Properties.Settings.Default.Save();
+		}
+		#endregion
+
+		#region Control event handlers
 		private void openButton_Click(object sender, EventArgs e)
 		{
-			if (Directory.Exists(Path))
+			if (!DirectoryCheckCreate(Path))
+				return;
+
+			ProcessStartInfo startInfo = new ProcessStartInfo
 			{
-				ProcessStartInfo startInfo = new ProcessStartInfo
-				{
-					Arguments = Path,
-					FileName = "explorer.exe"
-				};
-				Process.Start(startInfo);
-			}
-			else
-			{
-				MessageBox.Show("{0}\nDirectory not found.", Path);
-			}
+				Arguments = Path,
+				FileName = "explorer.exe"
+			};
+			Process.Start(startInfo);
 		}
 
 		private void browseButton_Click(object sender, EventArgs e)
@@ -56,6 +74,19 @@ namespace screen_capture
 			}
 		}
 
+		private void pathBox_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode != Keys.Enter)
+				return;
+
+			SetPath(pathBox.Text);
+		}
+		private void pathBox_LostFocus(object sender, EventArgs e)
+		{
+			SetPath(pathBox.Text);
+		}
+		#endregion
+
 		private void SetPath(string path)
 		{
 			if (path == "")
@@ -65,26 +96,21 @@ namespace screen_capture
 			SaveSetting();
 		}
 
-		private void pathBox_TextChanged(object sender, EventArgs e)
+		public static bool DirectoryCheckCreate(string path)
 		{
-			Path = pathBox.Text;
-		}
-
-		public void LoadSetting()
-		{
-			if (CaptureType == CAPTURE_TYPE.NONE)
+			if (!Directory.Exists(path))
 			{
-				SetPath(Environment.GetFolderPath(folderBrowserDialog.RootFolder));
-				return;
+				if (MessageBox.Show(path + "Directory not found.\nCreate directory as you entered?", "Directory Error", MessageBoxButtons.YesNo) == DialogResult.Yes)
+				{
+					Directory.CreateDirectory(path);
+				}
+				else
+				{
+					return false;
+				}
 			}
-			SetPath((string)Properties.Settings.Default[CaptureType.ToString()+"_PATH"]);
-		}
-		private void SaveSetting()
-		{
-			if (CaptureType == CAPTURE_TYPE.NONE)
-				return;
-			Properties.Settings.Default[CaptureType.ToString() + "_PATH"] = Path;
-			Properties.Settings.Default.Save();
+
+			return true;
 		}
 	}
 }

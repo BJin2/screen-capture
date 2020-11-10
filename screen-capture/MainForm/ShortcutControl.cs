@@ -42,6 +42,37 @@ namespace screen_capture
 			shortcutText.KeyDown += shortcutText_Down;
 		}
 
+		#region Save Load
+		public void LoadSetting()
+		{
+			if (AssignedFunction == SHORTCUT_FUNCTION.NONE)
+			{
+				//MessageBox.Show("Behavior not selected");
+				return;
+			}
+			string af = AssignedFunction.ToString();
+			hotkey = new Hotkey(0, 0, "");
+			hotkey.MOD = (int)Settings.Default[af + "_MOD"];
+			hotkey.KEY = (int)Settings.Default[af + "_KEY"];
+			hotkey.TEXT = (string)Settings.Default[af + "_TEXT"];
+
+			RegisterHotKeyShortcut(hotkey);
+		}
+		private void SaveSetting()
+		{
+			if (AssignedFunction == SHORTCUT_FUNCTION.NONE)
+			{
+				//MessageBox.Show("Behavior not selected");
+				return;
+			}
+			string af = AssignedFunction.ToString();
+			Settings.Default[af + "_MOD"] = hotkey.MOD;
+			Settings.Default[af + "_KEY"] = hotkey.KEY;
+			Settings.Default[af + "_TEXT"] = hotkey.TEXT;
+			Settings.Default.Save();
+		}
+		#endregion
+
 		private void shortcutText_Down(object sender, KeyEventArgs e)
 		{
 			if (!enabled)
@@ -103,34 +134,7 @@ namespace screen_capture
 			SaveSetting();
 		}
 
-		public void LoadSetting()
-		{
-			if (AssignedFunction == SHORTCUT_FUNCTION.NONE)
-			{
-				//MessageBox.Show("Behavior not selected");
-				return;
-			}
-			string af = AssignedFunction.ToString();
-			hotkey = new Hotkey(0, 0, "");
-			hotkey.MOD = (int)Settings.Default[af + "_MOD"];
-			hotkey.KEY = (int)Settings.Default[af + "_KEY"];
-			hotkey.TEXT = (string)Settings.Default[af + "_TEXT"];
-
-			RegisterHotKeyShortcut(hotkey);
-		}
-		private void SaveSetting()
-		{
-			if (AssignedFunction == SHORTCUT_FUNCTION.NONE)
-			{
-				//MessageBox.Show("Behavior not selected");
-				return;
-			}
-			string af = AssignedFunction.ToString();
-			Settings.Default[af + "_MOD"] = hotkey.MOD;
-			Settings.Default[af + "_KEY"] = hotkey.KEY;
-			Settings.Default[af + "_TEXT"] = hotkey.TEXT;
-			Settings.Default.Save();
-		}
+		
 
 		public void Enable(bool e)
 		{

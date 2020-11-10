@@ -44,6 +44,7 @@ namespace screen_capture
 			addedComboBoxes = new List<ComboBox>();
 		}
 
+		#region Combobox
 		private ComboBox NewComboBox(int defaultValue = 0)
 		{
 			ComboBox c = new ComboBox();
@@ -63,6 +64,18 @@ namespace screen_capture
 			return c;
 		}
 
+		private void RemoveComboBox(ComboBox c)
+		{
+			c.SelectedValueChanged -= new EventHandler(ComboBox_ValueChanged);
+			int index = addedComboBoxes.IndexOf(c);
+			NamingTemplateIndices.RemoveAt(index);
+			addedComboBoxes.Remove(c);
+			Controls.Remove(c);
+			c.Dispose();
+		}
+		#endregion
+
+		#region Control event handlers
 		private void add_Click(object sender, EventArgs e)
 		{
 			Controls.Add(NewComboBox());
@@ -81,19 +94,10 @@ namespace screen_capture
 			NamingTemplateIndices[index] = c.SelectedIndex;
 			SaveSetting();
 		}
-
-		private void RemoveComboBox(ComboBox c)
-		{
-			c.SelectedValueChanged -= new EventHandler(ComboBox_ValueChanged);
-			int index = addedComboBoxes.IndexOf(c);
-			NamingTemplateIndices.RemoveAt(index);
-			addedComboBoxes.Remove(c);
-			Controls.Remove(c);
-			c.Dispose();
-		}
-
+		#endregion
 
 		#region Save & Load Setting
+		#region Translate string and int list
 		public static List<int> SaveValueToInt(string saveValue)
 		{
 			List<int> li;
@@ -126,6 +130,7 @@ namespace screen_capture
 
 			return saveValue;
 		}
+		#endregion
 
 		private void SaveSetting()
 		{
@@ -149,7 +154,7 @@ namespace screen_capture
 		}
 		#endregion
 
-
+		#region Translate int list to path string
 		private static string IndexToString(int i, DateTime dt)
 		{
 			string result = "";
@@ -208,5 +213,6 @@ namespace screen_capture
 			template.Reverse();
 			return name + "." + format.ToString().ToLower();
 		}
+		#endregion
 	}
 }

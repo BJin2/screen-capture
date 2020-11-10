@@ -45,7 +45,6 @@
 			this.pathBox.Size = new System.Drawing.Size(380, 22);
 			this.pathBox.TabIndex = 0;
 			this.pathBox.WordWrap = false;
-			this.pathBox.TextChanged += new System.EventHandler(this.pathBox_TextChanged);
 			// 
 			// browseButton
 			// 
