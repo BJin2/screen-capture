@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -308,13 +309,26 @@ namespace screen_capture.ImageRect
 		{
 			List<int> namingTemplate = NamingConvention.SaveValueToInt((string)Properties.Settings.Default["IMG_NAMING"]);
 			ImageFormat format = MainForm.GetImageFormat((int)Properties.Settings.Default["IMG_FORMAT"]);
+			string formatString = "." + format.ToString().ToLower();
 			string path = (string)Properties.Settings.Default["IMG_PATH"];
+
 			if (DirectoryControl.DirectoryCheckCreate(path))
-				path += "\\" + NamingConvention.TemplateToName(namingTemplate, format);
+				path += "\\" + NamingConvention.TemplateToName(namingTemplate)+formatString;
 			else
 			{
 				MessageBox.Show(path + "\n Directory not found.\nCould not save image automaically.", "Auto Save Failed");
 				return;
+			}
+
+			int insertIndex = path.Length - formatString.Length;
+			int i = 0;
+			while(File.Exists(path))
+			{
+				if (i == 0)
+					path = path.Insert(insertIndex, "(" + i.ToString() + ")");
+				else
+					path = path.Replace("(" + (i - 1).ToString() + ")", "(" + i.ToString() + ")");
+				i++;
 			}
 
 			captured.Image.Save(path, format);

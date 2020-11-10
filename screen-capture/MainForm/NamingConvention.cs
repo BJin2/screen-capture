@@ -201,7 +201,7 @@ namespace screen_capture
 			return result;
 		}
 
-		public static string TemplateToName(List<int> template, ImageFormat format)
+		public static string TemplateToName(List<int> template)
 		{
 			string name = "";
 			DateTime dt = DateTime.Now;
@@ -211,7 +211,7 @@ namespace screen_capture
 				name += IndexToString(i, dt);
 			}
 			template.Reverse();
-			return name + "." + format.ToString().ToLower();
+			return name;
 		}
 		#endregion
 	}
