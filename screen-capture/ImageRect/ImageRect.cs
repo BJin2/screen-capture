@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -30,28 +31,103 @@ namespace screen_capture.ImageRect
 		{
 			id = _id;
 			InitializeComponent();
-			this.SetStyle(ControlStyles.ResizeRedraw, true);
+			SetStyle(ControlStyles.ResizeRedraw, true);
+			StartPosition = FormStartPosition.Manual;
 
-			this.Load += ImageRect_Load;
-			this.LocationChanged += Form_LocationChanged;
-			this.SizeChanged += Form_SizeChanged;
-
+			Load += ImageRect_Load;
+			LocationChanged += Form_LocationChanged;
+			SizeChanged += Form_SizeChanged;
 			titlePanel.MouseDown += title_MouseDown;
 			AddBorderResizeHandler(borderPanel);
-			
 			AddSizePositionHandler(textArea);
 
 			minWidth = textArea.Width + captureButton.Width + saveButton.Width + clearButton.Width;
 			widthOffset = left.Width + right.Width;
 			minHeight = titlePanel.Height + top.Height + bottom.Height;
 
-			StartPosition = FormStartPosition.Manual;
-
 			LoadSize();
 			LoadLocation();
 		}
 
-		#region Modify Size Location
+		#region Add event handler
+		private void AddSizePositionHandler(Control c)
+		{
+			if (!c.HasChildren)
+			{
+				if (c.GetType() == typeof(TextBox))
+				{
+					var textbox = c as TextBox;
+					textbox.KeyPress += Textbox_KeyPress;
+					textbox.KeyDown += Textbox_KeyDown;
+					textbox.LostFocus += Textbox_LostFocus;
+				}
+				return;
+			}
+
+			foreach (var control in c.Controls)
+			{
+				AddSizePositionHandler(control as Control);
+			}
+		}
+		private void AddBorderResizeHandler(Panel p)
+		{
+			if (p == captureArea || p.GetType() != typeof(Panel))
+				return;
+
+			if (!p.HasChildren)
+			{
+				p.MouseDown += resize_MouseDown;
+				return;
+			}
+
+			foreach (var panel in p.Controls)
+			{
+				AddBorderResizeHandler((Panel)panel);
+			}
+		}
+		#endregion
+
+		#region Size Location Handler
+		//Using window message
+		private void title_MouseDown(object sender, MouseEventArgs e)
+		{
+			if (e.Button != MouseButtons.Left)
+				return;
+			ReleaseCapture();
+			SendMessage(this.Handle, WinMessage.WM_NCLBUTTONDOWN, WinMessage.HTCAPTION, 0);
+		}
+		private void resize_MouseDown(object sender, MouseEventArgs e)
+		{
+			if (e.Button != MouseButtons.Left || !borderPanel.Enabled)
+				return;
+			ReleaseCapture();
+			SendMessage(this.Handle, WinMessage.WM_NCLBUTTONDOWN, WinMessage.HITTEST[((Panel)sender).Name], 0);
+		}
+
+		//Limit input to numbers only
+		private void Textbox_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+			{
+				e.Handled = true;
+			}
+		}
+
+		//Finish receiving input. Change size or location
+		private void Textbox_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode != Keys.Enter)
+				return;
+
+			ChangeSizePosition(sender as TextBox);
+			LoseControlFocus();
+		}
+		private void Textbox_LostFocus(object sender, EventArgs e)
+		{
+			ChangeSizePosition(sender as TextBox);
+		}
+
+		//After value changed
 		private void Form_LocationChanged(object sender, EventArgs e)
 		{
 			coordX.Enabled = false;
@@ -72,45 +148,9 @@ namespace screen_capture.ImageRect
 			resHeight.Enabled = true;
 			SaveSize();
 		}
+		#endregion
 
-		private void AddSizePositionHandler(Control c)
-		{
-			if (!c.HasChildren)
-			{
-				if (c.GetType() == typeof(TextBox))
-				{
-					var textbox = c as TextBox;
-					textbox.KeyPress += Textbox_KeyPress;
-					textbox.KeyDown += Textbox_KeyDown;
-					textbox.LostFocus += Textbox_LostFocus;
-				}
-				return;
-			}
-
-			foreach (var control in c.Controls)
-			{
-				AddSizePositionHandler(control as Control);
-			}
-		}
-		private void Textbox_KeyPress(object sender, KeyPressEventArgs e)
-		{
-			if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-			{
-				e.Handled = true;
-			}
-		}
-		private void Textbox_KeyDown(object sender, KeyEventArgs e)
-		{
-			if (e.KeyCode != Keys.Enter)
-				return;
-
-			ChangeSizePosition(sender as TextBox);
-			LoseControlFocus();
-		}
-		private void Textbox_LostFocus(object sender, EventArgs e)
-		{
-			ChangeSizePosition(sender as TextBox);
-		}
+		#region Modify Size Location
 		private void ChangeSizePosition(TextBox textbox)
 		{
 			if (textbox.Text == "" || !textbox.Enabled)
@@ -144,7 +184,7 @@ namespace screen_capture.ImageRect
 		}
 		#endregion
 
-		#region Save & Load Size & Location
+		#region Save & Load setting
 		private void LoadSize()
 		{
 			Size size;
@@ -155,7 +195,6 @@ namespace screen_capture.ImageRect
 			catch // Capture box opens in fixed size if error occurs while loading size value
 			{
 				MessageBox.Show("Capture Box Size Load Failed");
-				
 				size = new Size(minWidth + 128, minHeight + 128);
 			}
 			this.Size = size;
@@ -202,17 +241,10 @@ namespace screen_capture.ImageRect
 		}
 		#endregion
 
-		#region Capture
+		#region Event handlers related to image capture
 		private void captureButton_Click(object sender, EventArgs e)
 		{
 			CaptureInternalRect();
-			//TODO autosave
-			if ((bool)Properties.Settings.Default["IMG_AUTOSAVE"])
-			{
-				string naming = (string)Properties.Settings.Default["IMG_NAMING"];
-				ImageFormat format = MainForm.GetImageFormat((int)Properties.Settings.Default["IMG_FORMAT"]);
-				Clear();
-			}
 		}
 		private void saveButton_Click(object sender, EventArgs e)
 		{
@@ -226,20 +258,16 @@ namespace screen_capture.ImageRect
 			{
 				filename = saveFile.FileName;
 				format = MainForm.GetImageFormat(filename);
-				this.captured.Image.Save(filename, format);
+				captured.Image.Save(filename, format);
 			}
 		}
 		private void clearButton_Click(object sender, EventArgs e)
 		{
 			Clear();
 		}
+		#endregion
 
-		private void Clear()
-		{
-			captured.BackColor = Color.FromArgb(224, 224, 224);
-			captured.Image = null;
-			borderPanel.Enabled = true;
-		}
+		#region Capture
 		private void CaptureRect(Rectangle rect)
 		{
 			Clear();
@@ -255,6 +283,7 @@ namespace screen_capture.ImageRect
 			captured.Image = bm;
 			borderPanel.Enabled = false;
 		}
+		//Capturing capture area
 		public void CaptureInternalRect()
 		{
 			Rectangle rect = new Rectangle(this.Left + left.Width,
@@ -262,7 +291,12 @@ namespace screen_capture.ImageRect
 											this.Left + left.Width + this.Width - widthOffset,
 											this.Top + minHeight - bottom.Height + this.Height - minHeight);
 			CaptureRect(rect);
+			if ((bool)Properties.Settings.Default["IMG_AUTOSAVE"])
+			{
+				AutoSave();
+			}
 		}
+		//Capturing frame
 		public void CaptureWholeRect()
 		{
 			Rectangle rect = new Rectangle(this.Left,
@@ -271,61 +305,61 @@ namespace screen_capture.ImageRect
 											this.Top + this.Height);
 			CaptureRect(rect);
 		}
+		private void AutoSave()
+		{
+			List<int> namingTemplate = NamingConvention.SaveValueToInt((string)Properties.Settings.Default["IMG_NAMING"]);
+			ImageFormat format = MainForm.GetImageFormat((int)Properties.Settings.Default["IMG_FORMAT"]);
+			string formatString = "." + format.ToString().ToLower();
+			string path = (string)Properties.Settings.Default["IMG_PATH"];
+
+			if (DirectoryControl.DirectoryCheckCreate(path))
+				path += "\\" + NamingConvention.TemplateToName(namingTemplate)+formatString;
+			else
+			{
+				MessageBox.Show(path + "\n Directory not found.\nCould not save image automaically.", "Auto Save Failed");
+				return;
+			}
+
+			int insertIndex = path.Length - formatString.Length;
+			int i = 0;
+			while(File.Exists(path))
+			{
+				if (i == 0)
+					path = path.Insert(insertIndex, "(" + i.ToString() + ")");
+				else
+					path = path.Replace("(" + (i - 1).ToString() + ")", "(" + i.ToString() + ")");
+				i++;
+			}
+
+			captured.Image.Save(path, format);
+			Clear();
+		}
+		private void Clear()
+		{
+			captured.BackColor = Color.FromArgb(224, 224, 224);
+			captured.Image = null;
+			borderPanel.Enabled = true;
+		}
 		#endregion
 
-		#region Window behavior
+		#region Utils
 		private void LoseControlFocus()
 		{
 			this.ActiveControl = textArea;
 		}
-		
-		private void AddBorderResizeHandler(Panel p)
+		private void ImageRect_Load(object sender, EventArgs e)
 		{
-			if (p == captureArea || p.GetType() != typeof(Panel))
-				return;
-
-			if (!p.HasChildren)
-			{
-				p.MouseDown += resize_MouseDown;
-				return;
-			}
-
-			foreach (var panel in p.Controls)
-			{
-				AddBorderResizeHandler((Panel)panel);
-			}
+			//Change focus to non-interactive element
+			LoseControlFocus();
 		}
 		private void EnableSizeText(bool e)
 		{
 			resWidth.Enabled = e;
 			resHeight.Enabled = e;
 		}
-
-		private void ImageRect_Load(object sender, EventArgs e)
-		{
-			//Change focus to non-interactive element
-			LoseControlFocus();
-		}
-
 		private void borderPanel_EnalbedChanged(object sender, EventArgs e)
 		{
 			EnableSizeText((sender as Panel).Enabled);
-		}
-
-		private void title_MouseDown(object sender, MouseEventArgs e)
-		{
-			if (e.Button != MouseButtons.Left)
-				return;
-			ReleaseCapture();
-			SendMessage(this.Handle, WinMessage.WM_NCLBUTTONDOWN, WinMessage.HTCAPTION, 0);
-		}
-
-		private void resize_MouseDown(object sender, MouseEventArgs e)
-		{
-			if (e.Button != MouseButtons.Left || !borderPanel.Enabled)
-				return;
-			ReleaseCapture();
-			SendMessage(this.Handle, WinMessage.WM_NCLBUTTONDOWN, WinMessage.HITTEST[((Panel)sender).Name], 0);
 		}
 		#endregion
 	}
