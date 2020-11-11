@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Interop;
+using System.Windows.Media.Imaging;
 
 namespace screen_capture.GifRect
 {
@@ -26,18 +31,29 @@ namespace screen_capture.GifRect
 		private readonly int minHeight;
 
 		private bool recording;
+		private GifBitmapEncoder encoder;
 
 		public GifRect(int _id)
 		{
 			id = _id;
+			recording = false;
+
 			InitializeComponent();
 			SetStyle(ControlStyles.ResizeRedraw, true);
 
-			minWidth = textArea.Width + recordButton.Width + saveButton.Width + clearButton.Width;
+			minWidth = recordButton.Width + saveButton.Width + clearButton.Width;
 			widthOffset = left.Width + right.Width;
 			minHeight = titlePanel.Height + top.Height + bottom.Height;
 
-			recording = false;
+			Load += GifRect_Load;
+			LocationChanged += Form_LocationChanged;
+			SizeChanged += Form_SizeChanged;
+			titlePanel.MouseDown += title_MouseDown;
+			AddBorderResizeHandler(borderPanel);
+			AddSizePositionHandler(textArea);
+
+			LoadSize();
+			LoadLocation();
 		}
 
 		#region Save & Load setting
@@ -50,7 +66,7 @@ namespace screen_capture.GifRect
 			}
 			catch // Record box opens in fixed size if error occurs while loading size value
 			{
-				MessageBox.Show("Record Box Size Load Failed");
+				//MessageBox.Show("Record Box Size Load Failed");
 				size = new Size(minWidth + 128, minHeight + 128);
 			}
 			this.Size = size;
@@ -64,7 +80,7 @@ namespace screen_capture.GifRect
 			}
 			catch
 			{
-				MessageBox.Show("Record Box Properties Save Failed");
+				//MessageBox.Show("Record Box Size Save Failed");
 			}
 		}
 
@@ -77,7 +93,7 @@ namespace screen_capture.GifRect
 			}
 			catch // Record box opens in fixed location if error occurs while loading position
 			{
-				MessageBox.Show("Record Box Location Load Failed");
+				//MessageBox.Show("Record Box Location Load Failed");
 				point = new Point(Screen.PrimaryScreen.Bounds.Width / 2, Screen.PrimaryScreen.Bounds.Height / 2);
 			}
 			this.Location = point;
@@ -92,7 +108,7 @@ namespace screen_capture.GifRect
 			}
 			catch
 			{
-				MessageBox.Show("Record Box Location Save Failed");
+				//MessageBox.Show("Record Box Location Save Failed");
 			}
 		}
 		#endregion
@@ -100,9 +116,6 @@ namespace screen_capture.GifRect
 		#region Add event handler
 		private void AddSizePositionHandler(Control c)
 		{
-			if (c == limit)
-				return;
-
 			if (!c.HasChildren)
 			{
 				if (c.GetType() == typeof(TextBox))
@@ -240,13 +253,11 @@ namespace screen_capture.GifRect
 		{
 			if (recording)
 			{
-				recording = false;
-				recordButton.ImageIndex = 0;
+				StopRecording();
 			}
 			else
 			{
-				recording = true;
-				recordButton.ImageIndex = 1;
+				StartRecording();
 			}
 		}
 		private void clearButton_Click(object sender, EventArgs e)
@@ -260,7 +271,81 @@ namespace screen_capture.GifRect
 		#endregion
 
 		#region Recording
+		public void StartRecording()
+		{
+			recording = true;
+			recordButton.ImageIndex = 1;
 
+			int frameRate;
+			int quality;
+			int interval;
+
+			encoder = new GifBitmapEncoder();
+
+			try
+			{
+				frameRate = (int)Properties.Settings.Default[""];
+				quality = (int)Properties.Settings.Default[""];
+			}
+			catch
+			{
+				frameRate = 30;
+				quality = 1;
+			}
+			interval = (int)(1.0f / frameRate * 1000.0f);
+
+			while (frameRate > 0)
+			{
+				Rectangle rect = new Rectangle(this.Left + left.Width,
+												this.Top + minHeight - bottom.Height,
+												this.Left + left.Width + this.Width - widthOffset,
+												this.Top + minHeight - bottom.Height + this.Height - minHeight);
+				Bitmap bm = MainForm.CaptureRect(rect);
+				BitmapSizeOptions size = BitmapSizeOptions.FromEmptyOptions();
+				BitmapSource bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(bm.GetHbitmap(), IntPtr.Zero, System.Windows.Int32Rect.Empty, size);
+				BitmapFrame frame = BitmapFrame.Create(bitmapSource);
+				encoder.Frames.Add(frame);
+				frameRate--;
+				Thread.Sleep(interval);
+			}
+		}
+		public void StopRecording()
+		{
+			recording = false;
+			recordButton.ImageIndex = 0;
+
+			AutoSave();
+		}
+		private void AutoSave()
+		{
+			List<int> namingTemplate = NamingConvention.SaveValueToInt((string)Properties.Settings.Default["IMG_NAMING"]);
+			string formatString = "." + ImageFormat.Gif.ToString().ToLower();
+			string path = (string)Properties.Settings.Default["IMG_PATH"];
+			
+			if (DirectoryControl.DirectoryCheckCreate(path))
+				path += "\\" + NamingConvention.TemplateToName(namingTemplate) + formatString;
+			else
+			{
+				MessageBox.Show(path + "\n Directory not found.\nCould not save image automaically.", "Auto Save Failed");
+				return;
+			}
+
+			int insertIndex = path.Length - formatString.Length;
+			int i = 0;
+			while (File.Exists(path))
+			{
+				if (i == 0)
+					path = path.Insert(insertIndex, "(" + i.ToString() + ")");
+				else
+					path = path.Replace("(" + (i - 1).ToString() + ")", "(" + i.ToString() + ")");
+				i++;
+			}
+
+			FileStream fs = new FileStream(path, FileMode.Create);
+			encoder.Save(fs);
+			encoder.Frames.Clear();
+			encoder = null;
+		}
 		#endregion
 
 		#region Utils

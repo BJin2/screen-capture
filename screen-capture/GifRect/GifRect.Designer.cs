@@ -61,9 +61,6 @@
 			this.bottomRight = new System.Windows.Forms.Panel();
 			this.bottomLeft = new System.Windows.Forms.Panel();
 			this.titlePanel = new System.Windows.Forms.Panel();
-			this.limit = new System.Windows.Forms.TextBox();
-			this.limitLabel = new System.Windows.Forms.Panel();
-			this.label5 = new System.Windows.Forms.Label();
 			this.recordImage = new System.Windows.Forms.ImageList(this.components);
 			this.panel3.SuspendLayout();
 			this.pos.SuspendLayout();
@@ -76,7 +73,6 @@
 			this.panel1.SuspendLayout();
 			this.panel5.SuspendLayout();
 			this.titlePanel.SuspendLayout();
-			this.limitLabel.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// saveFile
@@ -413,7 +409,6 @@
 			// titlePanel
 			// 
 			this.titlePanel.BackColor = System.Drawing.SystemColors.ControlDark;
-			this.titlePanel.Controls.Add(this.limitLabel);
 			this.titlePanel.Controls.Add(this.clearButton);
 			this.titlePanel.Controls.Add(this.saveButton);
 			this.titlePanel.Controls.Add(this.recordButton);
@@ -423,41 +418,6 @@
 			this.titlePanel.Name = "titlePanel";
 			this.titlePanel.Size = new System.Drawing.Size(800, 50);
 			this.titlePanel.TabIndex = 2;
-			// 
-			// limit
-			// 
-			this.limit.BackColor = System.Drawing.SystemColors.ControlDark;
-			this.limit.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.limit.Dock = System.Windows.Forms.DockStyle.Right;
-			this.limit.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.limit.Location = new System.Drawing.Point(99, 13);
-			this.limit.MaxLength = 3;
-			this.limit.Name = "limit";
-			this.limit.Size = new System.Drawing.Size(32, 22);
-			this.limit.TabIndex = 4;
-			this.limit.Text = "100";
-			// 
-			// limitLabel
-			// 
-			this.limitLabel.Controls.Add(this.limit);
-			this.limitLabel.Controls.Add(this.label5);
-			this.limitLabel.Dock = System.Windows.Forms.DockStyle.Right;
-			this.limitLabel.Location = new System.Drawing.Point(519, 0);
-			this.limitLabel.Name = "limitLabel";
-			this.limitLabel.Padding = new System.Windows.Forms.Padding(0, 13, 0, 0);
-			this.limitLabel.Size = new System.Drawing.Size(131, 50);
-			this.limitLabel.TabIndex = 5;
-			// 
-			// label5
-			// 
-			this.label5.AutoSize = true;
-			this.label5.Dock = System.Windows.Forms.DockStyle.Left;
-			this.label5.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.label5.Location = new System.Drawing.Point(0, 13);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(102, 21);
-			this.label5.TabIndex = 5;
-			this.label5.Text = "max length :";
 			// 
 			// recordImage
 			// 
@@ -478,10 +438,12 @@
 			this.DoubleBuffered = true;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.MaximizeBox = false;
+			this.MinimumSize = new System.Drawing.Size(150, 60);
 			this.Name = "GifRect";
 			this.ShowInTaskbar = false;
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+			this.TopMost = true;
 			this.TransparencyKey = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
 			this.panel3.ResumeLayout(false);
 			this.panel3.PerformLayout();
@@ -498,8 +460,6 @@
 			this.panel1.ResumeLayout(false);
 			this.panel5.ResumeLayout(false);
 			this.titlePanel.ResumeLayout(false);
-			this.limitLabel.ResumeLayout(false);
-			this.limitLabel.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -537,9 +497,6 @@
 		private System.Windows.Forms.Panel titlePanel;
 		private System.Windows.Forms.Panel recordArea;
 		private System.Windows.Forms.PictureBox recorded;
-		private System.Windows.Forms.Panel limitLabel;
-		private System.Windows.Forms.TextBox limit;
-		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.ImageList recordImage;
 	}
 }

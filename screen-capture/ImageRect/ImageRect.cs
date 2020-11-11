@@ -272,13 +272,8 @@ namespace screen_capture.ImageRect
 		{
 			Clear();
 			captured.BackColor = Color.White;
-			int width = rect.Width - rect.Left;
-			int height = rect.Height - rect.Top;
-			Bitmap bm = new Bitmap(width, height);
-			Graphics g = Graphics.FromImage(bm);
-			g.CopyFromScreen(rect.Left, rect.Top, 0, 0, new Size(width, height));
-			//TODO make draw cursor option
-			MainForm.DrawMousePointer(g, Cursor.Position.X - rect.Left, Cursor.Position.Y - rect.Top);
+
+			Bitmap bm = MainForm.CaptureRect(rect);
 
 			captured.Image = bm;
 			borderPanel.Enabled = false;
