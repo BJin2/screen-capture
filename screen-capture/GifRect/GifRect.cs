@@ -25,6 +25,8 @@ namespace screen_capture.GifRect
 		private readonly int widthOffset;
 		private readonly int minHeight;
 
+		private bool recording;
+
 		public GifRect(int _id)
 		{
 			id = _id;
@@ -34,6 +36,8 @@ namespace screen_capture.GifRect
 			minWidth = textArea.Width + recordButton.Width + saveButton.Width + clearButton.Width;
 			widthOffset = left.Width + right.Width;
 			minHeight = titlePanel.Height + top.Height + bottom.Height;
+
+			recording = false;
 		}
 
 		#region Save & Load setting
@@ -232,9 +236,32 @@ namespace screen_capture.GifRect
 		#endregion
 
 		#region Event handlers releated to gif recording
+		private void recordButton_Click(object sender, EventArgs e)
+		{
+			if (recording)
+			{
+				recording = false;
+				recordButton.ImageIndex = 0;
+			}
+			else
+			{
+				recording = true;
+				recordButton.ImageIndex = 1;
+			}
+		}
+		private void clearButton_Click(object sender, EventArgs e)
+		{
 
+		}
+		private void saveButton_Click(object sender, EventArgs e)
+		{
+
+		}
 		#endregion
 
+		#region Recording
+
+		#endregion
 
 		#region Utils
 		private void LoseControlFocus()
@@ -255,6 +282,9 @@ namespace screen_capture.GifRect
 		{
 			EnableSizeText((sender as Panel).Enabled);
 		}
+
 		#endregion
+
+		
 	}
 }

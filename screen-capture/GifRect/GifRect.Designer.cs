@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GifRect));
 			this.saveFile = new System.Windows.Forms.SaveFileDialog();
 			this.coordY = new System.Windows.Forms.TextBox();
@@ -63,6 +64,7 @@
 			this.limit = new System.Windows.Forms.TextBox();
 			this.limitLabel = new System.Windows.Forms.Panel();
 			this.label5 = new System.Windows.Forms.Label();
+			this.recordImage = new System.Windows.Forms.ImageList(this.components);
 			this.panel3.SuspendLayout();
 			this.pos.SuspendLayout();
 			this.panel4.SuspendLayout();
@@ -79,7 +81,7 @@
 			// 
 			// saveFile
 			// 
-			this.saveFile.Filter = "Bitmap|*.bmp|JPeg|*.jpg|Png|*.png|Tiff|*.tif";
+			this.saveFile.Filter = "Animated Gif|*.gif";
 			// 
 			// coordY
 			// 
@@ -230,6 +232,7 @@
 			this.clearButton.Size = new System.Drawing.Size(50, 50);
 			this.clearButton.TabIndex = 3;
 			this.clearButton.UseVisualStyleBackColor = true;
+			this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
 			// 
 			// saveButton
 			// 
@@ -244,6 +247,7 @@
 			this.saveButton.Size = new System.Drawing.Size(50, 50);
 			this.saveButton.TabIndex = 2;
 			this.saveButton.UseVisualStyleBackColor = true;
+			this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
 			// 
 			// left
 			// 
@@ -262,12 +266,14 @@
 			this.recordButton.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ControlDarkDark;
 			this.recordButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ActiveCaption;
 			this.recordButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.recordButton.Image = ((System.Drawing.Image)(resources.GetObject("recordButton.Image")));
+			this.recordButton.ImageIndex = 0;
+			this.recordButton.ImageList = this.recordImage;
 			this.recordButton.Location = new System.Drawing.Point(750, 0);
 			this.recordButton.Name = "recordButton";
 			this.recordButton.Size = new System.Drawing.Size(50, 50);
 			this.recordButton.TabIndex = 1;
 			this.recordButton.UseVisualStyleBackColor = true;
+			this.recordButton.Click += new System.EventHandler(this.recordButton_Click);
 			// 
 			// textArea
 			// 
@@ -453,6 +459,13 @@
 			this.label5.TabIndex = 5;
 			this.label5.Text = "max length :";
 			// 
+			// recordImage
+			// 
+			this.recordImage.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("recordImage.ImageStream")));
+			this.recordImage.TransparentColor = System.Drawing.Color.Transparent;
+			this.recordImage.Images.SetKeyName(0, "record.png");
+			this.recordImage.Images.SetKeyName(1, "recording.png");
+			// 
 			// GifRect
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -527,5 +540,6 @@
 		private System.Windows.Forms.Panel limitLabel;
 		private System.Windows.Forms.TextBox limit;
 		private System.Windows.Forms.Label label5;
+		private System.Windows.Forms.ImageList recordImage;
 	}
 }
