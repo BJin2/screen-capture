@@ -31,6 +31,7 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GifSettingControl));
 			this.numRectLabel = new System.Windows.Forms.Label();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.numGifRect = new screen_capture.FlatNumericUpDown();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.autosaveCheckbox = new System.Windows.Forms.CheckBox();
 			this.panel7 = new System.Windows.Forms.Panel();
@@ -45,18 +46,17 @@
 			this.gifQualityLabel = new System.Windows.Forms.Label();
 			this.panel8 = new System.Windows.Forms.Panel();
 			this.autosaveDetailPanel = new System.Windows.Forms.Panel();
+			this.path = new screen_capture.DirectoryControl();
 			this.enableSelectShortcut = new System.Windows.Forms.CheckBox();
 			this.panel9 = new System.Windows.Forms.Panel();
 			this.panel10 = new System.Windows.Forms.Panel();
+			this.selectShortcut = new screen_capture.ShortcutControl();
 			this.enableAllShortcut = new System.Windows.Forms.CheckBox();
 			this.panel12 = new System.Windows.Forms.Panel();
+			this.allShortcut = new screen_capture.ShortcutControl();
 			this.detailedContentsPanel = new System.Windows.Forms.Panel();
 			this.contentsContainer = new System.Windows.Forms.Panel();
 			this.settingTitleLabel = new System.Windows.Forms.Label();
-			this.allShortcut = new screen_capture.ShortcutControl();
-			this.selectShortcut = new screen_capture.ShortcutControl();
-			this.path = new screen_capture.DirectoryControl();
-			this.numGifRect = new screen_capture.FlatNumericUpDown();
 			this.panel1.SuspendLayout();
 			this.panel4.SuspendLayout();
 			this.panel2.SuspendLayout();
@@ -90,6 +90,19 @@
 			this.panel1.Name = "panel1";
 			this.panel1.Size = new System.Drawing.Size(530, 22);
 			this.panel1.TabIndex = 1;
+			// 
+			// numGifRect
+			// 
+			this.numGifRect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(53)))), ((int)(((byte)(83)))));
+			this.numGifRect.CaptureType = screen_capture.CAPTURE_TYPE.GIF;
+			this.numGifRect.Dock = System.Windows.Forms.DockStyle.Left;
+			this.numGifRect.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.numGifRect.ForeColor = System.Drawing.SystemColors.ControlDark;
+			this.numGifRect.Location = new System.Drawing.Point(127, 0);
+			this.numGifRect.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this.numGifRect.Name = "numGifRect";
+			this.numGifRect.Size = new System.Drawing.Size(70, 22);
+			this.numGifRect.TabIndex = 2;
 			// 
 			// panel3
 			// 
@@ -246,6 +259,15 @@
 			this.autosaveDetailPanel.Size = new System.Drawing.Size(530, 129);
 			this.autosaveDetailPanel.TabIndex = 8;
 			// 
+			// path
+			// 
+			this.path.CaptureType = screen_capture.CAPTURE_TYPE.GIF;
+			this.path.Dock = System.Windows.Forms.DockStyle.Top;
+			this.path.Location = new System.Drawing.Point(0, 21);
+			this.path.Name = "path";
+			this.path.Size = new System.Drawing.Size(530, 22);
+			this.path.TabIndex = 1;
+			// 
 			// enableSelectShortcut
 			// 
 			this.enableSelectShortcut.AutoSize = true;
@@ -279,6 +301,15 @@
 			this.panel10.Size = new System.Drawing.Size(530, 22);
 			this.panel10.TabIndex = 12;
 			// 
+			// selectShortcut
+			// 
+			this.selectShortcut.AssignedFunction = screen_capture.SHORTCUT_FUNCTION.RECORD_SELECTION;
+			this.selectShortcut.Dock = System.Windows.Forms.DockStyle.Right;
+			this.selectShortcut.Location = new System.Drawing.Point(177, 0);
+			this.selectShortcut.Name = "selectShortcut";
+			this.selectShortcut.Size = new System.Drawing.Size(353, 22);
+			this.selectShortcut.TabIndex = 3;
+			// 
 			// enableAllShortcut
 			// 
 			this.enableAllShortcut.AutoSize = true;
@@ -303,6 +334,15 @@
 			this.panel12.Name = "panel12";
 			this.panel12.Size = new System.Drawing.Size(530, 22);
 			this.panel12.TabIndex = 14;
+			// 
+			// allShortcut
+			// 
+			this.allShortcut.AssignedFunction = screen_capture.SHORTCUT_FUNCTION.RECORD_ALL;
+			this.allShortcut.Dock = System.Windows.Forms.DockStyle.Right;
+			this.allShortcut.Location = new System.Drawing.Point(177, 0);
+			this.allShortcut.Name = "allShortcut";
+			this.allShortcut.Size = new System.Drawing.Size(353, 22);
+			this.allShortcut.TabIndex = 4;
 			// 
 			// detailedContentsPanel
 			// 
@@ -342,46 +382,6 @@
 			this.settingTitleLabel.Size = new System.Drawing.Size(131, 30);
 			this.settingTitleLabel.TabIndex = 3;
 			this.settingTitleLabel.Text = "Gif Settings";
-			// 
-			// allShortcut
-			// 
-			this.allShortcut.AssignedFunction = screen_capture.SHORTCUT_FUNCTION.RECORD_ALL;
-			this.allShortcut.Dock = System.Windows.Forms.DockStyle.Right;
-			this.allShortcut.Location = new System.Drawing.Point(177, 0);
-			this.allShortcut.Name = "allShortcut";
-			this.allShortcut.Size = new System.Drawing.Size(353, 22);
-			this.allShortcut.TabIndex = 4;
-			// 
-			// selectShortcut
-			// 
-			this.selectShortcut.AssignedFunction = screen_capture.SHORTCUT_FUNCTION.RECORD_SELECTION;
-			this.selectShortcut.Dock = System.Windows.Forms.DockStyle.Right;
-			this.selectShortcut.Location = new System.Drawing.Point(177, 0);
-			this.selectShortcut.Name = "selectShortcut";
-			this.selectShortcut.Size = new System.Drawing.Size(353, 22);
-			this.selectShortcut.TabIndex = 3;
-			// 
-			// path
-			// 
-			this.path.CaptureType = screen_capture.CAPTURE_TYPE.GIF;
-			this.path.Dock = System.Windows.Forms.DockStyle.Top;
-			this.path.Location = new System.Drawing.Point(0, 21);
-			this.path.Name = "path";
-			this.path.Size = new System.Drawing.Size(530, 22);
-			this.path.TabIndex = 1;
-			// 
-			// numGifRect
-			// 
-			this.numGifRect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(53)))), ((int)(((byte)(83)))));
-			this.numGifRect.CaptureType = screen_capture.CAPTURE_TYPE.GIF;
-			this.numGifRect.Dock = System.Windows.Forms.DockStyle.Left;
-			this.numGifRect.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.numGifRect.ForeColor = System.Drawing.SystemColors.ControlDark;
-			this.numGifRect.Location = new System.Drawing.Point(127, 0);
-			this.numGifRect.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this.numGifRect.Name = "numGifRect";
-			this.numGifRect.Size = new System.Drawing.Size(70, 22);
-			this.numGifRect.TabIndex = 2;
 			// 
 			// GifSettingControl
 			// 

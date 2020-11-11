@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GifRect\GifRect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GifRect\GifRect.Designer.cs">
+      <DependentUpon>GifRect.cs</DependentUpon>
+    </Compile>
     <Compile Include="ImageRect\ImageRect.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +112,9 @@
       <DependentUpon>ShortcutControl.cs</DependentUpon>
     </Compile>
     <Compile Include="WinMessage.cs" />
+    <EmbeddedResource Include="GifRect\GifRect.resx">
+      <DependentUpon>GifRect.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ImageRect\ImageRect.resx">
       <DependentUpon>ImageRect.cs</DependentUpon>
     </EmbeddedResource>
@@ -155,5 +164,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
