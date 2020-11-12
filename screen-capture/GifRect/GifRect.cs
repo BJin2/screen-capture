@@ -300,7 +300,7 @@ namespace screen_capture.GifRect
 												this.Top + minHeight - bottom.Height,
 												this.Left + left.Width + this.Width - widthOffset,
 												this.Top + minHeight - bottom.Height + this.Height - minHeight);
-				Bitmap bm = MainForm.CaptureRect(rect);
+				Bitmap bm = MainForm.CaptureRect(rect, 2);
 				BitmapSizeOptions size = BitmapSizeOptions.FromEmptyOptions();
 				BitmapSource bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(bm.GetHbitmap(), IntPtr.Zero, System.Windows.Int32Rect.Empty, size);
 				BitmapFrame frame = BitmapFrame.Create(bitmapSource);

@@ -47,6 +47,7 @@
 			this.saveButton = new System.Windows.Forms.Button();
 			this.left = new System.Windows.Forms.Panel();
 			this.recordButton = new System.Windows.Forms.Button();
+			this.recordImage = new System.Windows.Forms.ImageList(this.components);
 			this.textArea = new System.Windows.Forms.Panel();
 			this.right = new System.Windows.Forms.Panel();
 			this.borderPanel = new System.Windows.Forms.Panel();
@@ -61,7 +62,6 @@
 			this.bottomRight = new System.Windows.Forms.Panel();
 			this.bottomLeft = new System.Windows.Forms.Panel();
 			this.titlePanel = new System.Windows.Forms.Panel();
-			this.recordImage = new System.Windows.Forms.ImageList(this.components);
 			this.panel3.SuspendLayout();
 			this.pos.SuspendLayout();
 			this.panel4.SuspendLayout();
@@ -271,6 +271,13 @@
 			this.recordButton.UseVisualStyleBackColor = true;
 			this.recordButton.Click += new System.EventHandler(this.recordButton_Click);
 			// 
+			// recordImage
+			// 
+			this.recordImage.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("recordImage.ImageStream")));
+			this.recordImage.TransparentColor = System.Drawing.Color.Transparent;
+			this.recordImage.Images.SetKeyName(0, "record.png");
+			this.recordImage.Images.SetKeyName(1, "recording.png");
+			// 
 			// textArea
 			// 
 			this.textArea.Controls.Add(this.res);
@@ -418,13 +425,6 @@
 			this.titlePanel.Name = "titlePanel";
 			this.titlePanel.Size = new System.Drawing.Size(800, 50);
 			this.titlePanel.TabIndex = 2;
-			// 
-			// recordImage
-			// 
-			this.recordImage.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("recordImage.ImageStream")));
-			this.recordImage.TransparentColor = System.Drawing.Color.Transparent;
-			this.recordImage.Images.SetKeyName(0, "record.png");
-			this.recordImage.Images.SetKeyName(1, "recording.png");
 			// 
 			// GifRect
 			// 
