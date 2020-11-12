@@ -8,15 +8,18 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Interop;
+using System.Windows.Media.Imaging;
 
-namespace screen_capture.ImageRect
+namespace screen_capture.GifRect
 {
-	public partial class ImageRect : Form
+	public partial class GifRect : Form
 	{
 		#region winapi imported functions
-		[DllImport("User32.dll")]
+		[DllImport("user32.dll")]
 		public static extern bool ReleaseCapture();
 		[DllImport("user32.dll")]
 		public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
@@ -27,27 +30,88 @@ namespace screen_capture.ImageRect
 		private readonly int widthOffset;
 		private readonly int minHeight;
 
-		public ImageRect(int _id)
+		private bool recording;
+		private GifBitmapEncoder encoder;
+
+		public GifRect(int _id)
 		{
 			id = _id;
+			recording = false;
+
 			InitializeComponent();
 			SetStyle(ControlStyles.ResizeRedraw, true);
-			StartPosition = FormStartPosition.Manual;
 
-			Load += ImageRect_Load;
+			minWidth = recordButton.Width + saveButton.Width + clearButton.Width;
+			widthOffset = left.Width + right.Width;
+			minHeight = titlePanel.Height + top.Height + bottom.Height;
+
+			Load += GifRect_Load;
 			LocationChanged += Form_LocationChanged;
 			SizeChanged += Form_SizeChanged;
 			titlePanel.MouseDown += title_MouseDown;
 			AddBorderResizeHandler(borderPanel);
 			AddSizePositionHandler(textArea);
 
-			minWidth = textArea.Width + captureButton.Width + saveButton.Width + clearButton.Width;
-			widthOffset = left.Width + right.Width;
-			minHeight = titlePanel.Height + top.Height + bottom.Height;
-
 			LoadSize();
 			LoadLocation();
 		}
+
+		#region Save & Load setting
+		private void LoadSize()
+		{
+			Size size;
+			try
+			{
+				size = (Size)Properties.Settings.Default["GIF_" + id.ToString() + "_RES"];
+			}
+			catch // Record box opens in fixed size if error occurs while loading size value
+			{
+				//MessageBox.Show("Record Box Size Load Failed");
+				size = new Size(minWidth + 128, minHeight + 128);
+			}
+			this.Size = size;
+		}
+		private void SaveSize()
+		{
+			try
+			{
+				Properties.Settings.Default["GIF_" + id.ToString() + "_RES"] = this.Size;
+				Properties.Settings.Default.Save();
+			}
+			catch
+			{
+				//MessageBox.Show("Record Box Size Save Failed");
+			}
+		}
+
+		private void LoadLocation()
+		{
+			Point point;
+			try
+			{
+				point = (Point)Properties.Settings.Default["GIF_" + id.ToString() + "_POS"];
+			}
+			catch // Record box opens in fixed location if error occurs while loading position
+			{
+				//MessageBox.Show("Record Box Location Load Failed");
+				point = new Point(Screen.PrimaryScreen.Bounds.Width / 2, Screen.PrimaryScreen.Bounds.Height / 2);
+			}
+			this.Location = point;
+		}
+		private void SaveLocation()
+		{
+			try
+			{
+				string prefix = "GIF_" + id.ToString();
+				Properties.Settings.Default[prefix + "_POS"] = this.Location;
+				Properties.Settings.Default.Save();
+			}
+			catch
+			{
+				//MessageBox.Show("Record Box Location Save Failed");
+			}
+		}
+		#endregion
 
 		#region Add event handler
 		private void AddSizePositionHandler(Control c)
@@ -71,7 +135,7 @@ namespace screen_capture.ImageRect
 		}
 		private void AddBorderResizeHandler(Panel p)
 		{
-			if (p == captureArea || p.GetType() != typeof(Panel))
+			if (p == recordArea || p.GetType() != typeof(Panel))
 				return;
 
 			if (!p.HasChildren)
@@ -150,7 +214,7 @@ namespace screen_capture.ImageRect
 		}
 		#endregion
 
-		#region Modify Size Location
+		#region Modify size & location
 		private void ChangeSizePosition(TextBox textbox)
 		{
 			if (textbox.Text == "" || !textbox.Enabled)
@@ -184,131 +248,82 @@ namespace screen_capture.ImageRect
 		}
 		#endregion
 
-		#region Save & Load setting
-		private void LoadSize()
+		#region Event handlers releated to gif recording
+		private void recordButton_Click(object sender, EventArgs e)
 		{
-			Size size;
-			try
+			if (recording)
 			{
-				size = (Size)Properties.Settings.Default["IMG_" + id.ToString() + "_RES"];
+				StopRecording();
 			}
-			catch // Capture box opens in fixed size if error occurs while loading size value
+			else
 			{
-				MessageBox.Show("Capture Box Size Load Failed");
-				size = new Size(minWidth + 128, minHeight + 128);
-			}
-			this.Size = size;
-		}
-		private void SaveSize()
-		{
-			try
-			{
-				Properties.Settings.Default["IMG_" + id.ToString() + "_RES"] = this.Size;
-				Properties.Settings.Default.Save();
-			}
-			catch
-			{
-				MessageBox.Show("Capture Box Properties Save Failed");
-			}
-		}
-
-		private void LoadLocation()
-		{
-			Point point;
-			try
-			{
-				point = (Point)Properties.Settings.Default["IMG_" + id.ToString() + "_POS"];
-			}
-			catch // Capture box opens in fixed location if error occurs while loading position
-			{
-				MessageBox.Show("Capture Box Location Load Failed");
-				point = new Point(Screen.PrimaryScreen.Bounds.Width / 2, Screen.PrimaryScreen.Bounds.Height / 2);
-			}
-			this.Location = point;
-		}
-		private void SaveLocation()
-		{
-			try
-			{
-				string prefix = "IMG_" + id.ToString();
-				Properties.Settings.Default[prefix + "_POS"] = this.Location;
-				Properties.Settings.Default.Save();
-			}
-			catch
-			{
-				MessageBox.Show("Capture Box Location Save Failed");
-			}
-		}
-		#endregion
-
-		#region Event handlers related to image capture
-		private void captureButton_Click(object sender, EventArgs e)
-		{
-			CaptureInternalRect();
-		}
-		private void saveButton_Click(object sender, EventArgs e)
-		{
-			if (captured.Image == null)
-				return;
-
-			string filename;
-			ImageFormat format;
-			saveFile.FileName = "";
-			if (saveFile.ShowDialog() == DialogResult.OK)
-			{
-				filename = saveFile.FileName;
-				format = MainForm.GetImageFormat(filename);
-				captured.Image.Save(filename, format);
+				StartRecording();
 			}
 		}
 		private void clearButton_Click(object sender, EventArgs e)
 		{
-			Clear();
+
+		}
+		private void saveButton_Click(object sender, EventArgs e)
+		{
+
 		}
 		#endregion
 
-		#region Capture
-		private void CaptureRect(Rectangle rect)
+		#region Recording
+		public void StartRecording()
 		{
-			Clear();
-			captured.BackColor = Color.White;
+			recording = true;
+			recordButton.ImageIndex = 1;
 
-			Bitmap bm = MainForm.CaptureRect(rect);
+			int frameRate;
+			int quality;
+			int interval;
 
-			captured.Image = bm;
-			borderPanel.Enabled = false;
-		}
-		//Capturing capture area
-		public void CaptureInternalRect()
-		{
-			Rectangle rect = new Rectangle(this.Left + left.Width,
-											this.Top + minHeight - bottom.Height,
-											this.Left + left.Width + this.Width - widthOffset,
-											this.Top + minHeight - bottom.Height + this.Height - minHeight);
-			CaptureRect(rect);
-			if ((bool)Properties.Settings.Default["IMG_AUTOSAVE"])
+			encoder = new GifBitmapEncoder();
+
+			try
 			{
-				AutoSave();
+				frameRate = (int)Properties.Settings.Default[""];
+				quality = (int)Properties.Settings.Default[""];
+			}
+			catch
+			{
+				frameRate = 30;
+				quality = 1;
+			}
+			interval = (int)(1.0f / frameRate * 1000.0f);
+
+			while (frameRate > 0)
+			{
+				Rectangle rect = new Rectangle(this.Left + left.Width,
+												this.Top + minHeight - bottom.Height,
+												this.Left + left.Width + this.Width - widthOffset,
+												this.Top + minHeight - bottom.Height + this.Height - minHeight);
+				Bitmap bm = MainForm.CaptureRect(rect, 2);
+				BitmapSizeOptions size = BitmapSizeOptions.FromEmptyOptions();
+				BitmapSource bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(bm.GetHbitmap(), IntPtr.Zero, System.Windows.Int32Rect.Empty, size);
+				BitmapFrame frame = BitmapFrame.Create(bitmapSource);
+				encoder.Frames.Add(frame);
+				frameRate--;
+				Thread.Sleep(interval);
 			}
 		}
-		//Capturing frame
-		public void CaptureWholeRect()
+		public void StopRecording()
 		{
-			Rectangle rect = new Rectangle(this.Left,
-											this.Top,
-											this.Left + this.Width,
-											this.Top + this.Height);
-			CaptureRect(rect);
+			recording = false;
+			recordButton.ImageIndex = 0;
+
+			AutoSave();
 		}
 		private void AutoSave()
 		{
 			List<int> namingTemplate = NamingConvention.SaveValueToInt((string)Properties.Settings.Default["IMG_NAMING"]);
-			ImageFormat format = MainForm.GetImageFormat((int)Properties.Settings.Default["IMG_FORMAT"]);
-			string formatString = "." + format.ToString().ToLower();
+			string formatString = "." + ImageFormat.Gif.ToString().ToLower();
 			string path = (string)Properties.Settings.Default["IMG_PATH"];
-
+			
 			if (DirectoryControl.DirectoryCheckCreate(path))
-				path += "\\" + NamingConvention.TemplateToName(namingTemplate)+formatString;
+				path += "\\" + NamingConvention.TemplateToName(namingTemplate) + formatString;
 			else
 			{
 				MessageBox.Show(path + "\n Directory not found.\nCould not save image automaically.", "Auto Save Failed");
@@ -317,7 +332,7 @@ namespace screen_capture.ImageRect
 
 			int insertIndex = path.Length - formatString.Length;
 			int i = 0;
-			while(File.Exists(path))
+			while (File.Exists(path))
 			{
 				if (i == 0)
 					path = path.Insert(insertIndex, "(" + i.ToString() + ")");
@@ -326,14 +341,10 @@ namespace screen_capture.ImageRect
 				i++;
 			}
 
-			captured.Image.Save(path, format);
-			Clear();
-		}
-		private void Clear()
-		{
-			captured.BackColor = Color.FromArgb(224, 224, 224);
-			captured.Image = null;
-			borderPanel.Enabled = true;
+			FileStream fs = new FileStream(path, FileMode.Create);
+			encoder.Save(fs);
+			encoder.Frames.Clear();
+			encoder = null;
 		}
 		#endregion
 
@@ -342,7 +353,7 @@ namespace screen_capture.ImageRect
 		{
 			this.ActiveControl = textArea;
 		}
-		private void ImageRect_Load(object sender, EventArgs e)
+		private void GifRect_Load(object sender, EventArgs e)
 		{
 			//Change focus to non-interactive element
 			LoseControlFocus();
@@ -356,6 +367,9 @@ namespace screen_capture.ImageRect
 		{
 			EnableSizeText((sender as Panel).Enabled);
 		}
+
 		#endregion
+
+		
 	}
 }

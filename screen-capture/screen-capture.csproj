@@ -46,8 +46,15 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GifRect\GifRect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GifRect\GifRect.Designer.cs">
+      <DependentUpon>GifRect.cs</DependentUpon>
+    </Compile>
     <Compile Include="ImageRect\ImageRect.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +113,9 @@
       <DependentUpon>ShortcutControl.cs</DependentUpon>
     </Compile>
     <Compile Include="WinMessage.cs" />
+    <EmbeddedResource Include="GifRect\GifRect.resx">
+      <DependentUpon>GifRect.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ImageRect\ImageRect.resx">
       <DependentUpon>ImageRect.cs</DependentUpon>
     </EmbeddedResource>
@@ -138,6 +148,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="MainForm\ShortcutControl.resx">
       <DependentUpon>ShortcutControl.cs</DependentUpon>
@@ -154,6 +165,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\record.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\recording.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

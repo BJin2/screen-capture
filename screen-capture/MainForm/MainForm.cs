@@ -32,6 +32,7 @@ namespace screen_capture
 
 		private List<Form> irects;
 		private List<Form> grects;
+		GifRect.GifRect temp;
 
 		public MainForm()
 		{
@@ -46,6 +47,9 @@ namespace screen_capture
 			gifSetting.LoadSetting();
 
 			titlePanel.MouseDown += titleBar_MouseDown;
+
+			temp = new GifRect.GifRect(0);
+			temp.Show();
 		}
 
 		protected override void WndProc(ref Message m)
@@ -87,6 +91,7 @@ namespace screen_capture
 					r.Close();
 				}
 			}
+			temp.Close();
 			this.Close();
 		}
 
@@ -206,6 +211,24 @@ namespace screen_capture
 			}
 
 			return imgfmt;
+		}
+
+		public static Bitmap CaptureRect(Rectangle rect, int quality = 1)
+		{
+			int width = rect.Width - rect.Left;
+			int height = rect.Height - rect.Top;
+			Bitmap bm = new Bitmap(width, height);
+			Graphics g = Graphics.FromImage(bm);
+			g.CopyFromScreen(rect.Left, rect.Top, 0, 0, new Size(width, height));
+			//TODO make draw cursor option
+			DrawMousePointer(g, Cursor.Position.X - rect.Left, Cursor.Position.Y - rect.Top);
+
+			if (quality > 1)
+			{
+				bm = new Bitmap(bm, new Size(width / quality, height / quality));
+			}
+
+			return bm;
 		}
 		public static void DrawMousePointer(Graphics g, int x, int y)
 		{
