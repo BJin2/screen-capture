@@ -49,6 +49,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GifRect\ByteListPrinter.cs" />
+    <Compile Include="GifRect\GifDataModifier.cs" />
     <Compile Include="GifRect\GifRect.cs">
       <SubType>Form</SubType>
     </Compile>
