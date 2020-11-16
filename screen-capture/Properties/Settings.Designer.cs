@@ -838,5 +838,17 @@ namespace screen_capture.Properties {
                 this["GIF_9_RES"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int GIF_FRAME {
+            get {
+                return ((int)(this["GIF_FRAME"]));
+            }
+            set {
+                this["GIF_FRAME"] = value;
+            }
+        }
     }
 }

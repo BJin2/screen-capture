@@ -273,6 +273,8 @@ namespace screen_capture.GifRect
 		#region Recording
 		public void StartRecording()
 		{
+			Clear();
+
 			recording = true;
 			recordButton.ImageIndex = 1;
 
@@ -283,8 +285,8 @@ namespace screen_capture.GifRect
 
 			try
 			{
-				interval = (int)Properties.Settings.Default[""];
-				quality = (int)Properties.Settings.Default[""];
+				interval = MainForm.GetInterval((int)Properties.Settings.Default["GIF_FRAME"]);
+				quality = MainForm.GetQuality((int)Properties.Settings.Default["GIF_QUALITY"]);
 			}
 			catch
 			{
@@ -323,7 +325,8 @@ namespace screen_capture.GifRect
 			recording = false;
 			recordButton.ImageIndex = 0;
 
-			AutoSave();
+			if ((bool)Properties.Settings.Default["GIF_AUTOSAVE"])
+				AutoSave();
 		}
 		private void SaveGif(string path)
 		{
@@ -331,16 +334,17 @@ namespace screen_capture.GifRect
 			encoder.Save(ms);
 
 			List<byte> gifData = new List<byte>(ms.ToArray());
-			GifDataModifier.ChangeDelay(gifData, 6);
+			short delay = MainForm.GetFrameRate((int)Properties.Settings.Default["GIF_FRAME"]);
+			GifDataModifier.ChangeDelay(gifData, delay);
 			GifDataModifier.Save(path, gifData);
 		}
 		private void AutoSave()
 		{
 			#region Defining file path and file name
 			//TODO Make this part as a static function of NamingConvention So that ImageRect and GifRect can share
-			List<int> namingTemplate = NamingConvention.SaveValueToInt((string)Properties.Settings.Default["IMG_NAMING"]);
+			List<int> namingTemplate = NamingConvention.SaveValueToInt((string)Properties.Settings.Default["GIF_NAMING"]);
 			string formatString = "." + ImageFormat.Gif.ToString().ToLower();
-			string path = (string)Properties.Settings.Default["IMG_PATH"];
+			string path = (string)Properties.Settings.Default["GIF_PATH"];
 			
 			if (DirectoryControl.DirectoryCheckCreate(path))
 				path += "\\" + NamingConvention.TemplateToName(namingTemplate) + formatString;
@@ -367,8 +371,13 @@ namespace screen_capture.GifRect
 		}
 		private void Clear()
 		{
-			encoder.Frames.Clear();
-			encoder = null;
+			//TODO stop async task
+			if (encoder != null)
+			{
+				encoder.Frames.Clear();
+				encoder = null;
+			}
+			recording = false;
 		}
 		#endregion
 

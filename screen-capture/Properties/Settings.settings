@@ -206,5 +206,8 @@
     <Setting Name="GIF_9_RES" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">280, 188</Value>
     </Setting>
+    <Setting Name="GIF_FRAME" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
