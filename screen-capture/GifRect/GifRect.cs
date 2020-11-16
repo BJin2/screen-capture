@@ -276,7 +276,6 @@ namespace screen_capture.GifRect
 			recording = true;
 			recordButton.ImageIndex = 1;
 
-			int frameRate;
 			int quality;
 			int interval;
 
@@ -284,30 +283,40 @@ namespace screen_capture.GifRect
 
 			try
 			{
-				frameRate = (int)Properties.Settings.Default[""];
+				interval = (int)Properties.Settings.Default[""];
 				quality = (int)Properties.Settings.Default[""];
 			}
 			catch
 			{
-				frameRate = 30;
-				quality = 1;
+				interval = 33;
+				quality = 2;
 			}
-			interval = (int)(1.0f / frameRate * 1000.0f);
 
-			while (frameRate > 0)
+			int numFrame = 60;
+
+			#region Async task until recording becomes false
+			//TODO change to recording
+			//TODO async task(apart from main thread so processing image data and window default behaviors can work at the same time
+			while (numFrame > 0)
 			{
 				Rectangle rect = new Rectangle(this.Left + left.Width,
 												this.Top + minHeight - bottom.Height,
 												this.Left + left.Width + this.Width - widthOffset,
 												this.Top + minHeight - bottom.Height + this.Height - minHeight);
-				Bitmap bm = MainForm.CaptureRect(rect, 2);
+				Bitmap bm = MainForm.CaptureRect(rect, quality);
+
+				/*/
+				gifDataModifier.AddFrame(bm, 33);
+				/*/
 				BitmapSizeOptions size = BitmapSizeOptions.FromEmptyOptions();
 				BitmapSource bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(bm.GetHbitmap(), IntPtr.Zero, System.Windows.Int32Rect.Empty, size);
 				BitmapFrame frame = BitmapFrame.Create(bitmapSource);
 				encoder.Frames.Add(frame);
-				frameRate--;
+				//*/
+				numFrame--;
 				Thread.Sleep(interval);
 			}
+			#endregion
 		}
 		public void StopRecording()
 		{
@@ -316,8 +325,21 @@ namespace screen_capture.GifRect
 
 			AutoSave();
 		}
+		private void SaveGif(string path)
+		{
+			MemoryStream ms = new MemoryStream();
+			encoder.Save(ms);
+			encoder.Frames.Clear();
+			encoder = null;
+
+			List<byte> gifData = new List<byte>(ms.ToArray());
+			GifDataModifier.ChangeDelay(gifData, 6);
+			GifDataModifier.Save(path, gifData);
+		}
 		private void AutoSave()
 		{
+			#region Defining file path and file name
+			//TODO Make this part as a static function of NamingConvention So that ImageRect and GifRect can share
 			List<int> namingTemplate = NamingConvention.SaveValueToInt((string)Properties.Settings.Default["IMG_NAMING"]);
 			string formatString = "." + ImageFormat.Gif.ToString().ToLower();
 			string path = (string)Properties.Settings.Default["IMG_PATH"];
@@ -340,11 +362,9 @@ namespace screen_capture.GifRect
 					path = path.Replace("(" + (i - 1).ToString() + ")", "(" + i.ToString() + ")");
 				i++;
 			}
+			#endregion
 
-			FileStream fs = new FileStream(path, FileMode.Create);
-			encoder.Save(fs);
-			encoder.Frames.Clear();
-			encoder = null;
+			SaveGif(path);
 		}
 		#endregion
 
