@@ -12,116 +12,14 @@ using Data = System.Collections.Generic.List<byte>;
 namespace screen_capture
 {
 	//Just modify data from GifBitmapEncoder
-	public class GifDataModifier
+	public static class GifDataModifier
 	{
-		//total gif data
-		private Data data;
-		private bool hasSignature;
-
-		public GifDataModifier()
+		private enum Extension
 		{
-			data = new Data();
-			hasSignature = false;
-		}
-
-		public void AddFrame(Bitmap bm, UInt32 delay)
-		{
-			MemoryStream temp = new MemoryStream();
-			bm.Save(temp, ImageFormat.Gif);
-			Data gifData = new Data(temp.ToArray());
-			Data globalColorTable = ExtractGlobalColorTable(gifData);
-
-			//*/
-			if (!hasSignature)
-				AddSignature(gifData);
-
-			//Remove other extensions
-			RemoveUntilGraphicControlExtension(gifData);
-
-			//Modify gif data to have expected value
-			AddDelay(gifData, delay);
-			InsertColoTable(gifData, globalColorTable);
-			//*/
-			MoveFrom(0, gifData.Count, gifData, data);
-			if (data.Last() == 0x3b)
-				data.RemoveAt(data.Count - 1);
-		}
-
-		private void AddSignature(Data oneFrame)
-		{
-			#region Header
-			MoveFrom(0, 6, oneFrame, data);
-			#endregion
-			#region Screen Descriptor
-			byte screenDescriptroPackedByte = oneFrame[4];
-			MoveFrom(0, 10, oneFrame, data);
-			if (HasColorTable(screenDescriptroPackedByte))
-			{
-				data[10] ^= 0b10000000;
-				int size = GetColorTableSize(screenDescriptroPackedByte) * 3;
-				for (int i = 0; i < size; i++)
-				{
-					oneFrame.RemoveAt(0);
-				}
-			}
-			#endregion
-			#region Application Extension
-			if (oneFrame[1] == 0x21 && oneFrame[1] == 0xff)
-			{
-				MoveFrom(0, 19, oneFrame, data);
-			}
-			#endregion
-			hasSignature = true;
-		}
-
-		private void AddDelay(Data oneFrame, UInt32 delay)
-		{
-			oneFrame[4] = (byte)delay;
-			oneFrame[5] = (byte)(delay >> 8);
-		}
-
-		private void RemoveUntilGraphicControlExtension(Data oneFrame)
-		{
-			int i;
-			for (i = 0; i < oneFrame.Count-1; i++)
-			{
-				if (oneFrame[i] == 0x21 && oneFrame[i + 1] == 0xf9)
-					break;
-			}
-
-			if (i != 0)
-				oneFrame.RemoveRange(0, i);
-		}
-
-		private void InsertColoTable(Data oneFrame, Data colorTable)
-		{
-			if (HasColorTable(oneFrame[17]))
-				return;
-			int size = GetColorTableSize(colorTable);
-			oneFrame[17] |= 0b10000000;
-			oneFrame[17] |= (byte)size;
-			oneFrame.InsertRange(18, colorTable);
-		}
-		public static void MoveFrom(int start, int size, Data from, Data to)
-		{
-			for (int i = start; i < start + size; i++)
-			{
-				to.Add(from[i]);
-			}
-			from.RemoveRange(start, size);
-		}
-
-		private Data ExtractGlobalColorTable(Data oneFrame)
-		{
-			if (!HasColorTable(oneFrame[10]))
-				return null;
-			Data colorTable = new Data();
-			int colorTableSize = GetColorTableSize(oneFrame[10]) * 3;
-			for (int i = 0; i < colorTableSize; i++)
-			{
-				colorTable.Add(oneFrame[13 + i]);
-			}
-			return colorTable;
+			GraphicControl = 0xf9,
+			PlainText = 0x01,
+			Application = 0xff,
+			Comment = 0xfe
 		}
 
 		public static bool HasColorTable(byte b)
@@ -133,61 +31,75 @@ namespace screen_capture
 		{
 			//Check last 3 bits of b
 			int lastThreePlusOne = (b & 0b00000111) + 1;
-			return lastThreePlusOne * lastThreePlusOne;
-		}
-		public static int GetColorTableSize(Data table)
-		{
-			int total = table.Count / 3;
-			int root = (int)Math.Sqrt(total);
-			return root - 1;
+			
+			return (int)Math.Pow(2, lastThreePlusOne);
 		}
 
-		public void Save(string path)
+		public static void Save(string path, Data data)
 		{
-			//data.Add(0x3b);
 			FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Read);
 			fs.Write(data.ToArray(), 0, data.Count);
 			fs.Dispose();
 			fs.Close();
 
+			//*/
 			path = path.Replace(".gif", ".txt");
 			GifDebugger.ByteListPrinter.PrintByteListToTextFile(path, data);
+			//*/
 		}
 
-		public void Clear()
+		public static void ChangeDelay(Data gif, short delay)
 		{
-			data.Clear();
-			hasSignature = false;
-		}
-
-		public void ChangeDelay(Data gif, short delay)
-		{
-			data = gif;
-			/*/
+			//*/
 			int i = 13;
 			while (i < gif.Count-1)
 			{
-				//Graphic control exists
-				if ((gif[i] == 0x21) && (gif[i+1] == 0xf9))
+				while (gif[i] == 0x21)
 				{
-					gif[i + 4] = (byte)delay;
-					gif[i + 5] = (byte)(delay >> 8);
-					i += 17;
-				}
-				else
-				{
-					while (gif[i] != 0x2c)
+					switch ((Extension)gif[i + 1])
 					{
-						i++;
+						case Extension.GraphicControl:
+							gif[i + 4] = (byte)delay;
+							gif[i + 5] = (byte)(delay >> 8);
+							i += 8;
+							break;
+						case Extension.Application:
+							i += 10;
+							break;
+						case Extension.PlainText:
+							i += gif[i+2] + 1;
+							goto case Extension.Comment;
+						case Extension.Comment:
+							i += 2;
+							while (gif[i] != 0x00)
+							{
+								i += gif[i] + 1;
+							}
+							break;
+						default:
+							System.Windows.Forms.MessageBox.Show("Unkown extension found.\nInserting delay failed", "Unkown Extension");
+							return;
 					}
-					i += 9;
 				}
-				i += (GetColorTableSize(gif[i]) * 3) + 2;
+
+				if (gif[i] != 0x2c)
+				{
+					string b = string.Format("{0:x2}", gif[i]);
+					System.Windows.Forms.MessageBox.Show("Byte offset incorrect.\nbyte : " + b + "\nindex : " + i.ToString(), "Byte Offset Error");
+					return;
+				}
+				//Skip(image descriptor beginning byte to last byte)
+				i += 9;
+				int colorTableSize = GetColorTableSize(gif[i]);
+				i += (GetColorTableSize(gif[i]) * 3) + 2;//Color table size + lzw minimun code(size of 1 byte) + first code block size indicator(size of 1 byte)
 
 				while (gif[i] != 0x00)
 				{
 					i += gif[i] + 1;
 				}
+
+				//Finished image data loop
+				//Adding 1 to start from next frame data
 				i += 1;
 			}
 			/*/

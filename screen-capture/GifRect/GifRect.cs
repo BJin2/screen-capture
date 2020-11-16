@@ -31,7 +31,6 @@ namespace screen_capture.GifRect
 		private readonly int minHeight;
 
 		private bool recording;
-		private GifDataModifier gifDataModifier;
 		private GifBitmapEncoder encoder;
 
 		public GifRect(int _id)
@@ -280,7 +279,6 @@ namespace screen_capture.GifRect
 			int quality;
 			int interval;
 
-			gifDataModifier = new GifDataModifier();
 			encoder = new GifBitmapEncoder();
 
 			try
@@ -291,7 +289,7 @@ namespace screen_capture.GifRect
 			catch
 			{
 				interval = 33;
-				quality = 1;
+				quality = 2;
 			}
 
 			int numFrame = 60;
@@ -327,6 +325,17 @@ namespace screen_capture.GifRect
 
 			AutoSave();
 		}
+		private void SaveGif(string path)
+		{
+			MemoryStream ms = new MemoryStream();
+			encoder.Save(ms);
+			encoder.Frames.Clear();
+			encoder = null;
+
+			List<byte> gifData = new List<byte>(ms.ToArray());
+			GifDataModifier.ChangeDelay(gifData, 6);
+			GifDataModifier.Save(path, gifData);
+		}
 		private void AutoSave()
 		{
 			#region Defining file path and file name
@@ -355,22 +364,7 @@ namespace screen_capture.GifRect
 			}
 			#endregion
 
-			//*/
-			MemoryStream ms = new MemoryStream();
-			//FileStream fs = new FileStream(path, FileMode.Create);
-			//encoder.Save(fs);
-			encoder.Save(ms);
-			encoder.Frames.Clear();
-			encoder = null;
-
-			List<byte> gd = new List<byte>(ms.ToArray());
-			gifDataModifier.ChangeDelay(gd, 6);
-			gifDataModifier.Save(path);
-			gifDataModifier.Clear();
-			/*/
-			//TODO use gifMemoryStream to save the data
-			gifDataModifier.Save(path);
-			//*/
+			SaveGif(path);
 		}
 		#endregion
 
