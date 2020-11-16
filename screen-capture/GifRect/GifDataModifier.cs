@@ -42,7 +42,7 @@ namespace screen_capture
 			fs.Dispose();
 			fs.Close();
 
-			//*/
+			/*/
 			path = path.Replace(".gif", ".txt");
 			GifDebugger.ByteListPrinter.PrintByteListToTextFile(path, data);
 			//*/

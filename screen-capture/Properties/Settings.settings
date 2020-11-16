@@ -146,5 +146,65 @@
     <Setting Name="IMG_9_RES" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">230, 188</Value>
     </Setting>
+    <Setting Name="GIF_0_POS" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">100, 100</Value>
+    </Setting>
+    <Setting Name="GIF_0_RES" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">280, 188</Value>
+    </Setting>
+    <Setting Name="GIF_1_POS" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">130, 130</Value>
+    </Setting>
+    <Setting Name="GIF_1_RES" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">280, 188</Value>
+    </Setting>
+    <Setting Name="GIF_2_POS" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">160, 160</Value>
+    </Setting>
+    <Setting Name="GIF_2_RES" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">280, 188</Value>
+    </Setting>
+    <Setting Name="GIF_3_POS" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">190, 190</Value>
+    </Setting>
+    <Setting Name="GIF_3_RES" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">280, 188</Value>
+    </Setting>
+    <Setting Name="GIF_4_POS" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">220, 220</Value>
+    </Setting>
+    <Setting Name="GIF_4_RES" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">280, 188</Value>
+    </Setting>
+    <Setting Name="GIF_5_POS" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">250, 250</Value>
+    </Setting>
+    <Setting Name="GIF_5_RES" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">280, 188</Value>
+    </Setting>
+    <Setting Name="GIF_6_POS" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">280, 280</Value>
+    </Setting>
+    <Setting Name="GIF_6_RES" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">280, 188</Value>
+    </Setting>
+    <Setting Name="GIF_7_POS" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">310, 310</Value>
+    </Setting>
+    <Setting Name="GIF_7_RES" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">280, 188</Value>
+    </Setting>
+    <Setting Name="GIF_8_POS" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">340, 340</Value>
+    </Setting>
+    <Setting Name="GIF_8_RES" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">280, 188</Value>
+    </Setting>
+    <Setting Name="GIF_9_POS" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">370, 370</Value>
+    </Setting>
+    <Setting Name="GIF_9_RES" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">280, 188</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

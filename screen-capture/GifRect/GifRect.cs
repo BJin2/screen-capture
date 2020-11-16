@@ -329,8 +329,6 @@ namespace screen_capture.GifRect
 		{
 			MemoryStream ms = new MemoryStream();
 			encoder.Save(ms);
-			encoder.Frames.Clear();
-			encoder = null;
 
 			List<byte> gifData = new List<byte>(ms.ToArray());
 			GifDataModifier.ChangeDelay(gifData, 6);
@@ -365,6 +363,12 @@ namespace screen_capture.GifRect
 			#endregion
 
 			SaveGif(path);
+			Clear();
+		}
+		private void Clear()
+		{
+			encoder.Frames.Clear();
+			encoder = null;
 		}
 		#endregion
 
