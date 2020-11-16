@@ -31,6 +31,7 @@ namespace screen_capture
 			Data gifData = new Data(temp.ToArray());
 			Data globalColorTable = ExtractGlobalColorTable(gifData);
 
+			//*/
 			if (!hasSignature)
 				AddSignature(gifData);
 
@@ -40,7 +41,7 @@ namespace screen_capture
 			//Modify gif data to have expected value
 			AddDelay(gifData, delay);
 			InsertColoTable(gifData, globalColorTable);
-
+			//*/
 			MoveFrom(0, gifData.Count, gifData, data);
 			if (data.Last() == 0x3b)
 				data.RemoveAt(data.Count - 1);
@@ -101,7 +102,7 @@ namespace screen_capture
 			oneFrame[17] |= (byte)size;
 			oneFrame.InsertRange(18, colorTable);
 		}
-		private void MoveFrom(int start, int size, Data from, Data to)
+		public static void MoveFrom(int start, int size, Data from, Data to)
 		{
 			for (int i = start; i < start + size; i++)
 			{
@@ -123,18 +124,18 @@ namespace screen_capture
 			return colorTable;
 		}
 
-		private bool HasColorTable(byte b)
+		public static bool HasColorTable(byte b)
 		{
 			return (b & 0b10000000) == 0b10000000;
 		}
 
-		private int GetColorTableSize(byte b)
+		public static int GetColorTableSize(byte b)
 		{
 			//Check last 3 bits of b
 			int lastThreePlusOne = (b & 0b00000111) + 1;
 			return lastThreePlusOne * lastThreePlusOne;
 		}
-		private int GetColorTableSize(Data table)
+		public static int GetColorTableSize(Data table)
 		{
 			int total = table.Count / 3;
 			int root = (int)Math.Sqrt(total);
@@ -143,7 +144,7 @@ namespace screen_capture
 
 		public void Save(string path)
 		{
-			data.Add(0x3b);
+			//data.Add(0x3b);
 			FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Read);
 			fs.Write(data.ToArray(), 0, data.Count);
 			fs.Dispose();
@@ -157,6 +158,48 @@ namespace screen_capture
 		{
 			data.Clear();
 			hasSignature = false;
+		}
+
+		public void ChangeDelay(Data gif, short delay)
+		{
+			data = gif;
+			/*/
+			int i = 13;
+			while (i < gif.Count-1)
+			{
+				//Graphic control exists
+				if ((gif[i] == 0x21) && (gif[i+1] == 0xf9))
+				{
+					gif[i + 4] = (byte)delay;
+					gif[i + 5] = (byte)(delay >> 8);
+					i += 17;
+				}
+				else
+				{
+					while (gif[i] != 0x2c)
+					{
+						i++;
+					}
+					i += 9;
+				}
+				i += (GetColorTableSize(gif[i]) * 3) + 2;
+
+				while (gif[i] != 0x00)
+				{
+					i += gif[i] + 1;
+				}
+				i += 1;
+			}
+			/*/
+			for (int i = 0; i < gif.Count - 1; i++)
+			{
+				if ((gif[i] == 0x21) && (gif[i + 1] == 0xf9) && (gif[i+2] == 0x04) && (gif[i+8] == 0x2c))
+				{
+					gif[i + 4] = (byte)delay;
+					gif[i + 5] = (byte)(delay >> 8);
+				}
+			}
+			//*/
 		}
 	}
 }

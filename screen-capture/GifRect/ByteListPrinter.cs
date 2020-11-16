@@ -14,7 +14,22 @@ namespace GifDebugger
 			{
 				hex.AppendFormat("{0:x2}", b);
 			}
-			File.WriteAllText(path, hex.ToString());
+			string temp = hex.ToString();
+			List<char> c = new List<char>(temp.ToCharArray());
+			c.Insert(12, '\n');
+			c.Insert(27, '\n');
+			for (int i = 0; i < c.Count - 4; i++)
+			{
+				
+				if ((c[i] == '2') && (c[i+1] == '1') && (c[i + 2] == 'f') && (c[i + 3] == '9'))
+				{
+					c.Insert(i + 16, '\n');
+					c.Insert(i + 37, '\n');
+				}
+			}
+
+			temp = new string(c.ToArray());
+			File.WriteAllText(path, temp);
 		}
 	}
 }

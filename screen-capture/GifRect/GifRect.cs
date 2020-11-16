@@ -294,7 +294,7 @@ namespace screen_capture.GifRect
 				quality = 1;
 			}
 
-			int numFrame = 30;
+			int numFrame = 60;
 
 			#region Async task until recording becomes false
 			//TODO change to recording
@@ -307,7 +307,7 @@ namespace screen_capture.GifRect
 												this.Top + minHeight - bottom.Height + this.Height - minHeight);
 				Bitmap bm = MainForm.CaptureRect(rect, quality);
 
-				//*/
+				/*/
 				gifDataModifier.AddFrame(bm, 33);
 				/*/
 				BitmapSizeOptions size = BitmapSizeOptions.FromEmptyOptions();
@@ -355,11 +355,18 @@ namespace screen_capture.GifRect
 			}
 			#endregion
 
-			/*/
-			FileStream fs = new FileStream(path, FileMode.Create);
-			encoder.Save(fs);
+			//*/
+			MemoryStream ms = new MemoryStream();
+			//FileStream fs = new FileStream(path, FileMode.Create);
+			//encoder.Save(fs);
+			encoder.Save(ms);
 			encoder.Frames.Clear();
 			encoder = null;
+
+			List<byte> gd = new List<byte>(ms.ToArray());
+			gifDataModifier.ChangeDelay(gd, 6);
+			gifDataModifier.Save(path);
+			gifDataModifier.Clear();
 			/*/
 			//TODO use gifMemoryStream to save the data
 			gifDataModifier.Save(path);
