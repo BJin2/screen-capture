@@ -65,7 +65,7 @@ namespace screen_capture
 						MessageBox.Show(((int)m.WParam).ToString());
 						break;
 					case (int)SHORTCUT_FUNCTION.RECORD_ALL:
-						MessageBox.Show(((int)m.WParam).ToString());
+						RecordAll();
 						break;
 					default:
 						MessageBox.Show("Undefined Hotkey");
@@ -257,6 +257,17 @@ namespace screen_capture
 			for (int i = 0; i < irects.Count; i++)
 			{
 				(irects[i] as ImgRect).CaptureInternalRect();
+			}
+		}
+		private void RecordAll()
+		{
+			for (int i = 0; i < grects.Count; i++)
+			{
+				var rect = grects[i] as GIFRect;
+				if (rect.Recording)
+					rect.StopRecording();
+				else
+					rect.StartRecording();
 			}
 		}
 		#endregion

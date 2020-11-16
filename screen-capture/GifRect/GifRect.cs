@@ -31,6 +31,7 @@ namespace screen_capture.GifRect
 		private readonly int minHeight;
 
 		private bool recording;
+		public bool Recording { get { return recording; } }
 		private GifBitmapEncoder encoder;
 
 		public GifRect(int _id)
