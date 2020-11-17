@@ -328,6 +328,7 @@
 			this.recorded.Location = new System.Drawing.Point(0, 0);
 			this.recorded.Name = "recorded";
 			this.recorded.Size = new System.Drawing.Size(790, 390);
+			this.recorded.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.recorded.TabIndex = 1;
 			this.recorded.TabStop = false;
 			// 

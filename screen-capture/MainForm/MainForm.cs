@@ -149,7 +149,6 @@ namespace screen_capture
 					}
 					else if (ct == CAPTURE_TYPE.GIF)
 					{
-						//TODO change ImgRect to GifRect
 						rects.Add(new GIFRect(id));
 					}
 					rects.Last().Show();
