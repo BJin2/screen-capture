@@ -12,7 +12,7 @@ namespace screen_capture.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.7.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.8.1.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -596,6 +596,258 @@ namespace screen_capture.Properties {
             }
             set {
                 this["IMG_9_RES"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
+        public global::System.Drawing.Point GIF_0_POS {
+            get {
+                return ((global::System.Drawing.Point)(this["GIF_0_POS"]));
+            }
+            set {
+                this["GIF_0_POS"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("280, 188")]
+        public global::System.Drawing.Size GIF_0_RES {
+            get {
+                return ((global::System.Drawing.Size)(this["GIF_0_RES"]));
+            }
+            set {
+                this["GIF_0_RES"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("130, 130")]
+        public global::System.Drawing.Point GIF_1_POS {
+            get {
+                return ((global::System.Drawing.Point)(this["GIF_1_POS"]));
+            }
+            set {
+                this["GIF_1_POS"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("280, 188")]
+        public global::System.Drawing.Size GIF_1_RES {
+            get {
+                return ((global::System.Drawing.Size)(this["GIF_1_RES"]));
+            }
+            set {
+                this["GIF_1_RES"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("160, 160")]
+        public global::System.Drawing.Point GIF_2_POS {
+            get {
+                return ((global::System.Drawing.Point)(this["GIF_2_POS"]));
+            }
+            set {
+                this["GIF_2_POS"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("280, 188")]
+        public global::System.Drawing.Size GIF_2_RES {
+            get {
+                return ((global::System.Drawing.Size)(this["GIF_2_RES"]));
+            }
+            set {
+                this["GIF_2_RES"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("190, 190")]
+        public global::System.Drawing.Point GIF_3_POS {
+            get {
+                return ((global::System.Drawing.Point)(this["GIF_3_POS"]));
+            }
+            set {
+                this["GIF_3_POS"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("280, 188")]
+        public global::System.Drawing.Size GIF_3_RES {
+            get {
+                return ((global::System.Drawing.Size)(this["GIF_3_RES"]));
+            }
+            set {
+                this["GIF_3_RES"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("220, 220")]
+        public global::System.Drawing.Point GIF_4_POS {
+            get {
+                return ((global::System.Drawing.Point)(this["GIF_4_POS"]));
+            }
+            set {
+                this["GIF_4_POS"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("280, 188")]
+        public global::System.Drawing.Size GIF_4_RES {
+            get {
+                return ((global::System.Drawing.Size)(this["GIF_4_RES"]));
+            }
+            set {
+                this["GIF_4_RES"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("250, 250")]
+        public global::System.Drawing.Point GIF_5_POS {
+            get {
+                return ((global::System.Drawing.Point)(this["GIF_5_POS"]));
+            }
+            set {
+                this["GIF_5_POS"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("280, 188")]
+        public global::System.Drawing.Size GIF_5_RES {
+            get {
+                return ((global::System.Drawing.Size)(this["GIF_5_RES"]));
+            }
+            set {
+                this["GIF_5_RES"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("280, 280")]
+        public global::System.Drawing.Point GIF_6_POS {
+            get {
+                return ((global::System.Drawing.Point)(this["GIF_6_POS"]));
+            }
+            set {
+                this["GIF_6_POS"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("280, 188")]
+        public global::System.Drawing.Size GIF_6_RES {
+            get {
+                return ((global::System.Drawing.Size)(this["GIF_6_RES"]));
+            }
+            set {
+                this["GIF_6_RES"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("310, 310")]
+        public global::System.Drawing.Point GIF_7_POS {
+            get {
+                return ((global::System.Drawing.Point)(this["GIF_7_POS"]));
+            }
+            set {
+                this["GIF_7_POS"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("280, 188")]
+        public global::System.Drawing.Size GIF_7_RES {
+            get {
+                return ((global::System.Drawing.Size)(this["GIF_7_RES"]));
+            }
+            set {
+                this["GIF_7_RES"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("340, 340")]
+        public global::System.Drawing.Point GIF_8_POS {
+            get {
+                return ((global::System.Drawing.Point)(this["GIF_8_POS"]));
+            }
+            set {
+                this["GIF_8_POS"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("280, 188")]
+        public global::System.Drawing.Size GIF_8_RES {
+            get {
+                return ((global::System.Drawing.Size)(this["GIF_8_RES"]));
+            }
+            set {
+                this["GIF_8_RES"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("370, 370")]
+        public global::System.Drawing.Point GIF_9_POS {
+            get {
+                return ((global::System.Drawing.Point)(this["GIF_9_POS"]));
+            }
+            set {
+                this["GIF_9_POS"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("280, 188")]
+        public global::System.Drawing.Size GIF_9_RES {
+            get {
+                return ((global::System.Drawing.Size)(this["GIF_9_RES"]));
+            }
+            set {
+                this["GIF_9_RES"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int GIF_FRAME {
+            get {
+                return ((int)(this["GIF_FRAME"]));
+            }
+            set {
+                this["GIF_FRAME"] = value;
             }
         }
     }

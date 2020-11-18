@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
 
+
 namespace screen_capture.GifRect
 {
 	public partial class GifRect : Form
@@ -31,12 +32,17 @@ namespace screen_capture.GifRect
 		private readonly int minHeight;
 
 		private bool recording;
+		public bool Recording { get { return recording; } }
+		private bool waiting;
+		private bool saving;
+
 		private GifBitmapEncoder encoder;
+
+		private Task recordTask;
 
 		public GifRect(int _id)
 		{
 			id = _id;
-			recording = false;
 
 			InitializeComponent();
 			SetStyle(ControlStyles.ResizeRedraw, true);
@@ -262,11 +268,11 @@ namespace screen_capture.GifRect
 		}
 		private void clearButton_Click(object sender, EventArgs e)
 		{
-
+			Clear();
 		}
 		private void saveButton_Click(object sender, EventArgs e)
 		{
-
+			saving = true;
 		}
 		#endregion
 
@@ -274,17 +280,26 @@ namespace screen_capture.GifRect
 		public void StartRecording()
 		{
 			recording = true;
-			recordButton.ImageIndex = 1;
+			waiting = true;
+			saving = false;
 
+			recordButton.ImageIndex = 1;
+			borderPanel.Enabled = false;
+
+			recordTask = new Task(Record);
+			recordTask.Start();
+		}
+		private void Record()
+		{
 			int quality;
 			int interval;
+			Bitmap bm;
 
 			encoder = new GifBitmapEncoder();
-
 			try
 			{
-				interval = (int)Properties.Settings.Default[""];
-				quality = (int)Properties.Settings.Default[""];
+				interval = MainForm.GetInterval((int)Properties.Settings.Default["GIF_FRAME"]);
+				quality = MainForm.GetQuality((int)Properties.Settings.Default["GIF_QUALITY"]);
 			}
 			catch
 			{
@@ -292,57 +307,68 @@ namespace screen_capture.GifRect
 				quality = 2;
 			}
 
-			int numFrame = 60;
-
-			#region Async task until recording becomes false
-			//TODO change to recording
-			//TODO async task(apart from main thread so processing image data and window default behaviors can work at the same time
-			while (numFrame > 0)
+			#region until recording becomes false
+			while (recording)
 			{
 				Rectangle rect = new Rectangle(this.Left + left.Width,
 												this.Top + minHeight - bottom.Height,
 												this.Left + left.Width + this.Width - widthOffset,
 												this.Top + minHeight - bottom.Height + this.Height - minHeight);
-				Bitmap bm = MainForm.CaptureRect(rect, quality);
-
-				/*/
-				gifDataModifier.AddFrame(bm, 33);
-				/*/
+				bm = MainForm.CaptureRect(rect, quality);
 				BitmapSizeOptions size = BitmapSizeOptions.FromEmptyOptions();
 				BitmapSource bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(bm.GetHbitmap(), IntPtr.Zero, System.Windows.Int32Rect.Empty, size);
 				BitmapFrame frame = BitmapFrame.Create(bitmapSource);
 				encoder.Frames.Add(frame);
-				//*/
-				numFrame--;
 				Thread.Sleep(interval);
 			}
 			#endregion
+
+			if ((bool)Properties.Settings.Default["GIF_AUTOSAVE"])
+			{
+				AutoSave();
+				return;
+			}
+
+			MemoryStream ms = new MemoryStream();
+			encoder.Save(ms);
+			bm = new Bitmap(ms);
+			recorded.Image = bm;
+
+			while (waiting)
+			{
+				if (saving)
+				{
+					if (saveFile.ShowDialog() == DialogResult.OK)
+					{
+						SaveGif(saveFile.FileName);
+					}
+					saving = false;
+				}
+			}
 		}
 		public void StopRecording()
 		{
 			recording = false;
 			recordButton.ImageIndex = 0;
-
-			AutoSave();
+			borderPanel.Enabled = true;
 		}
 		private void SaveGif(string path)
 		{
 			MemoryStream ms = new MemoryStream();
 			encoder.Save(ms);
-			encoder.Frames.Clear();
-			encoder = null;
 
 			List<byte> gifData = new List<byte>(ms.ToArray());
-			GifDataModifier.ChangeDelay(gifData, 6);
+			short delay = MainForm.GetFrameRate((int)Properties.Settings.Default["GIF_FRAME"]);
+			GifDataModifier.ChangeDelay(gifData, delay);
 			GifDataModifier.Save(path, gifData);
 		}
 		private void AutoSave()
 		{
 			#region Defining file path and file name
 			//TODO Make this part as a static function of NamingConvention So that ImageRect and GifRect can share
-			List<int> namingTemplate = NamingConvention.SaveValueToInt((string)Properties.Settings.Default["IMG_NAMING"]);
+			List<int> namingTemplate = NamingConvention.SaveValueToInt((string)Properties.Settings.Default["GIF_NAMING"]);
 			string formatString = "." + ImageFormat.Gif.ToString().ToLower();
-			string path = (string)Properties.Settings.Default["IMG_PATH"];
+			string path = (string)Properties.Settings.Default["GIF_PATH"];
 			
 			if (DirectoryControl.DirectoryCheckCreate(path))
 				path += "\\" + NamingConvention.TemplateToName(namingTemplate) + formatString;
@@ -365,6 +391,18 @@ namespace screen_capture.GifRect
 			#endregion
 
 			SaveGif(path);
+			Clear();
+		}
+		private void Clear()
+		{
+			recording = false;
+			waiting = false;
+			saving = false;
+
+			recorded.Image = null;
+
+			recordTask.Wait();
+			recordTask.Dispose();
 		}
 		#endregion
 

@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using ImgRect = screen_capture.ImageRect.ImageRect;
+using GIFRect = screen_capture.GifRect.GifRect;
 
 namespace screen_capture
 {
@@ -32,7 +33,6 @@ namespace screen_capture
 
 		private List<Form> irects;
 		private List<Form> grects;
-		GifRect.GifRect temp;
 
 		public MainForm()
 		{
@@ -47,9 +47,6 @@ namespace screen_capture
 			gifSetting.LoadSetting();
 
 			titlePanel.MouseDown += titleBar_MouseDown;
-
-			temp = new GifRect.GifRect(0);
-			temp.Show();
 		}
 
 		protected override void WndProc(ref Message m)
@@ -68,7 +65,7 @@ namespace screen_capture
 						MessageBox.Show(((int)m.WParam).ToString());
 						break;
 					case (int)SHORTCUT_FUNCTION.RECORD_ALL:
-						MessageBox.Show(((int)m.WParam).ToString());
+						RecordAll();
 						break;
 					default:
 						MessageBox.Show("Undefined Hotkey");
@@ -91,7 +88,13 @@ namespace screen_capture
 					r.Close();
 				}
 			}
-			temp.Close();
+			if (grects != null && grects.Count > 0)
+			{
+				foreach (GIFRect g in grects)
+				{
+					g.Close();
+				}
+			}
 			this.Close();
 		}
 
@@ -146,8 +149,7 @@ namespace screen_capture
 					}
 					else if (ct == CAPTURE_TYPE.GIF)
 					{
-						//TODO change ImgRect to GifRect
-						rects.Add(new ImgRect(id));
+						rects.Add(new GIFRect(id));
 					}
 					rects.Last().Show();
 				}
@@ -255,6 +257,58 @@ namespace screen_capture
 			{
 				(irects[i] as ImgRect).CaptureInternalRect();
 			}
+		}
+		private void RecordAll()
+		{
+			for (int i = 0; i < grects.Count; i++)
+			{
+				var rect = grects[i] as GIFRect;
+				if (rect.Recording)
+					rect.StopRecording();
+				else
+					rect.StartRecording();
+			}
+		}
+		#endregion
+
+		#region gif property conversion
+		public static short GetFrameRate(int index)
+		{
+			switch (index)
+			{
+				case 0:
+					return 6;
+				case 1:
+					return 2;
+			}
+
+			return 10;
+		}
+		public static int GetInterval(int index)
+		{
+			switch (index)
+			{
+				case 0:
+					return 33;
+				case 1:
+					return 16;
+			}
+
+			return 100;
+		}
+		public static int GetQuality(int index)
+		{
+			switch (index)
+			{
+				case 0:
+					return 1;
+				case 1:
+					return 2;
+				case 2:
+					return 4;
+			}
+
+			return 1;
 		}
 		#endregion
 	}

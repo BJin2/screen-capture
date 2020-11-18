@@ -33,9 +33,11 @@
 			this.contentsContainer = new System.Windows.Forms.Panel();
 			this.detailedContentsPanel = new System.Windows.Forms.Panel();
 			this.panel12 = new System.Windows.Forms.Panel();
+			this.allShortcut = new screen_capture.ShortcutControl();
 			this.enableAllShortcut = new System.Windows.Forms.CheckBox();
 			this.panel9 = new System.Windows.Forms.Panel();
 			this.panel10 = new System.Windows.Forms.Panel();
+			this.selectShortcut = new screen_capture.ShortcutControl();
 			this.enableSelectShortcut = new System.Windows.Forms.CheckBox();
 			this.autosaveDetailPanel = new System.Windows.Forms.Panel();
 			this.panel8 = new System.Windows.Forms.Panel();
@@ -43,20 +45,18 @@
 			this.fileFormatLabel = new System.Windows.Forms.Label();
 			this.panel6 = new System.Windows.Forms.Panel();
 			this.panel2 = new System.Windows.Forms.Panel();
+			this.namingConvention = new screen_capture.NamingConvention();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel5 = new System.Windows.Forms.Panel();
+			this.path = new screen_capture.DirectoryControl();
 			this.autosavePathLabel = new System.Windows.Forms.Label();
 			this.panel7 = new System.Windows.Forms.Panel();
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.autosaveCheckbox = new System.Windows.Forms.CheckBox();
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.numRectLabel = new System.Windows.Forms.Label();
-			this.allShortcut = new screen_capture.ShortcutControl();
-			this.selectShortcut = new screen_capture.ShortcutControl();
-			this.namingConvention = new screen_capture.NamingConvention();
-			this.path = new screen_capture.DirectoryControl();
 			this.numImageRect = new screen_capture.FlatNumericUpDown();
+			this.numRectLabel = new System.Windows.Forms.Label();
 			this.contentsContainer.SuspendLayout();
 			this.detailedContentsPanel.SuspendLayout();
 			this.panel12.SuspendLayout();
@@ -117,6 +117,15 @@
 			this.panel12.Size = new System.Drawing.Size(530, 22);
 			this.panel12.TabIndex = 14;
 			// 
+			// allShortcut
+			// 
+			this.allShortcut.AssignedFunction = screen_capture.SHORTCUT_FUNCTION.CAPTURE_ALL;
+			this.allShortcut.Dock = System.Windows.Forms.DockStyle.Right;
+			this.allShortcut.Location = new System.Drawing.Point(177, 0);
+			this.allShortcut.Name = "allShortcut";
+			this.allShortcut.Size = new System.Drawing.Size(353, 22);
+			this.allShortcut.TabIndex = 4;
+			// 
 			// enableAllShortcut
 			// 
 			this.enableAllShortcut.AutoSize = true;
@@ -149,6 +158,15 @@
 			this.panel10.Name = "panel10";
 			this.panel10.Size = new System.Drawing.Size(530, 22);
 			this.panel10.TabIndex = 12;
+			// 
+			// selectShortcut
+			// 
+			this.selectShortcut.AssignedFunction = screen_capture.SHORTCUT_FUNCTION.CAPTURE_SELECTION;
+			this.selectShortcut.Dock = System.Windows.Forms.DockStyle.Right;
+			this.selectShortcut.Location = new System.Drawing.Point(177, 0);
+			this.selectShortcut.Name = "selectShortcut";
+			this.selectShortcut.Size = new System.Drawing.Size(353, 22);
+			this.selectShortcut.TabIndex = 3;
 			// 
 			// enableSelectShortcut
 			// 
@@ -235,6 +253,17 @@
 			this.panel2.Size = new System.Drawing.Size(530, 46);
 			this.panel2.TabIndex = 7;
 			// 
+			// namingConvention
+			// 
+			this.namingConvention.AutoScroll = true;
+			this.namingConvention.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(104)))), ((int)(((byte)(160)))));
+			this.namingConvention.CaptureType = screen_capture.CAPTURE_TYPE.IMG;
+			this.namingConvention.Dock = System.Windows.Forms.DockStyle.Right;
+			this.namingConvention.Location = new System.Drawing.Point(192, 0);
+			this.namingConvention.Name = "namingConvention";
+			this.namingConvention.Size = new System.Drawing.Size(338, 46);
+			this.namingConvention.TabIndex = 1;
+			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
@@ -254,6 +283,15 @@
 			this.panel5.Name = "panel5";
 			this.panel5.Size = new System.Drawing.Size(530, 10);
 			this.panel5.TabIndex = 6;
+			// 
+			// path
+			// 
+			this.path.CaptureType = screen_capture.CAPTURE_TYPE.IMG;
+			this.path.Dock = System.Windows.Forms.DockStyle.Top;
+			this.path.Location = new System.Drawing.Point(0, 21);
+			this.path.Name = "path";
+			this.path.Size = new System.Drawing.Size(530, 22);
+			this.path.TabIndex = 1;
 			// 
 			// autosavePathLabel
 			// 
@@ -319,57 +357,6 @@
 			this.panel1.Size = new System.Drawing.Size(530, 22);
 			this.panel1.TabIndex = 1;
 			// 
-			// numRectLabel
-			// 
-			this.numRectLabel.AutoSize = true;
-			this.numRectLabel.Dock = System.Windows.Forms.DockStyle.Left;
-			this.numRectLabel.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-			this.numRectLabel.ForeColor = System.Drawing.SystemColors.ControlDark;
-			this.numRectLabel.Location = new System.Drawing.Point(0, 0);
-			this.numRectLabel.Margin = new System.Windows.Forms.Padding(0);
-			this.numRectLabel.Name = "numRectLabel";
-			this.numRectLabel.Size = new System.Drawing.Size(157, 21);
-			this.numRectLabel.TabIndex = 1;
-			this.numRectLabel.Text = "Image Capture Box ";
-			// 
-			// allShortcut
-			// 
-			this.allShortcut.AssignedFunction = screen_capture.SHORTCUT_FUNCTION.CAPTURE_ALL;
-			this.allShortcut.Dock = System.Windows.Forms.DockStyle.Right;
-			this.allShortcut.Location = new System.Drawing.Point(177, 0);
-			this.allShortcut.Name = "allShortcut";
-			this.allShortcut.Size = new System.Drawing.Size(353, 22);
-			this.allShortcut.TabIndex = 4;
-			// 
-			// selectShortcut
-			// 
-			this.selectShortcut.AssignedFunction = screen_capture.SHORTCUT_FUNCTION.CAPTURE_SELECTION;
-			this.selectShortcut.Dock = System.Windows.Forms.DockStyle.Right;
-			this.selectShortcut.Location = new System.Drawing.Point(177, 0);
-			this.selectShortcut.Name = "selectShortcut";
-			this.selectShortcut.Size = new System.Drawing.Size(353, 22);
-			this.selectShortcut.TabIndex = 3;
-			// 
-			// namingConvention
-			// 
-			this.namingConvention.AutoScroll = true;
-			this.namingConvention.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(104)))), ((int)(((byte)(160)))));
-			this.namingConvention.CaptureType = screen_capture.CAPTURE_TYPE.IMG;
-			this.namingConvention.Dock = System.Windows.Forms.DockStyle.Right;
-			this.namingConvention.Location = new System.Drawing.Point(192, 0);
-			this.namingConvention.Name = "namingConvention";
-			this.namingConvention.Size = new System.Drawing.Size(338, 46);
-			this.namingConvention.TabIndex = 1;
-			// 
-			// path
-			// 
-			this.path.CaptureType = screen_capture.CAPTURE_TYPE.IMG;
-			this.path.Dock = System.Windows.Forms.DockStyle.Top;
-			this.path.Location = new System.Drawing.Point(0, 21);
-			this.path.Name = "path";
-			this.path.Size = new System.Drawing.Size(530, 22);
-			this.path.TabIndex = 1;
-			// 
 			// numImageRect
 			// 
 			this.numImageRect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(53)))), ((int)(((byte)(83)))));
@@ -382,6 +369,19 @@
 			this.numImageRect.Name = "numImageRect";
 			this.numImageRect.Size = new System.Drawing.Size(70, 22);
 			this.numImageRect.TabIndex = 2;
+			// 
+			// numRectLabel
+			// 
+			this.numRectLabel.AutoSize = true;
+			this.numRectLabel.Dock = System.Windows.Forms.DockStyle.Left;
+			this.numRectLabel.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+			this.numRectLabel.ForeColor = System.Drawing.SystemColors.ControlDark;
+			this.numRectLabel.Location = new System.Drawing.Point(0, 0);
+			this.numRectLabel.Margin = new System.Windows.Forms.Padding(0);
+			this.numRectLabel.Name = "numRectLabel";
+			this.numRectLabel.Size = new System.Drawing.Size(157, 21);
+			this.numRectLabel.TabIndex = 1;
+			this.numRectLabel.Text = "Image Capture Box ";
 			// 
 			// ImageSettingControl
 			// 
