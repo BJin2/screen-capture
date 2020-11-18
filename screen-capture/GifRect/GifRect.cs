@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
 
+
 namespace screen_capture.GifRect
 {
 	public partial class GifRect : Form
@@ -42,9 +43,6 @@ namespace screen_capture.GifRect
 		public GifRect(int _id)
 		{
 			id = _id;
-			recording = false;
-			waiting = true;
-			saving = false;
 
 			InitializeComponent();
 			SetStyle(ControlStyles.ResizeRedraw, true);
@@ -284,13 +282,9 @@ namespace screen_capture.GifRect
 			recording = true;
 			waiting = true;
 			saving = false;
-			recordButton.ImageIndex = 1;
 
-			if (recordTask != null)
-			{
-				recordTask.Wait();
-				recordTask.Dispose();
-			}
+			recordButton.ImageIndex = 1;
+			borderPanel.Enabled = false;
 
 			recordTask = new Task(Record);
 			recordTask.Start();
@@ -344,7 +338,6 @@ namespace screen_capture.GifRect
 			{
 				if (saving)
 				{
-					
 					if (saveFile.ShowDialog() == DialogResult.OK)
 					{
 						SaveGif(saveFile.FileName);
@@ -357,6 +350,7 @@ namespace screen_capture.GifRect
 		{
 			recording = false;
 			recordButton.ImageIndex = 0;
+			borderPanel.Enabled = true;
 		}
 		private void SaveGif(string path)
 		{
@@ -404,6 +398,7 @@ namespace screen_capture.GifRect
 			recording = false;
 			waiting = false;
 			saving = false;
+
 			recorded.Image = null;
 
 			recordTask.Wait();
