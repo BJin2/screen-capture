@@ -32,17 +32,19 @@ namespace screen_capture.GifRect
 
 		private bool recording;
 		public bool Recording { get { return recording; } }
-		private int interval;
-		private int currentFrame;
+		private bool waiting;
+		private bool saving;
+
 		private GifBitmapEncoder encoder;
-		private List<Bitmap> frames;
+
+		private Task recordTask;
 
 		public GifRect(int _id)
 		{
 			id = _id;
 			recording = false;
-			interval = -1;
-			currentFrame = 0;
+			waiting = true;
+			saving = false;
 
 			InitializeComponent();
 			SetStyle(ControlStyles.ResizeRedraw, true);
@@ -272,28 +274,34 @@ namespace screen_capture.GifRect
 		}
 		private void saveButton_Click(object sender, EventArgs e)
 		{
-			if (encoder.Frames.Count == 0)
-				return;
-			if (saveFile.ShowDialog() == DialogResult.OK)
-			{
-				SaveGif(saveFile.FileName);
-			}
+			saving = true;
 		}
 		#endregion
 
 		#region Recording
 		public void StartRecording()
 		{
-			Clear();
-
 			recording = true;
+			waiting = true;
+			saving = false;
 			recordButton.ImageIndex = 1;
 
+			if (recordTask != null)
+			{
+				recordTask.Wait();
+				recordTask.Dispose();
+			}
+
+			recordTask = new Task(Record);
+			recordTask.Start();
+		}
+		private void Record()
+		{
 			int quality;
 			int interval;
+			Bitmap bm;
 
 			encoder = new GifBitmapEncoder();
-			frames = new List<Bitmap>();
 			try
 			{
 				interval = MainForm.GetInterval((int)Properties.Settings.Default["GIF_FRAME"]);
@@ -305,40 +313,50 @@ namespace screen_capture.GifRect
 				quality = 2;
 			}
 
-			int numFrame = 60;
-
-			#region Parallel task until recording becomes false
-			while (numFrame > 0)
+			#region until recording becomes false
+			while (recording)
 			{
 				Rectangle rect = new Rectangle(this.Left + left.Width,
 												this.Top + minHeight - bottom.Height,
 												this.Left + left.Width + this.Width - widthOffset,
 												this.Top + minHeight - bottom.Height + this.Height - minHeight);
-				Bitmap bm = MainForm.CaptureRect(rect, quality);
-				frames.Add(bm);
+				bm = MainForm.CaptureRect(rect, quality);
 				BitmapSizeOptions size = BitmapSizeOptions.FromEmptyOptions();
 				BitmapSource bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(bm.GetHbitmap(), IntPtr.Zero, System.Windows.Int32Rect.Empty, size);
 				BitmapFrame frame = BitmapFrame.Create(bitmapSource);
 				encoder.Frames.Add(frame);
-				numFrame--;
 				Thread.Sleep(interval);
 			}
 			#endregion
-		}
-		public void StopRecording()
-		{
-			recording = false;
-			recordButton.ImageIndex = 0;
 
 			if ((bool)Properties.Settings.Default["GIF_AUTOSAVE"])
 			{
 				AutoSave();
 				return;
 			}
+
 			MemoryStream ms = new MemoryStream();
 			encoder.Save(ms);
-			Bitmap bm = new Bitmap(ms);
+			bm = new Bitmap(ms);
 			recorded.Image = bm;
+
+			while (waiting)
+			{
+				if (saving)
+				{
+					
+					if (saveFile.ShowDialog() == DialogResult.OK)
+					{
+						SaveGif(saveFile.FileName);
+					}
+					saving = false;
+				}
+			}
+		}
+		public void StopRecording()
+		{
+			recording = false;
+			recordButton.ImageIndex = 0;
 		}
 		private void SaveGif(string path)
 		{
@@ -383,25 +401,13 @@ namespace screen_capture.GifRect
 		}
 		private void Clear()
 		{
-			//TODO stop parallel task
-			if (encoder != null)
-			{
-				encoder.Frames.Clear();
-				encoder = null;
-			}
-			interval = -1;
-			currentFrame = 0;
-			recorded.Image = null;
 			recording = false;
-		}
+			waiting = false;
+			saving = false;
+			recorded.Image = null;
 
-		private void StartAnimation()
-		{
-
-		}
-		private void StopAnimation()
-		{
-
+			recordTask.Wait();
+			recordTask.Dispose();
 		}
 		#endregion
 
